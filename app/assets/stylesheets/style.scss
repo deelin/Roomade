@@ -8,7 +8,7 @@ $textgray:#666666;
 $textlightgray:rgba(51,51,51,0.2);
 $orange:rgb(245,140,0);
 $orange-dim:rgba(245,140,0,0.4);
-$orange:rgba(245,140,0,0.8);
+$medorange:rgba(245,140,0,0.8);
 $value-height:25px;
 $value-width:100px;
 $value-height_2:40px;
@@ -406,28 +406,90 @@ $large-font:16px;
 
 
 .new_review{
+	padding-top:30px;
+	padding-bottom:30px;
+	
+	.question{
+		padding-bottom:20px;
+	}
+	
 	.category{
 		font-size:$large-font;
 		color:gray;
+		padding-bottom:5px;
 	}
 	
 	.num_box{
 			float:left;
 			height:25px;
 			width:15px;
-			background-color:$lightgray;
+			background-color:$orange-dim;
 			margin-left:2px;
 	}
 	
 	.num_box:hover{
-		background-color:$darkgray;
+		background-color:$medorange;
 	}
+	
+	.options{
+		padding:5px;
+		margin-left:80px;
+	}
+	
+	.option_box{
+		float:left;
+		height:25px;
+		width:15px;
+		background-color:$orange-dim;
+		margin-left:2px;
+	
+	}
+	
+	.option_box:hover{
+		background-color:$medorange;
+	}
+	
+	input[type="text"], textarea{
+		border:1px solid $lightestgray;
+		padding:5px;
+		font-size:14px;
+	}
+	
+	#rent_input{
+		width:87px;
+	}
+	
+	#address_input{
+		width:300px;
+	}
+	
+	.option_selectors{
+		list-style:none;
 		
+		li{
+			text-align:center;
+			float:left;
+			margin:5px 5px 0px 0px;
+			padding:10px 15px 10px 15px;
+			min-width:70px;
+			background-color:$orange-dim;
+			border-radius:2px;
+			color:$gray;
+		}
+		
+		li:hover{
+		background-color:$medorange;
+		color:white;
+		}
+	}
+	
+	
 	#amenities_list{
-				list-style:none;
+			margin-top:3px;
+			width:560px;
+			list-style:none;
 				
 				li{
-					float:left;
 					color:$textgray;
 					font-size:12px;
 					padding:10px;
@@ -435,17 +497,30 @@ $large-font:16px;
 					margin-left:0px;
 					margin-right:3px;
 					margin-bottom:3px;
-					background-color:$lightgray;
-					
+					background-color:$orange-dim;
+					float:left;
 				}
 				
 				li:hover{
-					background-color:$darkgray;
+					background-color:$medorange;
 					color:white;
 				}
 		}
 		
-	
+		.buttons_container{
+			margin-top:20px;
+			margin-left:20px;
+			.button{
+				text-align:center;
+				padding:20px 30px 20px 30px;
+				font-size:14px;
+				border-radius:10px;
+				background-color:$lightgray;
+				display:inline;
+				color:$gray;
+			}
+
+		}
 	
 
 }/***review***/

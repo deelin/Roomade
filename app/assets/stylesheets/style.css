@@ -199,7 +199,7 @@
     .apt_sum_container .inner .recommendation {
       width: 100px;
       height: 100px;
-      background-color: rgba(245, 140, 0, 0.8);
+      background-color: #f58c00;
       color: white;
       text-align: center; }
       .apt_sum_container .inner .recommendation .number {
@@ -238,31 +238,83 @@
       background-color: rgba(51, 51, 51, 0.2); }
 
 /***result***/
-.new_review .category {
-  font-size: 16px;
-  color: gray; }
-.new_review .num_box {
-  float: left;
-  height: 25px;
-  width: 15px;
-  background-color: rgba(51, 51, 51, 0.2);
-  margin-left: 2px; }
-.new_review .num_box:hover {
-  background-color: rgba(51, 51, 51, 0.6); }
-.new_review #amenities_list {
-  list-style: none; }
-  .new_review #amenities_list li {
+.new_review {
+  padding-top: 30px;
+  padding-bottom: 30px; }
+  .new_review .question {
+    padding-bottom: 20px; }
+  .new_review .category {
+    font-size: 16px;
+    color: gray;
+    padding-bottom: 5px; }
+  .new_review .num_box {
     float: left;
-    color: #666666;
-    font-size: 12px;
-    padding: 10px;
-    width: 110px;
-    margin-left: 0px;
-    margin-right: 3px;
-    margin-bottom: 3px;
-    background-color: rgba(51, 51, 51, 0.2); }
-  .new_review #amenities_list li:hover {
-    background-color: rgba(51, 51, 51, 0.6);
-    color: white; }
+    height: 25px;
+    width: 15px;
+    background-color: rgba(245, 140, 0, 0.4);
+    margin-left: 2px; }
+  .new_review .num_box:hover {
+    background-color: rgba(245, 140, 0, 0.8); }
+  .new_review .options {
+    padding: 5px;
+    margin-left: 80px; }
+  .new_review .option_box {
+    float: left;
+    height: 25px;
+    width: 15px;
+    background-color: rgba(245, 140, 0, 0.4);
+    margin-left: 2px; }
+  .new_review .option_box:hover {
+    background-color: rgba(245, 140, 0, 0.8); }
+  .new_review input[type="text"], .new_review textarea {
+    border: 1px solid #cccccc;
+    padding: 5px;
+    font-size: 14px; }
+  .new_review #rent_input {
+    width: 87px; }
+  .new_review #address_input {
+    width: 300px; }
+  .new_review .option_selectors {
+    list-style: none; }
+    .new_review .option_selectors li {
+      text-align: center;
+      float: left;
+      margin: 5px 5px 0px 0px;
+      padding: 10px 15px 10px 15px;
+      min-width: 70px;
+      background-color: rgba(245, 140, 0, 0.4);
+      border-radius: 2px;
+      color: #666666; }
+    .new_review .option_selectors li:hover {
+      background-color: rgba(245, 140, 0, 0.8);
+      color: white; }
+  .new_review #amenities_list {
+    margin-top: 3px;
+    width: 560px;
+    list-style: none; }
+    .new_review #amenities_list li {
+      color: #666666;
+      font-size: 12px;
+      padding: 10px;
+      width: 110px;
+      margin-left: 0px;
+      margin-right: 3px;
+      margin-bottom: 3px;
+      background-color: rgba(245, 140, 0, 0.4);
+      float: left; }
+    .new_review #amenities_list li:hover {
+      background-color: rgba(245, 140, 0, 0.8);
+      color: white; }
+  .new_review .buttons_container {
+    margin-top: 20px;
+    margin-left: 20px; }
+    .new_review .buttons_container .button {
+      text-align: center;
+      padding: 20px 30px 20px 30px;
+      font-size: 14px;
+      border-radius: 10px;
+      background-color: rgba(51, 51, 51, 0.2);
+      display: inline;
+      color: #666666; }
 
 /***review***/

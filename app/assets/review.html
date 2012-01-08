@@ -1,29 +1,35 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="css/reset.css"/>
-<link rel="stylesheet" href="css/text.css" />
-<link rel="stylesheet" href="css/960.css" />
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="stylesheets/reset.css"/>
+<link rel="stylesheet" href="stylesheets/text.css" />
+<link rel="stylesheet" href="stylesheets/960.css" />
+<link rel="stylesheet" href="stylesheets/style.css" />
 
 <body>
 
 <div class="wrapper new_review">
 	<div class="container_12">
-
+		
+	<div class="grid_8 review_container">
+		
 	<div id="address" class="question">
 		<div class="category">
 			What's the address of your apartment?
 		</div>
 		
-		<input type="text"/>
+		<input id="address_input" type="text"/>
 	</div>
 	
-	<div id="review" class="question">
+	<div id="recommendation" class="question">
 		<div class="category">
-		Your Review
-		</div>
+			Would you recommend this apartment to a friend
+		</div>	
 		
-		<input type="text"/>
+		<ul class="option_selectors">
+			<li>yes</li>
+			<li>no</li>
+		</ul>
 		
+		<div class="clearfloat"></div>
 	</div>
 	
 	<div id="rent" class="question">
@@ -32,15 +38,15 @@
 		</div>
 		
 		
-		<input type="text"/>
+		<input id="rent_input" type="text"/>
 		
-		<div class="rent_option">
-			per person
-		</div>
-	
-		<div class="rent_option">
-			apartment
-		</div>
+		
+		<ul class="option_selectors">
+			<li>per person</li>
+			<li>apartment</li>
+		</ul>
+		
+		<div class="clearfloat"></div>
 	</div>
 	
 	<div id="bedrooms" class="question">
@@ -48,7 +54,25 @@
 			Bedrooms
 		</div>
 		
-		<input type="text"/>
+		<div class="selectors">
+
+					<div class="num_box"> 
+					</div>
+
+					<div class="num_box"> 
+					</div>
+
+					<div class="num_box non-selected"> 
+					</div>
+
+					<div class="num_box non-selected"> 
+					</div>
+
+					<div class="num_box non-selected"> 
+					</div>
+
+		</div>
+		<div class="clearfloat"></div>
 	</div>
 	
 	<div id="bathrooms" class="question">
@@ -57,17 +81,34 @@
 		</div>
 		
 		
-		<input type="text"/>
-	
+		<div class="selectors">
+
+					<div class="num_box"> 
+					</div>
+
+					<div class="num_box"> 
+					</div>
+
+					<div class="num_box non-selected"> 
+					</div>
+
+					<div class="num_box non-selected"> 
+					</div>
+
+					<div class="num_box non-selected"> 
+					</div>
+
+		</div>
+		<div class="clearfloat"></div>
 	</div>
 
 	<div id="roommates" class="question">
 		<div class="category">
-		Roommate
+		Roommates
 		</div>
 		
 		
-		<div class="options">
+		<div class="selectors">
 						
 				<div class="num_box"> 
 				</div>
@@ -83,9 +124,19 @@
 							
 				<div class="num_box non-selected"> 
 				</div>
+				
+				<div class="num_box non-selected"> 
+				</div>
+
+				<div class="num_box non-selected"> 
+				</div>
+
+				<div class="num_box non-selected"> 
+				</div>
 								
 		</div>
 		
+		<div class="clearfloat"></div>
 	</div>
 	
 	<div id="space" class="question">
@@ -98,22 +149,24 @@
 			
 		<div class="options">
 						
-				<div class="num_box"> 
+				<div class="option_box"> 
 				</div>
 				
-				<div class="num_box"> 
+				<div class="option_box"> 
 				</div>
 				
-				<div class="num_box non-selected"> 
+				<div class="option_box non-selected"> 
 				</div>
 				
-				<div class="num_box non-selected"> 
+				<div class="option_box non-selected"> 
 				</div>
 							
-				<div class="num_box non-selected"> 
+				<div class="option_box non-selected"> 
 				</div>
 								
 		</div>
+		
+		<div class="clearfloat"></div>
 			
 	</div>
 		
@@ -129,22 +182,24 @@
 		
 		<div class="options">
 						
-				<div class="num_box"> 
+				<div class="option_box"> 
 				</div>
 				
-				<div class="num_box"> 
+				<div class="option_box"> 
 				</div>
 				
-				<div class="num_box non-selected"> 
+				<div class="option_box non-selected"> 
 				</div>
 				
-				<div class="num_box non-selected"> 
+				<div class="option_box non-selected"> 
 				</div>
 							
-				<div class="num_box non-selected"> 
+				<div class="option_box non-selected"> 
 				</div>
 								
 		</div>
+		
+		<div class="clearfloat"></div>
 	</div>
 	
 	<div id="security" class="question">
@@ -153,12 +208,16 @@
 		</div>
 		<div class="description">
 		Prone to break-ins or theft?
-		
-		<select>
-			<option> yes
-			<option> no
-		</select>
 		</div>
+		
+		<ul class="option_selectors">
+			<li>yes</li>
+			<li>no</li>
+		</ul>
+		
+		<div class="clearfloat"></div>
+		
+	
 	</div>
 	
 	<div id="managment" class="question">
@@ -171,22 +230,23 @@
 		
 			<div class="options">
 						
-				<div class="num_box"> 
+				<div class="option_box"> 
 				</div>
 				
-				<div class="num_box"> 
+				<div class="option_box"> 
 				</div>
 				
-				<div class="num_box non-selected"> 
+				<div class="option_box non-selected"> 
 				</div>
 				
-				<div class="num_box non-selected"> 
+				<div class="option_box non-selected"> 
 				</div>
 							
-				<div class="num_box non-selected"> 
+				<div class="option_box non-selected"> 
 				</div>
 								
 		</div>
+		<div class="clearfloat"></div>
 	</div>
 	
 	<div id="condition" class="question">
@@ -199,28 +259,31 @@
 			
 			<div class="options">
 						
-				<div class="num_box"> 
+				<div class="option_box"> 
 				</div>
 				
-				<div class="num_box"> 
+				<div class="option_box"> 
 				</div>
 				
-				<div class="num_box non-selected"> 
+				<div class="option_box non-selected"> 
 				</div>
 				
-				<div class="num_box non-selected"> 
+				<div class="option_box non-selected"> 
 				</div>
 							
-				<div class="num_box non-selected"> 
+				<div class="option_box non-selected"> 
 				</div>
 								
 		</div>
+		
+		<div class="clearfloat"></div>
 	</div>
 	
 	<div id="amenities" class="question">
 		<div class="category">
 		Amenities
 		</div>
+		
 		<div class="description">
 		Please select all that are provided to you by your apartment complex
 		</div>
@@ -236,18 +299,33 @@
 					<li>heaters</li>
 					<li>bike racks</li>
 				</ul>
+	<div class="clearfloat"></div>
 	</div>
 	
-	<div style="clear:both;"></div>
-
+	
+	<div id="review" class="question">
+		<div class="category">
+		Comments
+		</div>
+		
+		<textarea id="review_input"rows="4" cols="70"/></textarea>
+		
+	</div>
+	
 	<div id="feedback" class="question">
 		<div class="category">
 		We love feedback!
 		</div>
-		<input type="text"/>
+		<textarea id="feedback_input" rows="2" cols="70"/></textarea>
 	</div>
-
-
+	
+	
+	</div><!--review-container-->
+	
+	<div class="grid-4 buttons_container">
+			<div class="button upload">+ upload photos</div>
+	</div> <!--grid4-->
+	
 	</div><!--container 12-->
 </div><!--wrapper-->
 </body>
