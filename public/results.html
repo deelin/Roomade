@@ -3,15 +3,7 @@
 <link rel="stylesheet" href="stylesheets/text.css" />
 <link rel="stylesheet" href="stylesheets/960.css" />
 <link rel="stylesheet" href="stylesheets/style.css" />
- <script type="text/javascript" src="javascripts/jquery.js"></script>      
- 
- <script type="text/javascript">                         
-     $(document).ready(function(){
-     	$('.apt_detail').hide();
-      	$('.apt_show').hover({
-       	 	$('.apt_show').replaceWith('.apt_detail');
-     });
-   </script>
+
 
 <body>
 
@@ -264,12 +256,12 @@
 				
 			</div> <!--sort-->
 			
-			<div id="results" class="grid_10">
+			<div id="results" class="grid_12">     					<!--results container-->
 			
 				
-			<div class="apt_show apt_sum_container grid_12">	
+			<div class="apt_detail apt_sum_container grid_12">		<!--container where details of the apartments are in-->
 				
-				<div class="inner">
+				<div class="inner">         						<!--keeps everything together-->    
 					
 					<div class="aptname">
 						Channing-Bowditch Apartments
@@ -375,9 +367,9 @@
 			
 			
 			
-				<div class="apt_detail apt_sum_container grid_12">
-				
-				<div class="inner">
+				<div class="apt_detail apt_sum_container grid_12">				<!--the specific details of each apartment-->
+					
+				<div class="inner">												<!--keeps everything together-->
 					
 					<div class="address">
 						<div class="street">
