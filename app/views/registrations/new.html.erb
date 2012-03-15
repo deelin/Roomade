@@ -1,0 +1,44 @@
+<div id="registrations-form" class="container">
+	<div class="row">
+		
+		<div class="onecol"></div>
+		<div class="tencol">
+			<h2>Create an account</h2>
+
+			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+			<ul>
+				<fieldset>
+		
+				<li>
+					<%= f.label :username %>
+					<%= f.text_field :username %>
+					<span id="username-error" class="signup-error"><%= devise_error_messages!["Username"] %></span>
+				</li>
+				<li>
+					<%= f.label :email %>
+					<%= f.email_field :email %>
+					<span id="email-error" class="signup-error"><%= devise_error_messages!["Email"] %></span>
+				</li>
+				<li>
+					<%= f.label :password %>
+					<%= f.password_field :password %>
+					<span id="password-error" class="signup-error"><%= devise_error_messages!["Password"] %></span>
+				</li>
+					<%= f.label :confirm_password %>
+					<%= f.password_field :password_confirmation %>
+				</li>
+	
+				<li>
+					<%= f.label :blank, "" %>
+					<%= f.submit "Sign Up", :class => "submit-btn", :id => "signup-submit" %>
+				</li>
+				</fieldset>
+	
+			</ul>
+			<% end %>
+		</div>
+		
+		<div class="onecol last"></div>
+	</div>
+	
+</div>

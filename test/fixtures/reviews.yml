@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  apartment_id: 1
+  rent: 1.5
+  bedrooms: 1
+  bathrooms: 1
+  roommates: 1
+  space: 1
+  noise: 1
+  security: false
+  management: 1
+  condition: 1
+  recommendation: false
+  description: MyText
+
+two:
+  apartment_id: 1
+  rent: 1.5
+  bedrooms: 1
+  bathrooms: 1
+  roommates: 1
+  space: 1
+  noise: 1
+  security: false
+  management: 1
+  condition: 1
+  recommendation: false
+  description: MyText

@@ -1,0 +1,30 @@
+<div id="signin-form" class="container">
+	
+	<div class="row">
+		<div class="onecol"></div>
+		<div class="tencol">
+			<h2>Welcome back!</h2>
+			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "new-session") do |f| %>
+				<ul>
+					<fieldset>
+					<li>
+						<%= f.label :login %>
+						<%= f.text_field :login %>
+					</li>
+					<li>
+						<%= f.label :password %>
+						<%= f.password_field :password %>
+						<span id="login-error" class="signin-error"><%= flash[:alert] %></span>
+					</li>
+					<li>
+						<%= label_tag " " %>
+						<%= f.submit "Sign In", :class => "submit-btn", :id => "signin-submit" %>
+					</li>
+					</fieldset>
+				</ul>
+
+			<% end %>
+		</div>
+		<div class="onecol last"></div>
+	</div>
+</div>

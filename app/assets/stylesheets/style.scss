@@ -1,5 +1,5 @@
 /* style.scss */
-$faintgray:#E8E8E8;
+
 $lightestgray:#CCCCCC;
 $gray:gray;
 $lightgray:rgba(51,51,51,0.2);
@@ -15,28 +15,6 @@ $value-height_2:40px;
 $gray:#666666;
 $large-line-height:20px;
 $large-font:16px;
-$red:rgba(238,64,0,0.4);
-$blue:rgba(30,144,255,0.4);
-
-#logo{
-	font-size:24px;
-	background-color:$darkgray;
-	
-		div{	
-			padding:20px;
-			color:white;
-		}
-		
-		#slogan{
-			font-size:14px;
-			color:$faintgray;
-			display:inline;
-			padding:0px;
-			
-		}
-	
-	
-}
 
 .clearfloat{
 	clear:both;
@@ -45,15 +23,14 @@ $blue:rgba(30,144,255,0.4);
 #filter_container{
 	background-color:$lightestgray;
 	padding:none;
-	height:250px;
-	
+
 	.inner{
 		margin-top:40px;
-		
+
 		.subcolumn{
 			float:left;
 			padding:0px 0px 10px 20px;
-			
+
 			p{
 				text-align:center;
 				color:$gray;
@@ -61,36 +38,47 @@ $blue:rgba(30,144,255,0.4);
 				margin-top:5px;
 			}
 		}
-		
-		
+
+
 		.price{
 			padding-right:0px;
 		}
-		
+
 		.category{
 			font-size:$large-font;
 			color:gray;
 			padding:0px 10px 5px 0px;
 		}
-		
+
+		.num_box{
+			float:left;
+			height:25px;
+			width:15px;
+			background-color:$lightgray;
+			margin-left:2px;
+		}
+
+		.num_box:hover{
+			background-color:$darkgray;
+		}
+
 		.neighborhood_map {
-			
-				position:relative;
-				left:45px;
-				
+			float:right;
+			margin-right:15px;
+
 			img{
 				background-color:white;
 				padding:5px;
 			}
 		}
-		
+
 		#price_ranges{
 				list-style:none;
 				width:266px;
 				padding-right:0px;
 				float:left;
-				
-				
+
+
 				li{
 					float:left;
 					color:$textgray;
@@ -101,26 +89,25 @@ $blue:rgba(30,144,255,0.4);
 					margin-right:3px;
 					margin-bottom:3px;
 					background-color:$lightgray;
-					
+
 				}
-				
+
 				li:hover{
 					background-color:$darkgray;
 					color:white;
 				}
 		}
-		
+
 		.amenities{
-				position: relative;
-				bottom:89px;
-				width:665px;
-				left:20px;
-				
+			float:left;
+			padding-right:0px;
+			width:665px;
+
 		}
-		
+
 		#amenities_list{
 				list-style:none;
-				
+
 				li{
 					float:left;
 					color:$textgray;
@@ -131,33 +118,19 @@ $blue:rgba(30,144,255,0.4);
 					margin-right:3px;
 					margin-bottom:3px;
 					background-color:$lightgray;
-					
+
 				}
-				
+
 				li:hover{
 					background-color:$darkgray;
 					color:white;
 				}
 		}
-		
+
 	}/**inner**/
 
 
 }/***filter-container***/
-
-.num_box{
-	float:left;
-	height:25px;
-	width:15px;
-	background-color:$lightgray;
-	margin-left:2px;
-}
-
-.num_box:hover{
-	background-color:$darkgray;
-}
-
-
 
 #sort{
 		padding-top:20px;
@@ -165,40 +138,40 @@ $blue:rgba(30,144,255,0.4);
 		float:left;
 		font-size:10px;
 		margin-bottom:20px;
-		
+
 		li{
 			float:left;
 			font-size:12px;
 			color:gray;
 			padding-right:40px;
 			margin-left:0px;
-			
+
 			ul{ 
 				display: none;
 				list-style:none;
 				margin-right:40px;
-				
-					
+
+
 					li{
 						padding-top:10px;
 						float:none;
 						padding:5px 10px 5px 10px;
 						margin-left:0px;
 						color:gray;
-						
+
 					}
-			
-			
+
+
 			}
-			
-			
+
+
 			}
 		li:hover ul{
 			display:block;
 			position:absolute;
 			background-color:$lightestgray;
 			color:gray;
-			
+
 			li:hover{
 				background-color:$darkgray;
 				color:white;
@@ -214,52 +187,47 @@ $blue:rgba(30,144,255,0.4);
 	height:220px;
 	width:100%;
 	margin-bottom:20px;
-}
 
-.apt_detail{
-	padding:0px;
-	margin:0px;
-	
 	.inner{
 		padding-left:20px;
 		padding-top:20px;
-		
+
 			.column{
 				padding:10px 10px 5px 0px;
 				float:left;
-				
+
 				.non-selected{
 				background-color:$lightestgray;
 				color:$gray;
-				
+
 				}
 				.am_1,.am_2{
 					float:left;	
 
 				}
 			}
-			
+
 			.address{ 
-	
+
 				.street{
 				font-size:16px;
 				display:inline;
 				}
-				
+
 				.city{
 				display:inline;
 				font-size:12px;
 				color:gray;
 				}
 			}
-			
-		
+
+
 		.map, .aptpicture{
 			width:180px;
 			height:125px;
 			background-color:gray;
 		}
-		
+
 		.aptgallery{
 			width:180px;
 			padding-top:3px;
@@ -271,24 +239,24 @@ $blue:rgba(30,144,255,0.4);
 				width:27px;
 				float:left;
 			}
-			
+
 			.last{
 				margin-right:0px;
 			}
-			
+
 		}
-		
+
 		.category{
 			width:$value-width;
 			text-align:center;
 			padding-bottom:3px;
 		}
-		
+
 		.amentities{
 			.category{
 				width:200px;
 			}
-		
+
 		}
 
 		.value{
@@ -297,21 +265,21 @@ $blue:rgba(30,144,255,0.4);
 			width: $value-width;
 			height:$value-height;
 			text-align:center;
-			
-			
+
+
 		}
-		
+
 		.bathrooms{
 			margin-top:10px;
 		}
-			
+
 		.bedrooms, .bathrooms{
 			.value{
 				padding-top:7px;
 				font-size:16px;
 			}
 		}
-		
+
 		.rent{
 			.value{
 				padding-top:15px;
@@ -320,17 +288,17 @@ $blue:rgba(30,144,255,0.4);
 				height:60px;
 				text-align:center;
 			}
-	
+
 		}
-		
-		
+
+
 		.distance{
 			.value{
 				margin-top:3px;
 				width: 180px;
 			}
 		}
-		
+
 		.item{
 			padding-top:5px;
 			width:$value-width;
@@ -341,14 +309,30 @@ $blue:rgba(30,144,255,0.4);
 			margin-bottom:3px;
 			margin-left:3px;
 		}
-		
-		
-		
+
+		.ratings{
+			width:$value-width;
+
+			.ratings_value_box{
+				height:$value-height;
+				width:$value-width/5 - 3px;
+				margin-left:2px;
+				background-color:$orange-dim; 
+				float:left;
+
+
+			}
+
+			.non-selected{
+					background-color:$lightestgray;
+				}	
+		}
+
 		.condition{
 			padding-bottom:40px;
 			padding-top:40px;
 		}
-	
+
 	.recommendation{
 		width:$value-width;
 		height:$value-width;
@@ -363,64 +347,45 @@ $blue:rgba(30,144,255,0.4);
 				font-size:14px;
 				line-height:$large-line-height;
 			}		
-			
+
 	}
-	
-	
-	.ratings{
-		width:$value-width;
-	
-		.ratings_value_box{
-			height:$value-height;
-			width:$value-width/5 - 3px;
-			margin-left:2px;
-			background-color:$orange-dim; 
-			float:left;
-			
-			
-		}
-		
-		.non-selected{
-				background-color:$lightestgray;
-			}	
-	}
-	
+
 	.recommendation-container .text{ 
 		text-align:center;
 	}
-	
-	
+
+
 	.aptname{
 		font-size:16px;
 	}
-	
+
 	.quote-container{	
-		
+
 		.fb_photo-container{
 			margin-bottom:5px;
 			float:left;
 			border:1px solid $lightestgray;
 			padding:3px;
 			display:inline;
-				
+
 				.fb_photo{
 					background-color:gray;
 					width:40px;
 					height:40px;
 				}
 		}
-				
+
 		.quote{
 			width:360px;
 			float:left;
 			padding:10px;
-	
+
 		}
-		
-	
+
+
 
 	}
-	
+
 	} /***inner**/
 
 	.buttons_container{
@@ -434,52 +399,26 @@ $blue:rgba(30,144,255,0.4);
 			margin-bottom:10px;
 			background-color:$lightgray;
 		}
-		
-		.button:hover{
-			background-color:$blue;
-		}
-		
+
 	}
-	
+
 } /***result***/
-
-.recommendation{
-	width:$value-width;
-	height:$value-width;
-	background-color:$orange;
-	color:white;
-	text-align:center;
-		.number{
-			padding-top:35px;
-			font-size: 22px;
-		}
-		.total{
-			font-size:14px;
-			line-height:$large-line-height;
-		}		
-		
-}
-
-.recommendation-container .text{ 
-	text-align:center;
-}
 
 
 .new_review{
-	padding-top:80px;
+	padding-top:30px;
 	padding-bottom:30px;
-	padding-left:20px;
-	
+
 	.question{
 		padding-bottom:20px;
 	}
-	
+
 	.category{
 		font-size:$large-font;
 		color:gray;
 		padding-bottom:5px;
 	}
-	
+
 	.num_box{
 			float:left;
 			height:25px;
@@ -487,46 +426,46 @@ $blue:rgba(30,144,255,0.4);
 			background-color:$orange-dim;
 			margin-left:2px;
 	}
-	
+
 	.num_box:hover{
 		background-color:$medorange;
 	}
-	
+
 	.options{
 		padding:5px;
 		margin-left:80px;
 	}
-	
+
 	.option_box{
 		float:left;
 		height:25px;
 		width:15px;
 		background-color:$orange-dim;
 		margin-left:2px;
-	
+
 	}
-	
+
 	.option_box:hover{
 		background-color:$medorange;
 	}
-	
+
 	input[type="text"], textarea{
 		border:1px solid $lightestgray;
 		padding:5px;
 		font-size:14px;
 	}
-	
+
 	#rent_input{
 		width:87px;
 	}
-	
+
 	#address_input{
 		width:300px;
 	}
-	
+
 	.option_selectors{
 		list-style:none;
-		
+
 		li{
 			text-align:center;
 			float:left;
@@ -537,19 +476,19 @@ $blue:rgba(30,144,255,0.4);
 			border-radius:2px;
 			color:$gray;
 		}
-		
+
 		li:hover{
 		background-color:$medorange;
 		color:white;
 		}
 	}
-	
-	
+
+
 	#amenities_list{
 			margin-top:3px;
 			width:560px;
 			list-style:none;
-				
+
 				li{
 					color:$textgray;
 					font-size:12px;
@@ -561,13 +500,13 @@ $blue:rgba(30,144,255,0.4);
 					background-color:$orange-dim;
 					float:left;
 				}
-				
+
 				li:hover{
 					background-color:$medorange;
 					color:white;
 				}
 		}
-		
+
 		.buttons_container{
 			margin-top:20px;
 			margin-left:20px;
@@ -582,208 +521,6 @@ $blue:rgba(30,144,255,0.4);
 			}
 
 		}
-	
+
 
 }/***review***/
-
-
-/**apartment page**/
-
-#info_container{
-	background-color:$lightestgray;
-	padding:none;
-	height:250px;
-	
-	.inner{
-		margin-top:40px;
-	
-		.column{
-			width:685px;
-			float:left;
-		}
-		.subcolumn{
-			float:left;
-			padding:0px 0px 10px 20px;
-		}
-		
-		.subcolumn_right{
-			float:right;
-			padding:0px 0px 10px 20px;
-		}
-		
-		
-		.amenities{
-			width:665px;
-			#amenities_list{
-					list-style:none;
-
-					li{
-						float:left;
-						color:$textgray;
-						font-size:12px;
-						padding:10px;
-						width:110px;
-						margin-left:0px;
-						margin-right:3px;
-						margin-bottom:3px;
-						background-color:$lightgray;
-
-					}
-
-					li:hover{
-						background-color:$darkgray;
-						color:white;
-				
-					}
-			}
-		}
-			.category{
-				font-size:$large-font;
-				color:gray;
-				padding:0px 10px 5px 0px;
-			}
-			
-		} /**inner**/
-		
-
-	img{
-			background-color:white;
-			padding:5px;
-		}
-} /**info_container**/
-
-.apt_photo{
-	width:230px;
-	height:170px;
-	margin-top:20px;
-	margin-left:10px;
-	float:left;
-}
-
-.recommendation-rating, .apt_price{
-		color:$textgray;
-		font-size:12px;
-		padding:10px;
-		width:110px;
-		margin-left:0px;
-		margin-right:3px;
-		margin-bottom:3px;
-		background-color:$lightgray;
-	
-}
-
-.add_address{
-	padding-right:20px;
-	font-size:14px;
-	color:gray;
-}
-
-.distance{
-	font-weight:bold;
-	padding-top:10px;
-}
-
-.overall_ratings{
-	padding:30px;
-}
-
-.rating{
-	.category{
-		font-size:$large-font;
-		padding-bottom:10px;
-	}
-	
-	.range{
-		float:left;
-		padding:10px;
-		color:$lightestgray;
-	}
-	
-	.ratingbox-container{
-		width:auto;
-		.ratings_value_box{
-			height:$value-height;
-			width:$value-width/5 - 3px;
-			margin-left:2px;
-			background-color:$orange-dim; 
-			float:left;
-			margin-bottom:20px;
-		
-		}
-		
-		.non-selected{
-				background-color:$lightestgray;
-		}		
-	}
-} /**rating**/
-
-.total_reviews{
-	margin-top:10px;
-	margin-bottom:5px;
-	div{
-	color: gray;
-	display:inline;
-	font-size:16px;
-	}
-}
-
-.response{
-	text-align:center;
-	padding:12px 10px 12px 10px;
-	font-size:14px;
-	border-radius:5px;
-	width:70px;
-	color:black;
-}
-
-.no{
-	background-color:$red;
-}
-
-.yes{
-	background-color:$blue;
-}
-
-.maybe{
-	background-color:$orange-dim;
-}
-
-.review{
-	height:50px;
-	padding:20px;
-	margin-top:5px;
-	background-color:$faintgray;
-	.subcolumn{
-		margin-right:20px;
-		float:left;
-		
-		.review_text{
-			font-size:14px;
-			padding-bottom:10px;
-		}
-		
-		.date{
-			color:gray;
-		}
-		
-	}
-	.apt_setup{
-		float:right;
-	}
-}
-
-.new_review{
-	.button{
-		text-align:center;
-		font-size:16px;
-		margin-top:10px;
-		border-radius:5px;
-		padding:20px;
-		background-color:$orange-dim;
-		color:$textgray;
-	}
-	
-	.button:hover{
-		background-color:$blue;
-	}
-}

@@ -1,4 +1,17 @@
 Roomade::Application.routes.draw do
+  # authentication routes with devise
+  devise_for :users,
+  :controllers => { :registrations => "registrations", :sessions => "sessions" }, 
+  :path_names => { :sign_in => "signin", :sign_out => "signout", :sign_up => "register" }
+  
+  devise_scope :user do
+    get "signin" => "sessions#new", :as => :sign_in 
+    get "signout" => "sessions#destroy", :as => :sign_out
+    
+    get "signup" => "registrations#new", :as => :sign_up
+    post "register" => "registrations#create", :as => :register
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -30,7 +43,7 @@ Roomade::Application.routes.draw do
   #     resources :comments, :sales
   #     resource :seller
   #   end
-
+  
   # Sample resource route with more complex sub-resources
   #   resources :products do
   #     resources :comments
@@ -48,8 +61,15 @@ Roomade::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
-
+  root :to => 'public#index'
+  match '/home' => 'home#index', :as => :home
+  
+  resources :review do
+  end
+  
+  match '/search' => 'search#search', :as => :search
+  match '/apartment/:id' => 'apartment#show', :as => :show_apartment
+  
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

@@ -1,67 +1,102 @@
-<!DOCTYPE html>
-<link rel="stylesheet" href="stylesheets/reset.css"/>
-<link rel="stylesheet" href="stylesheets/text.css" />
-<link rel="stylesheet" href="stylesheets/960.css" />
-<link rel="stylesheet" href="stylesheets/style.css" />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
 
-<body>
-
-<div class="wrapper">
-	<div class="container_12">
-		
-		<div id="logo" class="grid_12">
-			<div>ROOMADE
-					<div id="slogan">get the juice on apartments</div>
-			</div>
-			
-		</div>
+<!-- 
+jquery.autocomplete.js requires a minor modification for geo_autocomplete to work
+the following script includes the required mod
+-->
+<%= javascript_include_tag "jquery-ui-1.8.18.custom.min" %>
+<%= javascript_include_tag "jquery.autocomplete_geomod" %>
+<%= javascript_include_tag "geo_autocomplete" %>
+<%= stylesheet_link_tag "jquery.autocomplete" %>
 	
-	<div class="new_review">
+<script type="text/javascript">
+	$().ready(function() {
+
+	    var latlng = new google.maps.LatLng(-34.397, 150.644);
+	    var myOptions = {
+	      zoom: 8,
+	      center: latlng,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
+	    };
+	    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+		// use all the autocomplete options as documented at http://docs.jquery.com/Plugins/Autocomplete
+		/* additional geo_autocomplete options:
+			mapkey : 'ABQ...' (required for Static Maps thumbnails, obtain a key for your site from http://code.google.com/apis/maps/signup.html)
+			mapwidth : 100
+			mapheight : 100
+			maptype : 'terrain' (see http://code.google.com/apis/maps/documentation/staticmaps/#MapTypes)
+			mapsensor : true or false
+		*/
+		$('#address_input').geo_autocomplete(new google.maps.Geocoder, {
+			mapkey: 'ABQIAAAAbnvDoAoYOSW2iqoXiGTpYBTIx7cuHpcaq3fYV4NM0BaZl8OxDxS9pQpgJkMv0RxjVl6cDGhDNERjaQ', 
+			selectFirst: false,
+			minChars: 3,
+			cacheLength: 50,
+			width: 300,
+			scroll: true,
+			scrollHeight: 330
+		}).result(function(_event, _data) {
+			if (_data) {
+				console.log(_data);
+				map.fitBounds(_data.geometry.viewport);
+			}
+		});
+	});
+</script>
+
+<div class="wrapper new_review">
+	<div class="container_12">
+
 	<div class="grid_8 review_container">
-		
+			
+	<%= form_for @review, :url => {:action => "create"}, :html => {:class => "review_form"} do |f| %>
 	<div id="address" class="question">
 		<div class="category">
 			What's the address of your apartment?
 		</div>
+
+		<%= text_field_tag :address, nil, :id => "address_input" %>
+		<%= hidden_field_tag :formatted_address %>
 		
-		<input id="address_input" type="text"/>
+		<div id="map_canvas" style="width:300px;height:300px;"/>
 	</div>
-	
+
 	<div id="recommendation" class="question">
 		<div class="category">
 			Would you recommend this apartment to a friend
 		</div>	
-		
+
 		<ul class="option_selectors">
 			<li>yes</li>
 			<li>no</li>
 		</ul>
-		
+		<%= f.hidden_field :recommendation %>
 		<div class="clearfloat"></div>
 	</div>
-	
+
 	<div id="rent" class="question">
 		<div class="category">
 			Monthly Rent
 		</div>
-		
-		
-		<input id="rent_input" type="text"/>
-		
-		
+
+		<%= f.text_field :rent, :id => "rent_input" %>
+
 		<ul class="option_selectors">
 			<li>per person</li>
 			<li>apartment</li>
 		</ul>
-		
+		<%= hidden_field_tag :rent_split %>
+
 		<div class="clearfloat"></div>
 	</div>
-	
+
 	<div id="bedrooms" class="question">
 		<div class="category">
 			Bedrooms
 		</div>
-		
+
 		<div class="selectors">
 
 					<div class="num_box"> 
@@ -80,15 +115,16 @@
 					</div>
 
 		</div>
+		<%= f.hidden_field :bedrooms %>
 		<div class="clearfloat"></div>
 	</div>
-	
+
 	<div id="bathrooms" class="question">
 		<div class="category"> 
 			Bathrooms
 		</div>
-		
-		
+
+
 		<div class="selectors">
 
 					<div class="num_box"> 
@@ -107,6 +143,7 @@
 					</div>
 
 		</div>
+		<%= f.hidden_field :bathrooms %>
 		<div class="clearfloat"></div>
 	</div>
 
@@ -114,25 +151,19 @@
 		<div class="category">
 		Roommates
 		</div>
-		
-		
+
+
 		<div class="selectors">
-						
+
 				<div class="num_box"> 
 				</div>
-				
+
 				<div class="num_box"> 
 				</div>
-				
+
 				<div class="num_box non-selected"> 
 				</div>
-				
-				<div class="num_box non-selected"> 
-				</div>
-							
-				<div class="num_box non-selected"> 
-				</div>
-				
+
 				<div class="num_box non-selected"> 
 				</div>
 
@@ -141,12 +172,18 @@
 
 				<div class="num_box non-selected"> 
 				</div>
-								
+
+				<div class="num_box non-selected"> 
+				</div>
+
+				<div class="num_box non-selected"> 
+				</div>
+
 		</div>
-		
+		<%= f.hidden_field :roommates %>
 		<div class="clearfloat"></div>
 	</div>
-	
+
 	<div id="space" class="question">
 		<div class="category">
 		How spacious
@@ -154,62 +191,62 @@
 		<div class="description">
 		Based on how many roommates you have, how spacious is your apartment?
 		</div> 
-			
+
 		<div class="options">
-						
+
 				<div class="option_box"> 
 				</div>
-				
+
 				<div class="option_box"> 
 				</div>
-				
+
 				<div class="option_box non-selected"> 
 				</div>
-				
+
 				<div class="option_box non-selected"> 
 				</div>
-							
+
 				<div class="option_box non-selected"> 
 				</div>
-								
+
 		</div>
-		
+		<%= f.hidden_field :space %>	
 		<div class="clearfloat"></div>
-			
+
 	</div>
-		
+
 	<div id="noise" class="question">
 		<div class="category">
 		Noise
 		</div>
-		
-		
+
+
 		<div class="description">
 		How loud does it get? Inside complex and outside as well?
 		</div>
-		
+
 		<div class="options">
-						
+
 				<div class="option_box"> 
 				</div>
-				
+
 				<div class="option_box"> 
 				</div>
-				
+
 				<div class="option_box non-selected"> 
 				</div>
-				
+
 				<div class="option_box non-selected"> 
 				</div>
-							
+
 				<div class="option_box non-selected"> 
 				</div>
-								
+
 		</div>
-		
+		<%= f.hidden_field :noise %>
 		<div class="clearfloat"></div>
 	</div>
-	
+
 	<div id="security" class="question">
 		<div class="category">
 		Security
@@ -217,17 +254,17 @@
 		<div class="description">
 		Prone to break-ins or theft?
 		</div>
-		
+
 		<ul class="option_selectors">
 			<li>yes</li>
 			<li>no</li>
 		</ul>
-		
+
 		<div class="clearfloat"></div>
-		
-	
+		<%= f.hidden_field :security %>
+
 	</div>
-	
+
 	<div id="managment" class="question">
 		<div class="category"> 
 		Management
@@ -235,28 +272,29 @@
 		<div class="description">
 		How responsive are they to questions requests or maintenance?
 		</div>	
-		
+
 			<div class="options">
-						
+
 				<div class="option_box"> 
 				</div>
-				
+
 				<div class="option_box"> 
 				</div>
-				
+
 				<div class="option_box non-selected"> 
 				</div>
-				
+
 				<div class="option_box non-selected"> 
 				</div>
-							
+
 				<div class="option_box non-selected"> 
 				</div>
-								
+
 		</div>
+		<%= f.hidden_field :management %>
 		<div class="clearfloat"></div>
 	</div>
-	
+
 	<div id="condition" class="question">
 		<div class="category">
 		Condition
@@ -264,77 +302,81 @@
 		<div class="description">
 		How well maintained is the building?
 		</div>
-			
+
 			<div class="options">
-						
+
 				<div class="option_box"> 
 				</div>
-				
+
 				<div class="option_box"> 
 				</div>
-				
+
 				<div class="option_box non-selected"> 
 				</div>
-				
+
 				<div class="option_box non-selected"> 
 				</div>
-							
+
 				<div class="option_box non-selected"> 
 				</div>
-								
+
 		</div>
-		
+		<%= f.hidden_field :condition %>
 		<div class="clearfloat"></div>
 	</div>
-	
+
 	<div id="amenities" class="question">
 		<div class="category">
 		Amenities
 		</div>
-		
+
 		<div class="description">
 		Please select all that are provided to you by your apartment complex
 		</div>
-			<ul id="amenities_list">
-					<li>laundry machines</li>
-					<li>trash chutes</li>
-					<li>recyling</li>
-					<li>balcony</li>
-					<li>garage</li>
-					<li>elevators</li>
-					<li>carpets</li>
-					<li>hardwood floors</li>
-					<li>heaters</li>
-					<li>bike racks</li>
-				</ul>
-	<div class="clearfloat"></div>
+		
+		<ul id="amenities_list">
+			<li>laundry machines</li>
+			<li>trash chutes</li>
+			<li>recyling</li>
+			<li>balcony</li>
+			<li>garage</li>
+			<li>elevators</li>
+			<li>carpets</li>
+			<li>hardwood floors</li>
+			<li>heaters</li>
+			<li>bike racks</li>
+		</ul>
+		
+		<%= hidden_field_tag :amenities %>
+		<div class="clearfloat"></div>
 	</div>
-	
-	
+
+
 	<div id="review" class="question">
 		<div class="category">
 		Comments
 		</div>
-		
-		<textarea id="review_input"rows="4" cols="70"/></textarea>
-		
+		<%= f.text_area :description, :id => "review_input", :rows => "4", :cols => "70" %>
+
 	</div>
-	
+
 	<div id="feedback" class="question">
 		<div class="category">
 		We love feedback!
 		</div>
-		<textarea id="feedback_input" rows="2" cols="70"/></textarea>
+		<%= text_area_tag :feedback, nil, :id => "feedback_input", :rows => "2", :cols => "70" %>
+
 	</div>
-	
-	
+
+
 	</div><!--review-container-->
-	
+
 	<div class="grid-4 buttons_container">
 			<div class="button upload">+ upload photos</div>
 	</div> <!--grid4-->
 	
+	<% end %>
 	</div><!--container 12-->
+	
+	
 </div><!--wrapper-->
-</body>
-</html>

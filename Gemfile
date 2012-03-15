@@ -31,3 +31,8 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
+# paperclip, for photo attachments
+gem "paperclip", "~> 2.7"
+
+# devise, for easy user authentication (https://github.com/plataformatec/devise)
+gem 'devise'
