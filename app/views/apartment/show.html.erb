@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="stylesheets/reset.css"/>
+<link rel="stylesheet" href="stylesheets/text.css" />
+<link rel="stylesheet" href="stylesheets/960.css" />
+<link rel="stylesheet" href="stylesheets/style.css" />
+
+
+<body> 
+
+<div class="wrapper">	
+	<div class="container_12">
+			
+			<div id="logo" class="grid_12">
+				<div>ROOMADE
+						<div id="slogan">get the juice on apartments</div>
+				</div>
+				
+			</div>
+			
+			<div id="info_container" class="grid_12">
+		
+				
+			<div class="inner">
+			
+			<div class="column">
+			
+				
+					<div class=" subcolumn neighborhood_map">
+						<%= image_tag("neighborhood_map.png", :width => 100, :height => 85) %>
+					</div><!--map-->
+					
+				<div class="subcolumn add_address">
+					<div class="category address">2535 Channing Way</div>
+					<div class="city">Berkeley, CA</div>
+					<div class="phone">(501) 555-5555 </div>
+					<div class="distance">10 min walk from campus</div>
+				</div>
+				
+				<div class="subcolumn_right recommendation-container">
+					
+					<div class="category"> recommendation 
+					</div>
+				
+					<div class="number recommendation-rating">
+					25 	<div class="total" style="display:inline;"> out of 30 </div>
+					</div>
+					
+				</div>		
+				
+				
+				<div class="subcolumn_right price">
+				<div class="category"> price <p style="font-size:12px; display:inline;">(monthly)</p>
+				</div>
+					
+					<div class="apt_price">
+						$960-$1030
+					</div>
+					
+				</div>
+		
+			
+			<div class="clearfloat"></div>
+			<div class="subcolumn amenities">
+					<div class="category">amenities
+					</div>
+					
+					<ul id="amenities_list">
+						<li>laundry machines</li>
+						<li>trash chutes</li>
+						<li>recyling</li>
+						<li>balcony</li>
+						<li>garage</li>
+						<li>elevators</li>
+						<li>carpets</li>
+						<li>hardwood floors</li>
+						<li>heaters</li>
+						<li>bike racks</li>
+					</ul>
+				</div>
+		
+			</div> <!--column-->
+			
+			
+			<div class="apt_photo">
+				<%= image_tag("2535_Channing.JPG", :width => 220, :height => 163) %>
+			</div>
+			
+			</div><!--inner-->
+			</div> <!--filter_container-->
+
+		
+		<div class="grid_8">
+		
+			<div class="total_reviews">
+				<div class="num">99</div>
+				<div> reviews </div>
+			</div>
+		
+			<% @reviews.each do |review| %>
+			<div class="review">
+				<div class="subcolumn response <%= review.recommendation == true ? "yes" : "no" %>">
+				<%= review.recommendation == true ? "yes" : "no" %>
+				</div>
+				
+				<div class="subcolumn">
+					<div class="review_text">
+						<%= review.description %>
+					</div>
+					
+					<div class="date">
+						<%= time_ago_in_words(review.created_at) + " ago" %>
+					</div>
+				</div>
+				
+				<div class="subcolumn apt_setup">
+					<div class="category">Apartment Setup</div>
+					<div class="bedrooms">Bedrooms: <%= review.bedrooms %></div>
+					<div class="bathrooms">Bathrooms: <%= review.bathrooms %></div>
+					<div class="roommates">Roommates: <%= review.roommates %></div>
+				</div>
+				
+			</div>
+			<% end %>
+		
+			<div class="new_review">
+				<div> Do you live here?
+				</div>
+			
+				<div class="button"> Make a Quickie Review </div>
+			</div>
+		</div> <!--grid_8-->
+		
+		<div class="grid_4">
+			<div class="photo_gallery">
+			</div><!--photo_gallery-->
+			
+			
+			<div class="overall_ratings">
+						
+						<div class="noise rating">
+							<div class="category">noise level
+							</div>
+							
+							<div class="range"> low
+							</div>
+
+
+							<div class="ratingbox-container">
+								
+								<div class="ratings_value_box"> 
+								</div>
+								<div class="ratings_value_box"> 
+								</div>
+								<div class="ratings_value_box"> 
+								</div>
+								<div class="ratings_value_box non-selected"> 
+								</div>
+								<div class="ratings_value_box non-selected"> 
+								</div>
+							</div>
+							
+							<div class="range"> high
+							</div>
+
+						</div>
+						
+						<div class="clearfloat"></div>
+
+						<div class="condition rating">
+							<div class="category">overall condition
+							</div>
+							
+							<div class="range"> low
+							</div>
+
+							<div class="ratingbox-container">
+
+								<div class="ratings_value_box"> 
+								</div>
+								<div class="ratings_value_box"> 
+								</div>
+								<div class="ratings_value_box non-selected"> 
+								</div>
+								<div class="ratings_value_box non-selected"> 
+								</div>
+								<div class="ratings_value_box non-selected"> 
+								</div>
+							</div>
+							
+							<div class="range"> high
+							</div>
+							
+						</div>
+						
+					
+					<div class="clearfloat"></div>
+
+						<div class="security rating">
+							<div class="category">security level 
+							</div>
+							
+							<div class="range"> low
+							</div>
+							
+							<div class="ratingbox-container">
+
+								<div class="ratings_value_box"> 
+								</div>
+								<div class="ratings_value_box"> 
+								</div>
+								<div class="ratings_value_box"> 
+								</div>
+								<div class="ratings_value_box"> 
+								</div>
+								<div class="ratings_value_box non-selected"> 
+								</div>
+							</div>
+							
+							<div class="range"> high
+							</div>
+							
+						</div>
+						
+						<div class="clearfloat"></div>
+
+							<div class="management rating">
+								<div class="category">management quality
+								</div>
+
+								<div class="range"> low
+								</div>
+
+								<div class="ratingbox-container">
+
+									<div class="ratings_value_box"> 
+									</div>
+									<div class="ratings_value_box"> 
+									</div>
+									<div class="ratings_value_box"> 
+									</div>
+									<div class="ratings_value_box"> 
+									</div>
+									<div class="ratings_value_box non-selected"> 
+									</div>
+								</div>
+
+								<div class="range"> high
+								</div>
+
+							</div>
+				
+			</div> <!--overall_ratings-->
+			
+		</div><!--grid_4-->
+		
+	</div> <!--container 12-->
+	
+			
+</div> <!--wrapper-->
+
+</body>
