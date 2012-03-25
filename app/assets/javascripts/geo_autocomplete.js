@@ -36,8 +36,9 @@ $.fn.extend({
 			},
 			formatItem: function(_data, _i, _n, _value) {
 				var _src = 'http://maps.google.com/maps/api/staticmap?visible=' + _data.geometry.viewport.getSouthWest().toUrlValue() + '|' + _data.geometry.viewport.getNorthEast().toUrlValue() + '&size=' + options.mapwidth + 'x' + options.mapheight + '&maptype=' + options.maptype + '&key=' + options.mapkey + '&sensor=' + (options.mapsensor ? 'true' : 'false');
-				var _place = _data.formatted_address.replace(/,/gi, ',<br/>');
-				return '<img src="' + _src + '" width="' + options.mapwidth + '" height="' + options.mapheight + '" /> ' + _place + '<br clear="both"/>';
+				var _place = _data.formatted_address.replace(/,/gi, ',');
+				// return '<img src="' + _src + '" width="' + options.mapwidth + '" height="' + options.mapheight + '" /> ' + _place + '<br clear="both"/>';
+				return _place + '<br clear="both"/>';
 			}
 		}, _options);
 		

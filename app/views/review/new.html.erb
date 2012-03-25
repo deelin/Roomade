@@ -13,11 +13,11 @@ the following script includes the required mod
 <script type="text/javascript">
 	$().ready(function() {
 
-	    var latlng = new google.maps.LatLng(-34.397, 150.644);
+	    var latlng = new google.maps.LatLng(37.8716, -122.2716);
 	    var myOptions = {
-	      zoom: 8,
-	      center: latlng,
-	      mapTypeId: google.maps.MapTypeId.ROADMAP
+			zoom: 13,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
 	    };
 	    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
@@ -43,6 +43,54 @@ the following script includes the required mod
 				map.fitBounds(_data.geometry.viewport);
 			}
 		});
+		
+		$('.selectors, .options').live("mouseover", function(e) {
+			var children = $(this).children();
+			var finalIndex = children.index(e.target);
+			$(children).slice(0, finalIndex+1).addClass("selected");
+			$(children).slice(finalIndex+1).removeClass("selected");
+		});
+		
+		$('.selectors, .options').live("mouseout", function(e) {
+			if ($(this).hasClass("clicked")){
+				var children = $(this).children();
+				var finalIndex = parseInt($(this).attr("data-num"));
+				$(children).slice(0, finalIndex+1).addClass("selected");
+				$(children).slice(finalIndex+1).removeClass("selected");
+			}
+			else {
+				var children = $(this).children();
+				$(children).slice(0).removeClass("selected");
+			}
+		});
+		
+		$('.selectors, .options').live("click", function(e) {
+			var children = $(this).children();
+			var finalIndex = parseInt(children.index(e.target));
+			$(this).addClass("clicked");
+			$(this).attr("data-num", finalIndex);
+			$(this).next('input').val(finalIndex + 1);
+		});
+		
+		$('.option_selectors').live("click", function(e) {
+			if ($(this).hasClass("clicked")) {
+				$(this).find('li').removeClass("selected");
+			}
+			$(this).addClass("clicked");
+			$(e.target).addClass('selected');
+			$(this).next('input').val($(e.target).text());
+		});
+		
+		$('#amenities_list').live("click", function(e) {
+			$(e.target).toggleClass('selected');
+			var selected_amenities = $(this).find('.selected');
+			var amenity_ids = [];
+			selected_amenities.each(function(index, amenity) {
+				amenity_ids.push($(amenity).attr('data-id'));
+			});
+			$('#amenities_input').val(amenity_ids.join(","));
+		});
+		
 	});
 </script>
 
@@ -58,9 +106,9 @@ the following script includes the required mod
 		</div>
 
 		<%= text_field_tag :address, nil, :id => "address_input" %>
-		<%= hidden_field_tag :formatted_address %>
+		<%= hidden_field_tag :formatted_address, "", :id => "formatted_address" %>
 		
-		<div id="map_canvas" style="width:300px;height:300px;"/>
+		<div id="map_canvas" style="width:310px;height:310px;"/>
 	</div>
 
 	<div id="recommendation" class="question">
@@ -87,7 +135,7 @@ the following script includes the required mod
 			<li>per person</li>
 			<li>apartment</li>
 		</ul>
-		<%= hidden_field_tag :rent_split %>
+		<%= hidden_field_tag :rent_option, "", :id => "rent_option" %>
 
 		<div class="clearfloat"></div>
 	</div>
@@ -99,20 +147,20 @@ the following script includes the required mod
 
 		<div class="selectors">
 
-					<div class="num_box"> 
-					</div>
+			<div class="num_box"> 
+			</div>
 
-					<div class="num_box"> 
-					</div>
+			<div class="num_box"> 
+			</div>
 
-					<div class="num_box non-selected"> 
-					</div>
+			<div class="num_box"> 
+			</div>
 
-					<div class="num_box non-selected"> 
-					</div>
+			<div class="num_box"> 
+			</div>
 
-					<div class="num_box non-selected"> 
-					</div>
+			<div class="num_box"> 
+			</div>
 
 		</div>
 		<%= f.hidden_field :bedrooms %>
@@ -127,20 +175,20 @@ the following script includes the required mod
 
 		<div class="selectors">
 
-					<div class="num_box"> 
-					</div>
+			<div class="num_box"> 
+			</div>
 
-					<div class="num_box"> 
-					</div>
+			<div class="num_box"> 
+			</div>
 
-					<div class="num_box non-selected"> 
-					</div>
+			<div class="num_box non-selected"> 
+			</div>
 
-					<div class="num_box non-selected"> 
-					</div>
+			<div class="num_box non-selected"> 
+			</div>
 
-					<div class="num_box non-selected"> 
-					</div>
+			<div class="num_box non-selected"> 
+			</div>
 
 		</div>
 		<%= f.hidden_field :bathrooms %>
@@ -259,9 +307,8 @@ the following script includes the required mod
 			<li>yes</li>
 			<li>no</li>
 		</ul>
-
-		<div class="clearfloat"></div>
 		<%= f.hidden_field :security %>
+		<div class="clearfloat"></div>
 
 	</div>
 
@@ -335,19 +382,19 @@ the following script includes the required mod
 		</div>
 		
 		<ul id="amenities_list">
-			<li>laundry machines</li>
-			<li>trash chutes</li>
-			<li>recyling</li>
-			<li>balcony</li>
-			<li>garage</li>
-			<li>elevators</li>
-			<li>carpets</li>
-			<li>hardwood floors</li>
-			<li>heaters</li>
-			<li>bike racks</li>
+			<li data-id="1">laundry machines</li>
+			<li data-id="2">trash chutes</li>
+			<li data-id="3">recyling</li>
+			<li data-id="4">balcony</li>
+			<li data-id="5">garage</li>
+			<li data-id="6">elevators</li>
+			<li data-id="7">carpets</li>
+			<li data-id="8">hardwood floors</li>
+			<li data-id="9">heaters</li>
+			<li data-id="10">bike racks</li>
 		</ul>
 		
-		<%= hidden_field_tag :amenities %>
+		<%= hidden_field_tag :amenities, "", :id => "amenities_input" %>
 		<div class="clearfloat"></div>
 	</div>
 
@@ -375,6 +422,7 @@ the following script includes the required mod
 			<div class="button upload">+ upload photos</div>
 	</div> <!--grid4-->
 	
+		<%= f.submit "Submit review" %>
 	<% end %>
 	</div><!--container 12-->
 	

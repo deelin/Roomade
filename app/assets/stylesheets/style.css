@@ -292,7 +292,7 @@
     width: 15px;
     background-color: rgba(245, 140, 0, 0.4);
     margin-left: 2px; }
-  .new_review .num_box:hover {
+  .new_review .num_box.selected, .new_review .num_box:hover {
     background-color: rgba(245, 140, 0, 0.8); }
   .new_review .options {
     padding: 5px;
@@ -303,7 +303,7 @@
     width: 15px;
     background-color: rgba(245, 140, 0, 0.4);
     margin-left: 2px; }
-  .new_review .option_box:hover {
+  .new_review .option_box.selected, .new_review .option_box:hover {
     background-color: rgba(245, 140, 0, 0.8); }
   .new_review input[type="text"], .new_review textarea {
     border: 1px solid #cccccc;
@@ -324,7 +324,7 @@
       background-color: rgba(245, 140, 0, 0.4);
       border-radius: 2px;
       color: #666666; }
-    .new_review .option_selectors li:hover {
+    .new_review .option_selectors li.selected, .new_review .option_selectors li:hover {
       background-color: rgba(245, 140, 0, 0.8);
       color: white; }
   .new_review #amenities_list {
@@ -341,7 +341,7 @@
       margin-bottom: 3px;
       background-color: rgba(245, 140, 0, 0.4);
       float: left; }
-    .new_review #amenities_list li:hover {
+    .new_review #amenities_list li.selected, .new_review #amenities_list li:hover {
       background-color: rgba(245, 140, 0, 0.8);
       color: white; }
   .new_review .buttons_container {

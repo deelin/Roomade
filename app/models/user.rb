@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   # Allow login with email or username (devise)
   attr_accessor :login
   
+  has_many :reviews
   
   # Protected method for logging in with email or username (devise)
   protected

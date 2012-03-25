@@ -229,8 +229,8 @@ $.Autocompleter = function(input, options) {
 			}
 			v += options.multipleSeparator;
 		}
-		
-		$input.val(v);
+		$input.val(selected.data.formatted_address);	// changed from v
+		$('#formatted_address').val(selected.data.formatted_address);
 		hideResultsNow();
 		$input.trigger("result", [selected.data, selected.value]);
 		return true;
@@ -641,6 +641,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 	}
 
 	function moveSelect(step) {
+		console.log("move select");
 		listItems.slice(active, active + 1).removeClass(CLASSES.ACTIVE);
 		movePosition(step);
         var activeItem = listItems.slice(active, active + 1).addClass(CLASSES.ACTIVE);
@@ -658,6 +659,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 	};
 	
 	function movePosition(step) {
+		console.log("move position");
 		active += step;
 		if (active < 0) {
 			active = listItems.size() - 1;
@@ -667,6 +669,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 	}
 	
 	function limitNumberOfItems(available) {
+		console.log("limit number of items")
 		return options.max && options.max < available
 			? options.max
 			: available;
@@ -681,7 +684,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			var formatted = options.formatItem(data[i].data, i+1, max, data[i].value, term);
 			if ( formatted === false )
 				continue;
-			var li = $("<li/>").html( options.highlight(formatted, term) ).addClass(i%2 == 0 ? "ac_even" : "ac_odd").appendTo(list)[0];
+			var li = $("<li/>").html( options.highlight(formatted, term) ).addClass(i%2 == 0 ? "ac_even" : "ac_odd").attr("data-formatted-address", data[i].data.formatted_address).appendTo(list)[0];
 			$.data(li, "ac_data", data[i]);
 		}
 		listItems = list.find("li");
@@ -733,9 +736,11 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			return this.visible() && (listItems.filter("." + CLASSES.ACTIVE)[0] || options.selectFirst && listItems[0]);
 		},
 		show: function() {
+			console.log($(input).css("border"));
 			var offset = $(input).offset();
 			element.css({
-				width: typeof options.width == "string" || options.width > 0 ? options.width : $(input).width(),
+				// width: typeof options.width == "string" || $options.width > 0 ? options.width : $(input).width(),
+				width: typeof options.width == "string" || $(input).outerWidth() - 2,
 				top: offset.top + input.offsetHeight,
 				left: offset.left
 			}).show();
