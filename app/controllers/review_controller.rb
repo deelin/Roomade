@@ -12,7 +12,7 @@ class ReviewController < ApplicationController
     
     if @review.present?
       flash[:notice] = "Review created!"
-      redirect_to home_path and return
+      redirect_to show_apartment_path(:id => apartment.id) and return
     else
       flash[:error] = "Failed to create review."
       redirect_to new_review_path and return
