@@ -231,6 +231,8 @@ $.Autocompleter = function(input, options) {
 		}
 		$input.val(selected.data.formatted_address);	// changed from v
 		$('#formatted_address').val(selected.data.formatted_address);
+		
+		
 		hideResultsNow();
 		$input.trigger("result", [selected.data, selected.value]);
 		return true;

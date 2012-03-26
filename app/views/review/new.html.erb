@@ -42,8 +42,16 @@ the following script includes the required mod
 			scrollHeight: 330
 		}).result(function(_event, _data) {
 			if (_data) {
-				console.log(_data);
 				map.fitBounds(_data.geometry.viewport);
+				
+				var myLatlng = new google.maps.LatLng(_data.geometry.location.Ua, _data.geometry.location.Va);
+				var marker = new google.maps.Marker({
+				    position: myLatlng,
+				    title: $('#formatted_address').val()
+				});
+
+				// To add the marker to the map, call setMap();
+				marker.setMap(map);
 			}
 		});
 		
@@ -98,6 +106,7 @@ the following script includes the required mod
 			$(this).hide();
 			$('.upload_input').show();
 		});
+	
 		
 	});
 </script>
@@ -308,7 +317,7 @@ the following script includes the required mod
 		Security
 		</div>
 		<div class="description">
-		Prone to break-ins or theft?
+		Gated complex?
 		</div>
 
 		<ul class="option_selectors">
@@ -318,9 +327,31 @@ the following script includes the required mod
 		<%= f.hidden_field :security %>
 		<div class="clearfloat"></div>
 
+		<div class="description">
+		How safe do you feel living here?
+		</div>	
+
+		<div class="options">
+			<div class="option_box"> 
+			</div>
+
+			<div class="option_box"> 
+			</div>
+
+			<div class="option_box non-selected"> 
+			</div>
+
+			<div class="option_box non-selected"> 
+			</div>
+
+			<div class="option_box non-selected"> 
+			</div>
+		</div>
+		<%= f.hidden_field :security_level %>
+		<div class="clearfloat"></div>
 	</div>
 
-	<div id="managment" class="question">
+	<div id="management" class="question">
 		<div class="category"> 
 		Management
 		</div>

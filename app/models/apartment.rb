@@ -13,7 +13,7 @@ class Apartment < ActiveRecord::Base
     reviews.each do |review|
       ratings_hash["noise"] += review.noise
       ratings_hash["condition"] += review.condition
-      # ratings_hash["security"] += review.security
+      ratings_hash["security_level"] += review.security_level
       ratings_hash["management"] += review.management
     end
     

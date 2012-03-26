@@ -23,7 +23,7 @@
 				<div class="subcolumn add_address">
 					<div class="category address"><%= @address_hash["street"] %></div>
 					<div class="city"><%= @address_hash["city"] %></div>
-					<div class="phone">(501) 555-5555 </div>
+					<div class="phone"><%= @apartment.phone_number %> </div>
 					<div class="distance"></div>
 				</div>
 				
@@ -117,12 +117,14 @@
 			</div>
 			<% end %>
 		
+			<% if @allow_review %>
 			<div class="new_review">
 				<div> Do you live here?
 				</div>
 			
 				<div class="button"> Make a Quickie Review </div>
 			</div>
+			<% end %>
 		</div> <!--grid_8-->
 		
 		<div class="grid_4">
@@ -191,17 +193,14 @@
 					</div>
 					
 					<div class="ratingbox-container">
-
+						<% (1..@ratings_hash["security_level"]).each do |num| %>
 						<div class="ratings_value_box"> 
 						</div>
-						<div class="ratings_value_box"> 
-						</div>
-						<div class="ratings_value_box"> 
-						</div>
-						<div class="ratings_value_box"> 
-						</div>
+						<% end %>
+						<% ((@ratings_hash["security_level"]+1)..5).each do |num| %>
 						<div class="ratings_value_box non-selected"> 
 						</div>
+						<% end %>
 					</div>
 					
 					<div class="range"> high
@@ -270,63 +269,34 @@
 							calculateDistance();
 						}
 						else {
-							console.log("Failed to stat address");
 						}
 					})
 				}
 				else {
-					console.log("Failed to stat UC Berkeley");
 				}
 			});
-			
-			// geocoder.getLocations("UC Berkeley", function (response) {
-			// 				if (!response || response.Status.code != 200)
-			// 				{
-			// 					console.log("Failed to stat UC Berkeley");
-			// 				}
-			// 				else
-			// 				{
-			// 					console.log("here");
-			// 					location1 = {lat: response.Placemark[0].Point.coordinates[1], lon: response.Placemark[0].Point.coordinates[0], address: response.Placemark[0].address};
-			// 					geocoder.getLocations("<%= @apartment.address %>", function (response) {
-			// 						if (!response || response.Status.code != 200)
-			// 						{
-			// 							console.log("Unable to stat apartment address");
-			// 						}
-			// 						else
-			// 						{
-			// 							location2 = {lat: response.Placemark[0].Point.coordinates[1], lon: response.Placemark[0].Point.coordinates[0], address: response.Placemark[0].address};
-			// 							calculateDistance();
-			// 						}
-			// 					});
-			// 				}
-			// 			});
 		}
 
 		function calculateDistance()
 		{
 			try
 			{
-				// console.log(location1.lat + " " + location1.lng);
 				var latlng1 = new google.maps.LatLng(location1.lat, location1.lng);
 				var latlng2 = new google.maps.LatLng(location2.lat, location2.lng);
 				var km_dist = google.maps.geometry.spherical.computeDistanceBetween(latlng1, latlng2)/1000;
 				var mile_dist = (km_dist/1.609344).toFixed(1);
-				console.log(mile_dist);
-				$('.distance').text(mile_dist + " miles from campus").hide().fadeIn(); 
+				var time_to_campus = (15*mile_dist).toFixed();
+				$('.distance').text(time_to_campus + " min walk to campus").hide().fadeIn(); 
 				// document.getElementById('results').innerHTML = '<strong>Address 1: </strong>' + location1.address + ' (' + location1.lat + ':' + location1.lon + ')<br /><strong>Address 2: </strong>' + location2.address + ' (' + location2.lat + ':' + location2.lon + ')<br /><strong>Distance: </strong>' + miledistance + ' miles (or ' + kmdistance + ' kilometers)';
 			}
 			catch (error)
 			{
-				console.log(error);
 			}
 		}
 		
 		showLocation();
 		
 		<% @amenities.each do |amenity_id| %>
-			console.log(<%= amenity_id %>);
-			console.log($('#amenities_list li:nth-child(<%= amenity_id %>)'));
 			$('#amenities_list li:nth-child(<%= amenity_id %>)').addClass("selected");
 		<% end %>
 	});

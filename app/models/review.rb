@@ -10,6 +10,7 @@ class Review < ActiveRecord::Base
   validates :noise, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
   validates :management, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
   validates :condition, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
+  validates :security_level, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
   validates :recommendation, :inclusion => { :in => [true, false] }
   validates :security, :inclusion => { :in => [true, false] }
   validates :description, :presence => true
@@ -30,7 +31,7 @@ class Review < ActiveRecord::Base
     review = user.reviews.build(reviews_hash)
     review.apartment_id = apartment.id
     review.recommendation = (reviews_hash[:recommendation] == "yes" ? true : false)
-    review.security = (reviews_hash[:security] == "yes" ? false : true)
+    review.security = (reviews_hash[:security] == "yes" ? true : false)
     
     if rent_option != "apartment"
       # per person, so multiply by number of roommates
