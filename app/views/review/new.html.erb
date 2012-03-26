@@ -11,8 +11,9 @@ the following script includes the required mod
 <%= stylesheet_link_tag "jquery.autocomplete" %>
 	
 <script type="text/javascript">
+	
 	$().ready(function() {
-
+		
 	    var latlng = new google.maps.LatLng(37.8716, -122.2716);
 	    var myOptions = {
 			zoom: 13,
@@ -20,7 +21,9 @@ the following script includes the required mod
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 	    };
 	    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
+		
+		
+		
 		// use all the autocomplete options as documented at http://docs.jquery.com/Plugins/Autocomplete
 		/* additional geo_autocomplete options:
 			mapkey : 'ABQ...' (required for Static Maps thumbnails, obtain a key for your site from http://code.google.com/apis/maps/signup.html)

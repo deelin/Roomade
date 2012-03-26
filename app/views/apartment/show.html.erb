@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<link rel="stylesheet" href="stylesheets/reset.css"/>
-<link rel="stylesheet" href="stylesheets/text.css" />
-<link rel="stylesheet" href="stylesheets/960.css" />
-<link rel="stylesheet" href="stylesheets/style.css" />
-
-
-<body> 
-
 <div class="wrapper">	
 	<div class="container_12">
 			
@@ -30,10 +21,10 @@
 					</div><!--map-->
 					
 				<div class="subcolumn add_address">
-					<div class="category address">2535 Channing Way</div>
-					<div class="city">Berkeley, CA</div>
+					<div class="category address"><%= @address_hash["street"] %></div>
+					<div class="city"><%= @address_hash["city"] %></div>
 					<div class="phone">(501) 555-5555 </div>
-					<div class="distance">10 min walk from campus</div>
+					<div class="distance"></div>
 				</div>
 				
 				<div class="subcolumn_right recommendation-container">
@@ -42,7 +33,7 @@
 					</div>
 				
 					<div class="number recommendation-rating">
-					25 	<div class="total" style="display:inline;"> out of 30 </div>
+					<%= @recommendations %> <div class="total" style="display:inline;"> out of <%= @reviews.length %> </div>
 					</div>
 					
 				</div>		
@@ -53,7 +44,7 @@
 				</div>
 					
 					<div class="apt_price">
-						$960-$1030
+					<%= number_to_currency(@price_range_hash["min"]) %>-<%= number_to_currency(@price_range_hash["max"]) %>
 					</div>
 					
 				</div>
@@ -92,8 +83,8 @@
 		<div class="grid_8">
 		
 			<div class="total_reviews">
-				<div class="num">99</div>
-				<div> reviews </div>
+				<div class="num"><%= @reviews.length %></div>
+				<div> <%= @reviews.length == 1 ? "review" : "reviews" %> </div>
 			</div>
 		
 			<% @reviews.each do |review| %>
@@ -136,119 +127,109 @@
 			
 			
 			<div class="overall_ratings">
-						
-						<div class="noise rating">
-							<div class="category">noise level
-							</div>
-							
-							<div class="range"> low
-							</div>
-
-
-							<div class="ratingbox-container">
-								
-								<div class="ratings_value_box"> 
-								</div>
-								<div class="ratings_value_box"> 
-								</div>
-								<div class="ratings_value_box"> 
-								</div>
-								<div class="ratings_value_box non-selected"> 
-								</div>
-								<div class="ratings_value_box non-selected"> 
-								</div>
-							</div>
-							
-							<div class="range"> high
-							</div>
-
-						</div>
-						
-						<div class="clearfloat"></div>
-
-						<div class="condition rating">
-							<div class="category">overall condition
-							</div>
-							
-							<div class="range"> low
-							</div>
-
-							<div class="ratingbox-container">
-
-								<div class="ratings_value_box"> 
-								</div>
-								<div class="ratings_value_box"> 
-								</div>
-								<div class="ratings_value_box non-selected"> 
-								</div>
-								<div class="ratings_value_box non-selected"> 
-								</div>
-								<div class="ratings_value_box non-selected"> 
-								</div>
-							</div>
-							
-							<div class="range"> high
-							</div>
-							
-						</div>
-						
 					
-					<div class="clearfloat"></div>
+				<div class="noise rating">
+					<div class="category">noise level
+					</div>
+					
+					<div class="range"> low
+					</div>
 
-						<div class="security rating">
-							<div class="category">security level 
-							</div>
-							
-							<div class="range"> low
-							</div>
-							
-							<div class="ratingbox-container">
-
-								<div class="ratings_value_box"> 
-								</div>
-								<div class="ratings_value_box"> 
-								</div>
-								<div class="ratings_value_box"> 
-								</div>
-								<div class="ratings_value_box"> 
-								</div>
-								<div class="ratings_value_box non-selected"> 
-								</div>
-							</div>
-							
-							<div class="range"> high
-							</div>
-							
+					<div class="ratingbox-container">
+						<% (1..@ratings_hash["noise"]).each do |num| %>
+						<div class="ratings_value_box"> 
 						</div>
-						
-						<div class="clearfloat"></div>
+						<% end %>
+						<% ((@ratings_hash["noise"]+1)..5).each do |num| %>
+						<div class="ratings_value_box non-selected"> 
+						</div>
+						<% end %>
+					</div>
+					
+					<div class="range"> high
+					</div>
 
-							<div class="management rating">
-								<div class="category">management quality
-								</div>
-
-								<div class="range"> low
-								</div>
-
-								<div class="ratingbox-container">
-
-									<div class="ratings_value_box"> 
-									</div>
-									<div class="ratings_value_box"> 
-									</div>
-									<div class="ratings_value_box"> 
-									</div>
-									<div class="ratings_value_box"> 
-									</div>
-									<div class="ratings_value_box non-selected"> 
-									</div>
-								</div>
-
-								<div class="range"> high
-								</div>
-
-							</div>
+				</div>
 				
+				<div class="clearfloat"></div>
+
+				<div class="condition rating">
+					<div class="category">overall condition
+					</div>
+					
+					<div class="range"> low
+					</div>
+
+					<div class="ratingbox-container">
+						<% (1..@ratings_hash["condition"]).each do |num| %>
+						<div class="ratings_value_box"> 
+						</div>
+						<% end %>
+						<% ((@ratings_hash["condition"]+1)..5).each do |num| %>
+						<div class="ratings_value_box non-selected"> 
+						</div>
+						<% end %>
+					</div>
+					
+					<div class="range"> high
+					</div>
+					
+				</div>
+				
+			
+				<div class="clearfloat"></div>
+
+				<div class="security rating">
+					<div class="category">security level 
+					</div>
+					
+					<div class="range"> low
+					</div>
+					
+					<div class="ratingbox-container">
+
+						<div class="ratings_value_box"> 
+						</div>
+						<div class="ratings_value_box"> 
+						</div>
+						<div class="ratings_value_box"> 
+						</div>
+						<div class="ratings_value_box"> 
+						</div>
+						<div class="ratings_value_box non-selected"> 
+						</div>
+					</div>
+					
+					<div class="range"> high
+					</div>
+					
+				</div>
+				
+				<div class="clearfloat"></div>
+
+				<div class="management rating">
+					<div class="category">management quality
+					</div>
+
+					<div class="range"> low
+					</div>
+
+					<div class="ratingbox-container">
+						<% (1..@ratings_hash["management"]).each do |num| %>
+						<div class="ratings_value_box"> 
+						</div>
+						<% end %>
+						<% ((@ratings_hash["management"]+1)..5).each do |num| %>
+						<div class="ratings_value_box non-selected"> 
+						</div>
+						<% end %>
+					</div>
+
+					<div class="range"> high
+					</div>
+
+				</div>
+		
 			</div> <!--overall_ratings-->
 			
 		</div><!--grid_4-->
@@ -258,4 +239,86 @@
 			
 </div> <!--wrapper-->
 
-</body>
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCXm7UmHDyuyBm9-ySvmAEZHmkxuXvBB8Y&sensor=false"></script>
+<script type="text/javascript">
+	var geocoder, location1, location2;
+
+	function initialize() {
+		geocoder = new google.maps.Geocoder();
+	}
+
+	$().ready(function(){
+		$('.new_review').live("click", function(e) {
+			location.href = '<%= new_review_path() %>';
+		});
+		
+		initialize();
+
+		function showLocation() {
+
+			geocoder.geocode( { 'address': "UC Berkeley"}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					location1 = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+					geocoder.geocode( { 'address': '<%= @apartment.address %>'}, function(results, status) {
+						if (status == google.maps.GeocoderStatus.OK) {
+							location2 = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+							calculateDistance();
+						}
+						else {
+							console.log("Failed to stat address");
+						}
+					})
+				}
+				else {
+					console.log("Failed to stat UC Berkeley");
+				}
+			});
+			
+			// geocoder.getLocations("UC Berkeley", function (response) {
+			// 				if (!response || response.Status.code != 200)
+			// 				{
+			// 					console.log("Failed to stat UC Berkeley");
+			// 				}
+			// 				else
+			// 				{
+			// 					console.log("here");
+			// 					location1 = {lat: response.Placemark[0].Point.coordinates[1], lon: response.Placemark[0].Point.coordinates[0], address: response.Placemark[0].address};
+			// 					geocoder.getLocations("<%= @apartment.address %>", function (response) {
+			// 						if (!response || response.Status.code != 200)
+			// 						{
+			// 							console.log("Unable to stat apartment address");
+			// 						}
+			// 						else
+			// 						{
+			// 							location2 = {lat: response.Placemark[0].Point.coordinates[1], lon: response.Placemark[0].Point.coordinates[0], address: response.Placemark[0].address};
+			// 							calculateDistance();
+			// 						}
+			// 					});
+			// 				}
+			// 			});
+		}
+
+		function calculateDistance()
+		{
+			try
+			{
+				// console.log(location1.lat + " " + location1.lng);
+				var latlng1 = new google.maps.LatLng(location1.lat, location1.lng);
+				var latlng2 = new google.maps.LatLng(location2.lat, location2.lng);
+				var km_dist = google.maps.geometry.spherical.computeDistanceBetween(latlng1, latlng2)/1000;
+				var mile_dist = (km_dist/1.609344).toFixed(1);
+				console.log(mile_dist);
+				$('.distance').text(mile_dist + " miles from campus").hide().fadeIn(); 
+				// document.getElementById('results').innerHTML = '<strong>Address 1: </strong>' + location1.address + ' (' + location1.lat + ':' + location1.lon + ')<br /><strong>Address 2: </strong>' + location2.address + ' (' + location2.lat + ':' + location2.lon + ')<br /><strong>Distance: </strong>' + miledistance + ' miles (or ' + kmdistance + ' kilometers)';
+			}
+			catch (error)
+			{
+				console.log(error);
+			}
+		}
+		
+		showLocation();
+		
+	});
+</script>
