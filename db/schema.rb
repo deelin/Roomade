@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120325092216) do
+ActiveRecord::Schema.define(:version => 20120326032526) do
 
   create_table "amenities", :force => true do |t|
     t.string   "name"
@@ -27,9 +27,13 @@ ActiveRecord::Schema.define(:version => 20120325092216) do
   end
 
   create_table "apartment_photos", :force => true do |t|
-    t.integer  "address_id"
+    t.integer  "apartment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "apartments", :force => true do |t|
@@ -71,6 +75,10 @@ ActiveRecord::Schema.define(:version => 20120325092216) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

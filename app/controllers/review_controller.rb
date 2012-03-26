@@ -8,7 +8,8 @@ class ReviewController < ApplicationController
   def create
     apartment = Apartment.find_or_create_by_address(params[:formatted_address])
     amenity_ids = params[:amenities].split(",").uniq.map{|id| id.to_i}
-    @review = Review.create_with_params(params[:review], current_user, apartment, params[:rent_option], amenity_ids)
+    @review = Review.create_with_params(params[:review], current_user, apartment, params[:rent_option], amenity_ids, params[:photo])
+
     
     if @review.present?
       flash[:notice] = "Review created!"

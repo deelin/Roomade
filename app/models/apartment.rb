@@ -1,6 +1,8 @@
 class Apartment < ActiveRecord::Base
   has_many :reviews
-  has_many :amenities
+  has_many :apartment_amenities, :foreign_key => "apartment_id"
+  has_many :amenities, :through => :apartment_amenities, :source => :amenity
+  has_many :apartment_photos, :order => "created_at desc"
   
   def get_ratings_hash
     reviews = self.reviews
@@ -38,5 +40,9 @@ class Apartment < ActiveRecord::Base
     address_hash["street"] = parsed_address[0]
     address_hash["city"] = parsed_address[1].strip + "," + parsed_address[2]
     return address_hash
+  end
+  
+  def get_photos
+    return self.apartment_photos
   end
 end

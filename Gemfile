@@ -29,11 +29,13 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
-# paperclip, for photo attachments
+# paperclip, for photo attachments, and aws' s3 service for storage
 gem "paperclip", "~> 2.7"
+gem 'aws-sdk'
 
 # devise, for easy user authentication (https://github.com/plataformatec/devise)
 gem 'devise'
+
 
 group :test, :development do
   gem 'cucumber-rails'

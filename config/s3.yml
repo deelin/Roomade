@@ -1,0 +1,14 @@
+development:
+  access_key_id: AKIAJZRSX2EGZLITLV7A
+  secret_access_key: 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
+  bucket: roomade_development
+
+staging:
+  access_key_id: AKIAJZRSX2EGZLITLV7A
+  secret_access_key: 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
+  bucket: roomade_staging
+
+production:
+  access_key_id: AKIAJZRSX2EGZLITLV7A
+  secret_access_key: 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
+  bucket: roomade_production

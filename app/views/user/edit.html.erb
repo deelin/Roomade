@@ -1,0 +1,9 @@
+<%= form_for current_user, :url => update_profile_path(), :html => { :multipart => true } do |f| %>
+	<%= f.label :username %>
+	<%= f.text_field :username %>
+	
+	<%= f.label :photo %>
+	<%= f.file_field :photo %>
+	
+	<%= f.submit "Update" %>
+<% end %>

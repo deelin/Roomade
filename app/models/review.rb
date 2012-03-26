@@ -17,7 +17,7 @@ class Review < ActiveRecord::Base
   # uniqueness of review based on user and apartment
   validates_uniqueness_of :user_id, :scope => [:apartment_id], :message => "has already created a review for this apartment."
   
-  def self.create_with_params(reviews_hash, user, apartment, rent_option, amenity_ids)
+  def self.create_with_params(reviews_hash, user, apartment, rent_option, amenity_ids, photo)
     return nil if apartment.nil? || rent_option.blank?
     # make sure option selectors have valid value
     return nil if !["yes", "no"].include?(reviews_hash[:recommendation]) || !["yes", "no"].include?(reviews_hash[:security]) || !["apartment", "per person"].include?(rent_option)
@@ -45,6 +45,8 @@ class Review < ActiveRecord::Base
           ApartmentAmenity.create(:apartment_id => apartment.id, :amenity_id => id)
         end
       end
+      # attach photo
+      ApartmentPhoto.create(:apartment_id => apartment.id, :photo => photo)
       return review
     else
       logger.debug(review.errors.full_messages)

@@ -70,9 +70,13 @@ Roomade::Application.routes.draw do
   match '/search' => 'search#search', :as => :search
   match '/apartment/:id' => 'apartment#show', :as => :show_apartment
   
+  match '/profile/edit' => 'user#edit', :as => :edit_profile
+  match '/profile/update' => 'user#update', :as => :update_profile
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+  
+  match ':shortname' => 'user#show', :as => :users_show
 end

@@ -388,7 +388,7 @@
           margin-right: 3px;
           margin-bottom: 3px;
           background-color: rgba(51, 51, 51, 0.2); }
-        #info_container .inner .amenities #amenities_list li:hover {
+        #info_container .inner .amenities #amenities_list li.selected, #info_container .inner .amenities #amenities_list li:hover {
           background-color: rgba(51, 51, 51, 0.6);
           color: white; }
     #info_container .inner .category {

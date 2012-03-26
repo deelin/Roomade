@@ -94,6 +94,11 @@ the following script includes the required mod
 			$('#amenities_input').val(amenity_ids.join(","));
 		});
 		
+		$('.button.upload').live("click", function(e) {
+			$(this).hide();
+			$('.upload_input').show();
+		});
+		
 	});
 </script>
 
@@ -102,7 +107,7 @@ the following script includes the required mod
 
 	<div class="grid_8 review_container">
 			
-	<%= form_for @review, :url => {:action => "create"}, :html => {:class => "review_form"} do |f| %>
+	<%= form_for @review, :url => {:action => "create"}, :html => {:class => "review_form", :multipart => true} do |f| %>
 	<div id="address" class="question">
 		<div class="category">
 			What's the address of your apartment?
@@ -415,17 +420,19 @@ the following script includes the required mod
 		We love feedback!
 		</div>
 		<%= text_area_tag :feedback, nil, :id => "feedback_input", :rows => "2", :cols => "70" %>
-
 	</div>
 
 
 	</div><!--review-container-->
-
+	
 	<div class="grid-4 buttons_container">
-			<div class="button upload">+ upload photos</div>
+		<div class="button upload">+ upload photos</div>
+		<div class="upload_input" style="display:none;">
+			<%= file_field_tag :photo %>
+		</div>
 	</div> <!--grid4-->
 	
-		<%= f.submit "Submit review" %>
+	<%= f.submit "Submit review" %>
 	<% end %>
 	</div><!--container 12-->
 	
