@@ -17,7 +17,6 @@ class AuthenticationController < ApplicationController
       user = User.new
       user.apply_omniauth(omniauth)
       user.email = omniauth["info"]["email"]
-      logger.debug(user)
       if user.save
         flash[:notice] = "Successfully created authentication."
         sign_in_and_redirect(:user, user)

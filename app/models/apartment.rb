@@ -77,7 +77,7 @@ class Apartment < ActiveRecord::Base
       joined_amenities = amenity_ids.join(",")
     else
       amenity_ids = []
-      joined_amenities = ""
+      joined_amenities = "0"
     end
         
     # determine sort
