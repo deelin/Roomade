@@ -1,0 +1,7 @@
+<div id="search-apartments-form">
+<%= form_tag(search_apartments_path(), :method => "POST") do %>
+	<%= text_field_tag :query, "", :id => "search-apartments-input", :placeholder => "Search apartments!" %>
+	<%= submit_tag "Search", :class => "btn search-btn" %>
+<% end %>
+</div>
+	

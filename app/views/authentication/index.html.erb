@@ -1,0 +1,26 @@
+Sign in
+<% if @authentications %>
+	<% unless @authentications.empty? %>
+		<p><strong>You can sign in to this account using:</strong></p>
+		<div class="authentications">
+			<% for authentication in @authentications %>
+			<div class="authentication">
+				<%= image_tag "#{authentication.provider}_64.png" %>
+				<div class="provider"><%= authentication.provider.titleize %></div>
+				<div class="uid"><%= authentication.uid %></div>
+			</div>
+			<% end %>
+			<div class="clear"></div>
+		</div>
+	<% end %>
+<% else %>
+	<p>
+		<strong>Sign in through one of these services:</strong>
+	</p>
+	<a href="/auth/facebook" class="auth_provider">
+		<%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+		Facebook
+	</a>
+<% end %>
+
+<div class="clear"></div>

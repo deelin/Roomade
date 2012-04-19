@@ -1,0 +1,21 @@
+<script type="text/javascript">
+	var error = false;
+	if(window.opener) {
+		try {
+			if (window.opener.location.protocol == window.location.protocol)
+				window.opener.location.href = window.opener.location.href.split('#')[0];
+			else {
+				window.location = "https://" + window.location.hostname + "<%= omniauth_reload_parent_path %>";
+				error = true;
+			}
+		}
+		catch(e) {
+		<% if !@retry %>
+			window.location = "https://" + window.location.hostname + "<%= omniauth_reload_parent_path %>";
+			error = true;
+		<% end %>
+		}
+	}
+	if(!error)
+		window.close();
+</script>

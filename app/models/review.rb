@@ -11,12 +11,15 @@ class Review < ActiveRecord::Base
   validates :management, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
   validates :condition, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
   validates :security_level, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
+  validates :rating, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
   validates :recommendation, :inclusion => { :in => [true, false] }
   validates :security, :inclusion => { :in => [true, false] }
   validates :description, :presence => true
   
   # uniqueness of review based on user and apartment
   validates_uniqueness_of :user_id, :scope => [:apartment_id], :message => "has already created a review for this apartment."
+
+  
   
   def self.create_with_params(reviews_hash, user, apartment, rent_option, amenity_ids, photo)
     return nil if apartment.nil? || rent_option.blank?

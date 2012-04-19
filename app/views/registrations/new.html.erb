@@ -7,13 +7,8 @@
 
 			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 			<ul>
-				<fieldset>
-		
-				<li>
-					<%= f.label :username %>
-					<%= f.text_field :username %>
-					<span id="username-error" class="signup-error"><%= devise_error_messages!["Username"] %></span>
-				</li>
+				<fieldset>				
+				<% if @user.password_required? %>
 				<li>
 					<%= f.label :email %>
 					<%= f.email_field :email %>
@@ -27,7 +22,8 @@
 					<%= f.label :confirm_password %>
 					<%= f.password_field :password_confirmation %>
 				</li>
-	
+				<% end %>
+				
 				<li>
 					<%= f.label :blank, "" %>
 					<%= f.submit "Sign Up", :class => "submit-btn", :id => "signup-submit" %>
@@ -42,3 +38,14 @@
 	</div>
 	
 </div>
+
+<script type="text/javascript">
+	<% if !@user.password_required? %>
+		$('#signup-submit').click();
+	<% else %>
+		var loc = window.location;
+		if (loc.hash != "" && loc.hash.indexOf("#") != -1) {
+			location.href = loc.href.split("#")[0];	
+		}
+	<% end %>
+</script>

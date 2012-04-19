@@ -1,16 +1,4 @@
 /* style.scss */
-#logo {
-  font-size: 24px;
-  background-color: rgba(51, 51, 51, 0.6); }
-  #logo div {
-    padding: 20px;
-    color: white; }
-  #logo #slogan {
-    font-size: 14px;
-    color: #e8e8e8;
-    display: inline;
-    padding: 0px; }
-
 .clearfloat {
   clear: both; }
 
@@ -35,9 +23,19 @@
       font-size: 16px;
       color: gray;
       padding: 0px 10px 5px 0px; }
+    #filter_container .inner .num_box {
+      float: left;
+      height: 25px;
+      width: 15px;
+      background-color: rgba(51, 51, 51, 0.2);
+      margin-left: 2px; }
+    #filter_container .inner .num_box:hover {
+      background-color: rgba(51, 51, 51, 0.6); }
+	#filter_container .inner .num_box.selected {
+      background-color: rgba(51, 51, 51, 0.6); }
     #filter_container .inner .neighborhood_map {
-      position: relative;
-      left: 45px; }
+      float: right;
+      margin-right: 15px; }
       #filter_container .inner .neighborhood_map img {
         background-color: white;
         padding: 5px; }
@@ -59,11 +57,14 @@
       #filter_container .inner #price_ranges li:hover {
         background-color: rgba(51, 51, 51, 0.6);
         color: white; }
+		#filter_container .inner #price_ranges li.selected {
+	        background-color: rgba(51, 51, 51, 0.6);
+	        color: white; }
     #filter_container .inner .amenities {
-      position: relative;
-      bottom: 89px;
-      width: 665px;
-      left: 20px; }
+      float: left;
+      padding-right: 0px;
+	top: 0px;
+      width: 665px; }
     #filter_container .inner #amenities_list {
       list-style: none; }
       #filter_container .inner #amenities_list li {
@@ -79,18 +80,11 @@
       #filter_container .inner #amenities_list li:hover {
         background-color: rgba(51, 51, 51, 0.6);
         color: white; }
+		#filter_container .inner #amenities_list li.selected {
+	        background-color: rgba(51, 51, 51, 0.6);
+	        color: white; }
 
 /***filter-container***/
-.num_box {
-  float: left;
-  height: 25px;
-  width: 15px;
-  background-color: rgba(51, 51, 51, 0.2);
-  margin-left: 2px; }
-
-.num_box:hover {
-  background-color: rgba(51, 51, 51, 0.6); }
-
 #sort {
   padding-top: 20px;
   list-style: none;
@@ -203,6 +197,16 @@
       font-size: 10px;
       margin-bottom: 3px;
       margin-left: 3px; }
+    .apt_detail .inner .ratings {
+      width: 100px; }
+      .apt_detail .inner .ratings .ratings_value_box {
+        height: 25px;
+        width: 17px;
+        margin-left: 2px;
+        background-color: rgba(245, 140, 0, 0.4);
+        float: left; }
+      .apt_detail .inner .ratings .non-selected {
+        background-color: #cccccc; }
     .apt_detail .inner .condition {
       padding-bottom: 40px;
       padding-top: 40px; }
@@ -218,16 +222,6 @@
       .apt_detail .inner .recommendation .total {
         font-size: 14px;
         line-height: 20px; }
-    .apt_detail .inner .ratings {
-      width: 100px; }
-      .apt_detail .inner .ratings .ratings_value_box {
-        height: 25px;
-        width: 17px;
-        margin-left: 2px;
-        background-color: rgba(245, 140, 0, 0.4);
-        float: left; }
-      .apt_detail .inner .ratings .non-selected {
-        background-color: #cccccc; }
     .apt_detail .inner .recommendation-container .text {
       text-align: center; }
     .apt_detail .inner .aptname {
@@ -256,8 +250,6 @@
       border-radius: 5px;
       margin-bottom: 10px;
       background-color: rgba(51, 51, 51, 0.2); }
-    .apt_detail .buttons_container .button:hover {
-      background-color: rgba(30, 144, 255, 0.4); }
 
 /***result***/
 .recommendation {
@@ -277,9 +269,8 @@
   text-align: center; }
 
 .new_review {
-  padding-top: 80px;
-  padding-bottom: 30px;
-  padding-left: 20px; }
+  padding-top: 30px;
+  padding-bottom: 30px; }
   .new_review .question {
     padding-bottom: 20px; }
   .new_review .category {
@@ -292,7 +283,7 @@
     width: 15px;
     background-color: rgba(245, 140, 0, 0.4);
     margin-left: 2px; }
-  .new_review .num_box.selected, .new_review .num_box:hover {
+  .new_review .num_box:hover {
     background-color: rgba(245, 140, 0, 0.8); }
   .new_review .options {
     padding: 5px;
@@ -303,7 +294,7 @@
     width: 15px;
     background-color: rgba(245, 140, 0, 0.4);
     margin-left: 2px; }
-  .new_review .option_box.selected, .new_review .option_box:hover {
+  .new_review .option_box:hover {
     background-color: rgba(245, 140, 0, 0.8); }
   .new_review input[type="text"], .new_review textarea {
     border: 1px solid #cccccc;
@@ -324,7 +315,7 @@
       background-color: rgba(245, 140, 0, 0.4);
       border-radius: 2px;
       color: #666666; }
-    .new_review .option_selectors li.selected, .new_review .option_selectors li:hover {
+    .new_review .option_selectors li:hover {
       background-color: rgba(245, 140, 0, 0.8);
       color: white; }
   .new_review #amenities_list {
@@ -341,7 +332,7 @@
       margin-bottom: 3px;
       background-color: rgba(245, 140, 0, 0.4);
       float: left; }
-    .new_review #amenities_list li.selected, .new_review #amenities_list li:hover {
+    .new_review #amenities_list li:hover {
       background-color: rgba(245, 140, 0, 0.8);
       color: white; }
   .new_review .buttons_container {
@@ -361,51 +352,34 @@
 #info_container {
   background-color: #cccccc;
   padding: none;
-  height: 250px;
-  /**inner**/ }
+  height: 250px; }
   #info_container .inner {
-    margin-top: 40px; }
-    #info_container .inner .column {
-      width: 685px;
-      float: left; }
+    margin-top: 20px; }
     #info_container .inner .subcolumn {
       float: left;
       padding: 0px 0px 10px 20px; }
-    #info_container .inner .subcolumn_right {
-      float: right;
-      padding: 0px 0px 10px 20px; }
     #info_container .inner .amenities {
+      float: left;
+      padding-right: 0px;
       width: 665px; }
-      #info_container .inner .amenities #amenities_list {
-        list-style: none; }
-        #info_container .inner .amenities #amenities_list li {
-          float: left;
-          color: #666666;
-          font-size: 12px;
-          padding: 10px;
-          width: 110px;
-          margin-left: 0px;
-          margin-right: 3px;
-          margin-bottom: 3px;
-          background-color: rgba(51, 51, 51, 0.2); }
-        #info_container .inner .amenities #amenities_list li.selected, #info_container .inner .amenities #amenities_list li:hover {
-          background-color: rgba(51, 51, 51, 0.6);
-          color: white; }
-    #info_container .inner .category {
-      font-size: 16px;
-      color: gray;
-      padding: 0px 10px 5px 0px; }
-  #info_container img {
-    background-color: white;
-    padding: 5px; }
-
-/**info_container**/
-.apt_photo {
-  width: 230px;
-  height: 170px;
-  margin-top: 20px;
-  margin-left: 10px;
-  float: left; }
+    #info_container .inner #amenities_list {
+      list-style: none; }
+      #info_container .inner #amenities_list li {
+        float: left;
+        color: #666666;
+        font-size: 12px;
+        padding: 10px;
+        width: 110px;
+        margin-left: 0px;
+        margin-right: 3px;
+        margin-bottom: 3px;
+        background-color: rgba(51, 51, 51, 0.2); }
+      #info_container .inner #amenities_list li:hover {
+        background-color: rgba(51, 51, 51, 0.6);
+        color: white; }
+		#info_container .inner #amenities_list li.selected {
+	        background-color: rgba(51, 51, 51, 0.6);
+	        color: white; }
 
 .recommendation-rating, .apt_price {
   color: #666666;
@@ -417,38 +391,13 @@
   margin-bottom: 3px;
   background-color: rgba(51, 51, 51, 0.2); }
 
+.address {
+  color: gray;
+  margin-left: 20px; }
+
 .add_address {
-  padding-right: 20px;
-  font-size: 14px;
-  color: gray; }
+  width: 300px; }
 
-.distance {
-  font-weight: bold;
-  padding-top: 10px; }
-
-.overall_ratings {
-  padding: 30px; }
-
-.rating .category {
-  font-size: 16px;
-  padding-bottom: 10px; }
-.rating .range {
-  float: left;
-  padding: 10px;
-  color: #cccccc; }
-.rating .ratingbox-container {
-  width: auto; }
-  .rating .ratingbox-container .ratings_value_box {
-    height: 25px;
-    width: 17px;
-    margin-left: 2px;
-    background-color: rgba(245, 140, 0, 0.4);
-    float: left;
-    margin-bottom: 20px; }
-  .rating .ratingbox-container .non-selected {
-    background-color: #cccccc; }
-
-/**rating**/
 .total_reviews {
   margin-top: 10px;
   margin-bottom: 5px; }
@@ -496,7 +445,6 @@
   margin-top: 10px;
   border-radius: 5px;
   padding: 20px;
-  background-color: rgba(245, 140, 0, 0.4);
-  color: #666666; }
+  background-color: rgba(245, 140, 0, 0.4); }
 .new_review .button:hover {
-  background-color: rgba(30, 144, 255, 0.4); }
+  background-color: #f58c00; }

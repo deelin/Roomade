@@ -1,0 +1,6 @@
+<% @apartment_results_hash.each do |apartment_id, apartments| %>
+	<% apartments.each do |apartment| %>
+		<%= apt_sum_container_overview(apartment) %>
+		<%= apt_sum_container_detail(apartment) %>
+	<% end %>
+<% end %>

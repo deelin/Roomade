@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   def redirect_if_logged_in
     # this gets called when a user tries to access any methods in the PublicController
-    redirect_to home_path if current_user.present?
+    redirect_to home_path and return if current_user.present?
   end
       
   private

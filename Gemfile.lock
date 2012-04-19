@@ -77,13 +77,19 @@ GEM
     erubis (2.7.0)
     execjs (1.2.13)
       multi_json (~> 1.0)
+    faraday (0.7.6)
+      addressable (~> 2.2)
+      multipart-post (~> 1.1)
+      rack (~> 1.1)
     ffi (1.0.11)
     gherkin (2.9.1)
       json (>= 1.4.6)
+    hashie (1.2.0)
     hike (1.2.1)
     httparty (0.8.1)
       multi_json
       multi_xml
+    httpauth (0.1)
     i18n (0.6.0)
     jquery-rails (1.0.19)
       railties (~> 3.0)
@@ -98,7 +104,20 @@ GEM
     mime-types (1.17.2)
     multi_json (1.0.4)
     multi_xml (0.4.2)
+    multipart-post (1.1.5)
     nokogiri (1.5.2)
+    oauth2 (0.6.0)
+      faraday (~> 0.7)
+      httpauth (~> 0.1)
+      multi_json (~> 1.0)
+    omniauth (1.1.0)
+      hashie (~> 1.2)
+      rack
+    omniauth-facebook (1.2.0)
+      omniauth-oauth2 (~> 1.0.0)
+    omniauth-oauth2 (1.0.1)
+      oauth2 (~> 0.6.0)
+      omniauth (~> 1.0)
     orm_adapter (0.0.6)
     paperclip (2.7.0)
       activerecord (>= 2.3.0)
@@ -198,6 +217,8 @@ DEPENDENCIES
   jquery-rails
   json
   launchy
+  omniauth
+  omniauth-facebook
   paperclip (~> 2.7)
   pg
   rails (= 3.1.3)

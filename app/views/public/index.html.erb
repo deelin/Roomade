@@ -3,5 +3,7 @@
 </div>
 
 <div>
-<%= link_to "Sign In", sign_in_path() %> or <%= link_to "Sign Up", sign_up_path() %>
+	<%= link_to (image_tag "signin-fb.png"), "/auth/facebook", :class => "popup", :"data-width" => 600, :"data-height" => 300 %><br/>
+	<div>OR</div>
+	<%= link_to "Sign In", sign_in_path() %> or <%= link_to "Sign Up", sign_up_path() %>
 </div>

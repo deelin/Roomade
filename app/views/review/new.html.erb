@@ -1,5 +1,5 @@
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCXm7UmHDyuyBm9-ySvmAEZHmkxuXvBB8Y&sensor=false"></script>
 
 <!-- 
 jquery.autocomplete.js requires a minor modification for geo_autocomplete to work
@@ -11,6 +11,9 @@ the following script includes the required mod
 <%= stylesheet_link_tag "jquery.autocomplete" %>
 	
 <script type="text/javascript">
+	
+	var geocoder = new google.maps.Geocoder();
+	var location1, location2;
 	
 	$().ready(function() {
 		
@@ -43,15 +46,22 @@ the following script includes the required mod
 		}).result(function(_event, _data) {
 			if (_data) {
 				map.fitBounds(_data.geometry.viewport);
-				
-				var myLatlng = new google.maps.LatLng(_data.geometry.location.Ua, _data.geometry.location.Va);
+				var location_hash = _data.geometry.location;
+				var latLngArr = [];
+				for (var key in location_hash) {
+ 					latLngArr.push(location_hash[key]);
+				}
+				console.log(latLngArr[0] + " " + latLngArr[1]);
+				var myLatlng = new google.maps.LatLng(latLngArr[0], latLngArr[1]);
+				// create marker
 				var marker = new google.maps.Marker({
 				    position: myLatlng,
 				    title: $('#formatted_address').val()
 				});
-
-				// To add the marker to the map, call setMap();
+				// add to map
 				marker.setMap(map);
+				// populate dist
+				showLocation();
 			}
 		});
 		
@@ -106,6 +116,29 @@ the following script includes the required mod
 			$(this).hide();
 			$('.upload_input').show();
 		});
+
+		function showLocation() {
+			var address1 = $('#formatted_address').val();
+			geocoder.geocode( { 'address': address1}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					location1 = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+					geocoder.geocode( { 'address': 'UC Berkeley'}, function(results, status) {
+						if (status == google.maps.GeocoderStatus.OK) {
+							location2 = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+							var latlng1 = new google.maps.LatLng(location1.lat, location1.lng);
+							var latlng2 = new google.maps.LatLng(location2.lat, location2.lng);
+							var km_dist = google.maps.geometry.spherical.computeDistanceBetween(latlng1, latlng2)/1000;
+							var mile_dist = (km_dist/1.609344).toFixed(1);
+							$('#dist_to_campus').val(mile_dist);
+						}
+						else {
+						}
+					})
+				}
+				else {
+				}
+			});
+		}
 	
 		
 	});
@@ -124,7 +157,7 @@ the following script includes the required mod
 
 		<%= text_field_tag :address, nil, :id => "address_input" %>
 		<%= hidden_field_tag :formatted_address, "", :id => "formatted_address" %>
-		
+		<%= hidden_field_tag :dist_to_campus, "", :id => "dist_to_campus" %>
 		<div id="map_canvas" style="width:310px;height:310px;"/>
 	</div>
 
@@ -216,8 +249,7 @@ the following script includes the required mod
 		<div class="category">
 		Roommates
 		</div>
-
-
+		
 		<div class="selectors">
 
 				<div class="num_box"> 
@@ -410,7 +442,37 @@ the following script includes the required mod
 		<%= f.hidden_field :condition %>
 		<div class="clearfloat"></div>
 	</div>
+	
+	<div id="rating" class="question">
+		<div class="category">
+		Rating
+		</div>
+		<div class="description">
+		How would you rate the apartment complex overall?
+		</div>
 
+			<div class="options">
+
+				<div class="option_box"> 
+				</div>
+
+				<div class="option_box"> 
+				</div>
+
+				<div class="option_box non-selected"> 
+				</div>
+
+				<div class="option_box non-selected"> 
+				</div>
+
+				<div class="option_box non-selected"> 
+				</div>
+
+		</div>
+		<%= f.hidden_field :rating, :id => "rating_input" %>
+		<div class="clearfloat"></div>
+	</div>
+	
 	<div id="amenities" class="question">
 		<div class="category">
 		Amenities
@@ -436,8 +498,7 @@ the following script includes the required mod
 		<%= hidden_field_tag :amenities, "", :id => "amenities_input" %>
 		<div class="clearfloat"></div>
 	</div>
-
-
+	
 	<div id="review" class="question">
 		<div class="category">
 		Comments

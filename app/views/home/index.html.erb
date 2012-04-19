@@ -1,5 +1,37 @@
-<div>User home page</div>
+<div><%= current_user.id %> page</div>
 
 <div><%= link_to "Home", home_path() %></div>
 <div><%= link_to "Write a review", new_review_path() %></div>
 <div><%= link_to "Log out", sign_out_path() %></div>
+<% if current_user.authentications.present? %>
+	<div class="authentications">
+		Your Facebook account is linked. <%= link_to "Unlink it", omniauth_unlink_facebook_path(current_user.authentications.first.id) %>
+	</div>
+<% else %>
+	<div><%= link_to "Link your Facebook account!", "/auth/facebook" %></div>
+<% end %>
+
+<br/>
+<% if current_user.photo.present? %>
+	This is you! 
+	<%= image_tag(current_user.photo.url(:thumb)) %>
+<% else %>
+	You don't have a photo. Upload one now!
+<% end %>
+<div class="profile-form">
+	<h2>Upload a profile picture</h2>
+	<%= form_for current_user, :url => update_profile_path(), :html => { :multipart => true } do |f| %>
+		
+		<%= f.label :photo %>
+		<%= f.file_field :photo %>
+	
+		<%= f.submit "Upload" %>
+	<% end %>
+</div>
+
+<script type="text/javascript">
+	var loc = window.location;
+	if (loc.hash != "" && loc.hash.indexOf("#") != -1) {
+		location.href = loc.href.split("#")[0];	
+	}
+</script>

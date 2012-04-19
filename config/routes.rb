@@ -5,11 +5,11 @@ Roomade::Application.routes.draw do
   :path_names => { :sign_in => "signin", :sign_out => "signout", :sign_up => "register" }
   
   devise_scope :user do
-    get "signin" => "sessions#new", :as => :sign_in 
-    get "signout" => "sessions#destroy", :as => :sign_out
+    get "users/signin" => "sessions#new", :as => :sign_in 
+    get "users/signout" => "sessions#destroy", :as => :sign_out
     
-    get "signup" => "registrations#new", :as => :sign_up
-    post "register" => "registrations#create", :as => :register
+    get "users/signup" => "registrations#new", :as => :sign_up
+    post "users/register" => "registrations#create", :as => :register
   end
   
   # The priority is based upon order of creation:
@@ -64,10 +64,15 @@ Roomade::Application.routes.draw do
   root :to => 'public#index'
   match '/home' => 'home#index', :as => :home
   
-  resources :review do
-  end
+  resources :review
+  resources :authentication
   
-  match '/search' => 'search#search', :as => :search
+  match 'auth/:id/unlink' => 'authentication#destroy', :as => :omniauth_unlink_facebook
+  match 'auth/:provider/callback' => 'authentication#create', :as => :omniauth_callback
+  
+  match '/search_index' => 'search#index', :as => :search_index
+  match '/search_apartments' => 'search#search_apartments', :as => :search_apartments
+  
   match '/apartment/:id' => 'apartment#show', :as => :show_apartment
   
   match '/profile/edit' => 'user#edit', :as => :edit_profile
@@ -78,5 +83,10 @@ Roomade::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
   
-  match ':shortname' => 'user#show', :as => :users_show
+  # match ':shortname' => 'user#show', :as => :users_show
+  
+  # Omniauth
+  match 'auth/reload_parent' => 'omniauth#reload_parent', :as => :omniauth_reload_parent
+  match 'auth/failure' => 'omniauth#failure', :as => :omniauth_failure
+  match 'auth/:provider' => 'omniauth#passthru'
 end

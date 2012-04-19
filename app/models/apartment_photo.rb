@@ -5,7 +5,7 @@ class ApartmentPhoto < ActiveRecord::Base
     :s3_protocol => 'http',
     :url => ':s3_domain_url',
     :path => 'apartments/photos/:id/:style.:extension',
-    :styles => {:thumb => "220x163#"},
+    :styles => {:thumb => "220x163#", :small => "27x30#", :medium => "180x125#"},
     :default_url => "/images/apartment.JPG"
     
   validates_attachment_content_type :photo, :content_type => ['image/gif', 'image/jpg', 'image/jpeg', 'image/png'], :if => Proc.new { |imports| !imports.photo_file_name.blank? }
