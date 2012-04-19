@@ -84,9 +84,4 @@ Roomade::Application.routes.draw do
   # match ':controller(/:action(/:id(.:format)))'
   
   # match ':shortname' => 'user#show', :as => :users_show
-  
-  # Omniauth
-  match 'auth/reload_parent' => 'omniauth#reload_parent', :as => :omniauth_reload_parent
-  match 'auth/failure' => 'omniauth#failure', :as => :omniauth_failure
-  match 'auth/:provider' => 'omniauth#passthru'
 end
