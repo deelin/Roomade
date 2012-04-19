@@ -98,7 +98,12 @@ class Apartment < ActiveRecord::Base
     # query with conds
     ApartmentAmenity.select("*, sum(case when amenity_id in (1, 2, 3, 4, 5, 6) then 1 else 0 end) as amenities_count").group("apartment_id").having("amenities_count = 6")
     
-    results = Apartment.joins("inner join reviews on reviews.apartment_id = apartments.id, apartment_amenities on apartment_amenities.apartment_id = apartments.id").select("apartments.*, 
+    if Rails.env.production? 
+      join_cond = "inner join reviews on (reviews.apartment_id = apartments.id) inner join apartment_amenities on (apartment_amenities.apartment_id = apartments.id)"
+    elsif Rails.env.development?
+      join_cond = "inner join reviews on reviews.apartment_id = apartments.id, apartment_amenities on apartment_amenities.apartment_id = apartments.id"
+    end
+    results = Apartment.joins(join_cond).select("apartments.*, 
     (select avg(bedrooms) from reviews where reviews.apartment_id = apartments.id) as avg_bedrooms, 
     (select avg(bathrooms) from reviews where reviews.apartment_id = apartments.id) as avg_bathrooms,
     (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) as avg_roommates,
