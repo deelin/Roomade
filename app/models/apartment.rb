@@ -116,9 +116,9 @@ class Apartment < ActiveRecord::Base
     sum(case when apartment_amenities.amenity_id in (#{joined_amenities}) then 1 else 0 end) as matched_amenities_count").where(
     ["upper(address) LIKE upper(?) 
       and reviews.rent > ? and reviews.rent <= ? 
-      and avg_bedrooms >= ? and avg_bedrooms <= ? 
-      and avg_bathrooms >= ? and avg_bathrooms <= ? 
-      and avg_roommates >= ? and avg_roommates <= ?", "%#{query}%", min_price, max_price, min_bedrooms, max_bedrooms, min_bathrooms, max_bathrooms, min_roommates, max_roommates]).includes([:reviews, :apartment_amenities, :apartment_photos]).order("#{sort_type} #{sort_order}").group("reviews.id, apartment_amenities.apartment_id").having("matched_amenities_count = #{amenity_ids.length}").uniq.group_by { |apartment| apartment.id }
+      and (select avg(bedrooms) from reviews where reviews.apartment_id = apartments.id) >= ? and (select avg(bedrooms) from reviews where reviews.apartment_id = apartments.id) <= ? 
+      and (select avg(bathrooms) from reviews where reviews.apartment_id = apartments.id) >= ? and (select avg(bathrooms) from reviews where reviews.apartment_id = apartments.id) <= ? 
+      and (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) >= ? and (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) <= ?", "%#{query}%", min_price, max_price, min_bedrooms, max_bedrooms, min_bathrooms, max_bathrooms, min_roommates, max_roommates]).includes([:reviews, :apartment_amenities, :apartment_photos]).order("#{sort_type} #{sort_order}").group("reviews.id, apartment_amenities.apartment_id").having("matched_amenities_count = #{amenity_ids.length}").uniq.group_by { |apartment| apartment.id }
     
     return results
   end
