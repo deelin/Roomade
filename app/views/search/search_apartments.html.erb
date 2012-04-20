@@ -2,11 +2,27 @@
 
 <div class="wrapper">
 	<div class="container_12">
-
-		<div id="logo_home" class="grid_12"></div>
+			<div id="logo" class="grid_12">
+				<div style="height:150px;">
+						<div style="position:relative; bottom:0;"> ROOMADE
+						<div id="slogan">get the juice on apartments</div>
+						</div>
+				</div>
+				
+			</div>
 
 		<div id="filter_container" class="grid_12">
-			<div class="inner">
+			<div id="search">
+				<input type="text" value="hint: 2535 channing way">
+				<div class="button locate">
+					locate
+				</div> <!--button-->
+				
+			</div> <!--search-->
+				
+			<div id="filter">
+			
+				
 				<div class="subcolumn bedrooms" data-type="bedrooms">
 					<div class="category">bedrooms</div>
 
@@ -136,7 +152,7 @@
 				</div>
 
 				<div class="neighborhood_map">
-					<div class="category">neighborhood</div>
+					<div class="category">location</div>
 					<img src="images/neighborhood_map.png" width="220" height="163">
 				</div><!--column-->
 
@@ -156,10 +172,12 @@
 						<li data-id="10">bike racks</li>
 					</ul>
 				</div>
-			</div><!--inner-->
+			</div><!--filter-->
 		</div> <!--filter_container-->
+		
+		<div class="grid_1 push_11 find button">find</div>
 
-		<div class="grid_12">
+		<!--hide options><div class="grid_12">
 			<ul id="sort"> 
 				<li style="font-size:10px">Sort by:</li>
 				
@@ -212,7 +230,7 @@
 					</ul>
 				</li>
 			</ul>
-		</div> <!--sort-->
+		</div> <!sort-->
 
 		<div id="results" class="grid_12">     					<!--results container-->
 			<%= render :partial => "results" %>

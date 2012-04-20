@@ -17,19 +17,58 @@ $large-line-height:20px;
 $large-font:16px;
 $red:rgba(238,64,0,0.4);
 $blue:rgba(30,144,255,0.4);
+$darkblue:rgba(30,144,255,0.7);
 
 .clearfloat{
 	clear:both;
 }
 
+#search{
+		text-align:center;
+		margin-bottom:50px;
+		.button{
+			text-align:center;
+			padding:11px 25px 11px 25px;
+			font-size:14px;
+			border-radius:5px;
+			margin-bottom:10px;
+			background-color:$blue;
+			width:200px;
+			display:inline;
+			color:white;
+		}
+		
+		.button:hover{
+			background-color:$darkblue;
+		}
+		
+		input[type="text"], textarea{
+			border:1px solid $lightgray;
+			padding:7px 10px 7px 10px;
+			font-size:14px;
+			width:500px;
+
+		}
+	
+}
+
+
 #filter_container{
 	background-color:$lightestgray;
 	padding:none;
-	height:250px;
+	height:310px;
+	padding-top:40px;
+
+	#filter{
 	
-	.inner{
-		margin-top:40px;
-		
+		.browse_link{
+			padding:20px;
+			font-size:$large-font;
+			color:gray;
+			text-align:center;
+			
+		}
+
 		.subcolumn{
 			float:left;
 			padding:0px 0px 10px 20px;
@@ -129,9 +168,8 @@ $blue:rgba(30,144,255,0.4);
 					color:white;
 				}
 		}
-		
-	}/**inner**/
-
+	
+	}/**filter**/
 
 }/***filter-container***/
 
@@ -438,6 +476,11 @@ $blue:rgba(30,144,255,0.4);
 	padding-top:30px;
 	padding-bottom:30px;
 	
+	#map_canvas{
+		margin-top:5px;
+		margin-bottom:20px;
+	}
+	
 	.question{
 		padding-bottom:20px;
 	}
@@ -536,20 +579,33 @@ $blue:rgba(30,144,255,0.4);
 				}
 		}
 		
-		.buttons_container{
-			margin-top:20px;
-			margin-left:20px;
-			.button{
+		.buttons{
+			display:inline;
+			.upload{
+				padding:10px 10px 10px 10px;
 				text-align:center;
-				padding:20px 30px 20px 30px;
-				font-size:14px;
-				border-radius:10px;
+				font-size:12px;
 				background-color:$lightgray;
-				display:inline;
-				color:$gray;
+				border-radius:10px;
+				width:120px;
 			}
-
+			
+			.upload:hover{
+					background-color:$medorange;	
+				}
+			
+			.submit{
+				margin-top:20px;
+				background-color:$blue;
+				width:200px;
+			}
+			
+			.submit:hover{
+				background-color:$darkblue;
+				color:white;
+			}
 		}
+	
 	
 
 }/***review***/

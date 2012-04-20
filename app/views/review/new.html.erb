@@ -158,22 +158,17 @@ the following script includes the required mod
 		<%= text_field_tag :address, nil, :id => "address_input" %>
 		<%= hidden_field_tag :formatted_address, "", :id => "formatted_address" %>
 		<%= hidden_field_tag :dist_to_campus, "", :id => "dist_to_campus" %>
-		<div id="map_canvas" style="width:310px;height:310px;"/>
+		<div id="map_canvas" style="width:310px;height:150px;"/>
 	</div>
 
-	<div id="recommendation" class="question">
+	<div id="review" class="question">
 		<div class="category">
-			Would you recommend this apartment to a friend
-		</div>	
+		Your Review
+		</div>
+		<%= f.text_area :description, :id => "review_input", :rows => "4", :cols => "70" %>
 
-		<ul class="option_selectors">
-			<li>yes</li>
-			<li>no</li>
-		</ul>
-		<%= f.hidden_field :recommendation %>
-		<div class="clearfloat"></div>
 	</div>
-
+	
 	<div id="rent" class="question">
 		<div class="category">
 			Monthly Rent
@@ -360,6 +355,7 @@ the following script includes the required mod
 		<div class="clearfloat"></div>
 
 		<div class="description">
+			<br>
 		How safe do you feel living here?
 		</div>	
 
@@ -381,6 +377,7 @@ the following script includes the required mod
 		</div>
 		<%= f.hidden_field :security_level %>
 		<div class="clearfloat"></div>
+		<br>
 	</div>
 
 	<div id="management" class="question">
@@ -498,33 +495,36 @@ the following script includes the required mod
 		<%= hidden_field_tag :amenities, "", :id => "amenities_input" %>
 		<div class="clearfloat"></div>
 	</div>
+
+	<div id="recommendation" class="question">
+		<div class="category">
+			Would you recommend this apartment to a friend
+		</div>	
+
+		<ul class="option_selectors">
+			<li>yes</li>
+			<li>no</li>
+		</ul>
+		<%= f.hidden_field :recommendation %>
+		<div class="clearfloat"></div>
+	</div>
 	
-	<div id="review" class="question">
-		<div class="category">
-		Comments
-		</div>
-		<%= f.text_area :description, :id => "review_input", :rows => "4", :cols => "70" %>
-
-	</div>
-
-	<div id="feedback" class="question">
-		<div class="category">
-		We love feedback!
-		</div>
-		<%= text_area_tag :feedback, nil, :id => "feedback_input", :rows => "2", :cols => "70" %>
-	</div>
 
 
 	</div><!--review-container-->
 	
-	<div class="grid-4 buttons_container">
+	<div class="buttons">
 		<div class="button upload">+ upload photos</div>
 		<div class="upload_input" style="display:none;">
 			<%= file_field_tag :photo %>
 		</div>
-	</div> <!--grid4-->
+		
+		<div class="button submit">submit</div>
+		
+	</div> <!--buttons_container-->
 	
-	<%= f.submit "Submit review" %>
+	
+	
 	<% end %>
 	</div><!--container 12-->
 	
