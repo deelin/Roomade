@@ -143,12 +143,22 @@ the following script includes the required mod
 		
 	});
 </script>
+<div class="container_12">
+	<div id="logo" class="grid_12">
+			<div class="grid_7" style="position:relative; bottom:0;"> ROOMADE
+					<div id="slogan">get the juice on apartments</div>
+			</div>	
 
-<div class="wrapper new_review">
-	<div class="container_12">
-
-	<div class="grid_8 review_container">
-			
+			<div class="grid_4" id="nav_bar">
+				<ul>
+					<li data-id="3">Login</li>
+					<li data-id="2">Review Your Apartment</li>
+					<li data-id="1">About</li>
+				</ul>
+			</div><!--nav_bar-->
+		</div> <!--logo-->
+		
+	<div class="new_review grid_12">
 	<%= form_for @review, :url => {:action => "create"}, :html => {:class => "review_form", :multipart => true} do |f| %>
 	<div id="address" class="question">
 		<div class="category">
@@ -510,23 +520,19 @@ the following script includes the required mod
 	</div>
 	
 
-
-	</div><!--review-container-->
-	
-	<div class="buttons">
-		<div class="button upload">+ upload photos</div>
+		<div class="grid_2 button upload">+ upload photos</div>
 		<div class="upload_input" style="display:none;">
 			<%= file_field_tag :photo %>
 		</div>
+		<div class="clearfloat"></div>
 		
-		<div class="button submit">submit</div>
+		<div class="grid_4 button cancel">cancel</div>
+		<div class="grid_4 button submit">submit</div>
 		
-	</div> <!--buttons_container-->
+
 	
 	
 	
 	<% end %>
-	</div><!--container 12-->
-	
-	
-</div><!--wrapper-->
+	</div><!--new review-->
+</div><!--container 12-->

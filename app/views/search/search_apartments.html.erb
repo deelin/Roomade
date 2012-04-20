@@ -1,27 +1,43 @@
 
 
-<div class="wrapper">
 	<div class="container_12">
-			<div id="logo" class="grid_12">
-				<div style="height:150px;">
-						<div style="position:relative; bottom:0;"> ROOMADE
-						<div id="slogan">get the juice on apartments</div>
-						</div>
-				</div>
-				
-			</div>
-
+		<div class="grid_12" style="height:70px; background-color:rgba(51,51,51,0.6);">
+		</div>
+		
+		<div id="logo" class="grid_12">
+			<div class="grid_7" style="position:relative; bottom:0;"> ROOMADE
+					<div id="slogan">get the juice on apartments</div>
+			</div>	
+			
+			<div class="grid_4" id="nav_bar">
+				<ul>
+					<li data-id="3">Login</li>
+					<li data-id="2">Review Your Apartment</li>
+					<li data-id="1">About</li>
+				</ul>
+			</div><!--nav_bar-->
+		</div> <!--logo-->
+	
+		
 		<div id="filter_container" class="grid_12">
+			
+			<div class="instruc-text grid_12"> Type in a city or address
+			</div>
+			
+			
 			<div id="search">
-				<input type="text" value="hint: 2535 channing way">
+				<input type="text" value="hint: berkeley, ca">
 				<div class="button locate">
 					locate
 				</div> <!--button-->
 				
 			</div> <!--search-->
-				
-			<div id="filter">
 			
+		
+			<div id="filter">
+				
+					<div class="instruc-text step_2 grid_12"> Select apartment features 
+					</div>
 				
 				<div class="subcolumn bedrooms" data-type="bedrooms">
 					<div class="category">bedrooms</div>
@@ -152,7 +168,7 @@
 				</div>
 
 				<div class="neighborhood_map">
-					<div class="category">location</div>
+					<div class="category">map</div>
 					<img src="images/neighborhood_map.png" width="220" height="163">
 				</div><!--column-->
 
@@ -162,7 +178,7 @@
 					<ul id="amenities_list">
 						<li data-id="1">laundry machines</li>
 						<li data-id="2">trash chutes</li>
-						<li data-id="3">recyling</li>
+						<li data-id="3">recycling</li>
 						<li data-id="4">balcony</li>
 						<li data-id="5">garage</li>
 						<li data-id="6">elevators</li>
@@ -174,8 +190,12 @@
 				</div>
 			</div><!--filter-->
 		</div> <!--filter_container-->
+		<div id="toggle_filter" class="grid_12"> 
+			<div>edit features
+			</div>
+		</div>
 		
-		<div class="grid_1 push_11 find button">find</div>
+		<div id="search_button" class="grid_4 push_4">start juicin'</div>
 
 		<!--hide options><div class="grid_12">
 			<ul id="sort"> 
@@ -237,8 +257,6 @@
 		</div> <!--results-->
 
 	</div> <!--container-12-->
-
-</div> <!--wrapper-->
 
 <script type="text/javascript">
 	var sort = "date_desc";
