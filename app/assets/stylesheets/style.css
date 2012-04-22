@@ -15,7 +15,8 @@
     display: inline;
     color: white; }
   #search .button:hover {
-    background-color: rgba(30, 144, 255, 0.7); }
+    background-color: rgba(30, 144, 255, 0.7);
+    cursor: pointer; }
   #search input[type="text"], #search textarea {
     border-radius: 1px;
     border: 1px solid #cccccc;
@@ -77,6 +78,9 @@
       background-color: rgba(51, 51, 51, 0.2);
       margin-left: 2px; }
     #filter_container #filter .num_box:hover {
+      background-color: rgba(51, 51, 51, 0.6);
+      cursor: pointer; }
+    #filter_container #filter .num_box.selected {
       background-color: rgba(51, 51, 51, 0.6); }
     #filter_container #filter .neighborhood_map {
       float: right;
@@ -101,6 +105,10 @@
         background-color: rgba(51, 51, 51, 0.2); }
       #filter_container #filter #price_ranges li:hover {
         background-color: rgba(51, 51, 51, 0.6);
+        color: white;
+        cursor: pointer; }
+      #filter_container #filter #price_ranges li.selected {
+        background-color: rgba(51, 51, 51, 0.6);
         color: white; }
     #filter_container #filter .amenities {
       float: left;
@@ -120,6 +128,10 @@
         background-color: rgba(51, 51, 51, 0.2); }
       #filter_container #filter #amenities_list li:hover {
         background-color: rgba(51, 51, 51, 0.6);
+        color: white;
+        cursor: pointer; }
+      #filter_container #filter #amenities_list li.selected {
+        background-color: rgba(51, 51, 51, 0.6);
         color: white; }
 
 /***filter-container***/
@@ -134,7 +146,8 @@
 
 #search_button:hover {
   background-color: rgba(245, 140, 0, 0.8);
-  color: white; }
+  color: white;
+  cursor: pointer; }
 
 #toggle_filter {
   background-color: rgba(51, 51, 51, 0.2);

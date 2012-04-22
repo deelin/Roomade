@@ -42,6 +42,7 @@ $darkblue:rgba(30,144,255,0.7);
 		
 		.button:hover{
 			background-color:$darkblue;
+			cursor: pointer;
 		}
 		
 		input[type="text"], textarea{
@@ -132,6 +133,11 @@ $darkblue:rgba(30,144,255,0.7);
 		
 		.num_box:hover{
 			background-color:$darkgray;
+			cursor: pointer;
+		}
+		
+		.num_box.selected{
+			background-color:$darkgray;
 		}
 		
 		.neighborhood_map {
@@ -167,6 +173,12 @@ $darkblue:rgba(30,144,255,0.7);
 				li:hover{
 					background-color:$darkgray;
 					color:white;
+					cursor: pointer;
+				}
+				
+				li.selected{
+					background-color:$darkgray;
+					color:white;
 				}
 		}
 		
@@ -196,6 +208,12 @@ $darkblue:rgba(30,144,255,0.7);
 				li:hover{
 					background-color:$darkgray;
 					color:white;
+					cursor: pointer;
+				}
+				
+				li.selected{
+					background-color:$darkgray;
+					color:white;
 				}
 		}
 	
@@ -216,6 +234,7 @@ $darkblue:rgba(30,144,255,0.7);
 #search_button:hover{
 	background-color:$medorange;
 	color:white;
+	cursor:pointer;
 };
 
 

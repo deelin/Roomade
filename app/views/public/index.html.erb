@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
 	Public page
 </div>
 
@@ -6,4 +6,390 @@
 	<%= link_to (image_tag "signin-fb.png"), "/auth/facebook", :class => "popup", :"data-width" => 600, :"data-height" => 300 %><br/>
 	<div>OR</div>
 	<%= link_to "Sign In", sign_in_path() %> or <%= link_to "Sign Up", sign_up_path() %>
-</div>
+</div> -->
+
+
+
+	<div class="container_12">
+		<div class="grid_12 placeholder" style="height:70px; background-color:rgba(51,51,51,0.6);">
+		</div>
+		
+		<div id="logo" class="grid_12">
+			<div class="grid_7" style="position:relative; bottom:0;"> ROOMADE
+					<div id="slogan">get the juice on apartments</div>
+			</div>	
+			
+			<div class="grid_4" id="nav_bar">
+				<ul>
+					<li><%= link_to "Login", sign_in_path() %></li>
+					<li><%= link_to "Review Your Apartment", new_review_path() %></li>
+					<li><%= link_to "About", "#", :onclick => "return false;" %></li>
+				</ul>
+			</div><!--nav_bar-->
+		</div> <!--logo-->
+	
+		
+		<div id="filter_container" class="grid_12">
+			
+			<div class="instruc-text grid_12"> Type in a city or address
+			</div>
+			
+			
+			<div id="search">
+				<%= text_field_tag :query, "", :id => "search_query_input", :placeholder => "hint: berkeley, ca" %>
+				<div class="button locate">
+					locate
+				</div> <!--button-->
+				
+			</div> <!--search-->
+			
+		
+			<div id="filter">
+				
+					<div class="instruc-text step_2 grid_12"> Select apartment features 
+					</div>
+				
+				<div class="subcolumn bedrooms" data-type="bedrooms">
+					<div class="category">bedrooms</div>
+
+					<div class="options from" data-num-selected="1">
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+					</div>
+
+					<div class="clearfloat"></div>
+
+					<p> to </p>
+
+					<div class="options to" data-num-selected="5">
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+					</div>
+					
+					<div class="clearfloat"></div>
+				</div>
+
+				<div class="subcolumn bathrooms" data-type="bathrooms">
+					<div class="category">bathrooms</div>
+
+					<div class="options from" data-num-selected="1">
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+					</div>
+				
+					<div class="clearfloat"></div>
+
+					<p> to </p>
+
+					<div class="options to" data-num-selected="5">
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+					</div>
+					<div class="clearfloat"></div>
+				</div>
+
+				<div class="subcolumn aptmates" data-type="roommates">
+					<div class="category">apartment mates</div>
+
+					<div class="options from" data-num-selected="1">
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+						<div class="num_box"> 
+						</div>
+					</div>
+
+					<div class="clearfloat"></div>
+
+					<p> to <p>
+
+					<div class="options to" data-num-selected="7">
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+						<div class="num_box selected"> 
+						</div>
+					</div>	
+
+					<div class="clearfloat"></div>
+				</div>
+
+				<div class="subcolumn price">
+					<div class="category"> price 
+						<p style="font-size:12px; display:inline;">(monthly)</p>
+					</div>
+
+					<ul id="price_ranges">
+						<li data-price-range="0-200">less than $200</li>
+						<li data-price-range="200-600">$200-$600</li>
+						<li data-price-range="600-1000">$600-$1000</li>
+						<li data-price-range="1000-9999">more than $1000</li>
+					</ul>
+				</div>
+
+				<div class="neighborhood_map">
+					<div class="category">map</div>
+					<img src="images/neighborhood_map.png" width="220" height="163">
+				</div><!--column-->
+
+				<div class="subcolumn amenities">
+					<div class="category">amenities</div>
+
+					<ul id="amenities_list">
+						<li data-id="1">laundry machines</li>
+						<li data-id="2">trash chutes</li>
+						<li data-id="3">recycling</li>
+						<li data-id="4">balcony</li>
+						<li data-id="5">garage</li>
+						<li data-id="6">elevators</li>
+						<li data-id="7">carpets</li>
+						<li data-id="8">hardwood floors</li>
+						<li data-id="9">heaters</li>
+						<li data-id="10">bike racks</li>
+					</ul>
+				</div>
+			</div><!--filter-->
+		</div> <!--filter_container-->
+		<div id="toggle_filter" class="grid_12" style="display:none;"> 
+			<div>edit features
+			</div>
+		</div>
+		
+		<div id="search_button" class="grid_4 push_4">start juicin'</div>
+
+		<!--hide options><div class="grid_12">
+			<ul id="sort"> 
+				<li style="font-size:10px">Sort by:</li>
+				
+				<li>Price	
+					<ul>
+						<li data-sort="rent_desc"> high - low</li>
+						<li data-sort="rent_asc"> low - high</li>
+					</ul>
+				</li>
+
+				<li>Distance
+					<ul>
+						<li data-sort="distance_asc"> close - far</li>
+						<li data-sort="distance_desc"> far - close</li>
+					</ul>
+				</li>
+
+				<li>Rating
+					<ul>
+						<li data-sort="rating_desc"> high - low</li>
+						<li data-sort="rating_asc"> low - high</li>
+					</ul>	
+				</li>	
+
+				<li>Noise
+					<ul>
+						<li data-sort="noise_desc"> rage cage - main stacks </li>
+						<li data-sort="noise_asc"> main stacks - rage cage</li>
+					</ul>
+				</li>	
+
+				<li>Condition
+					<ul>
+						<li data-sort="condition_desc"> new - janky </li>
+						<li data-sort="condition_asc"> janky - new </li>
+					</ul>
+				</li>
+
+				<li>Security
+					<ul>
+						<li data-sort="security_desc"> high - low</li>
+						<li data-sort="security_asc"> low - high</li>
+					</ul>
+				</li>
+
+				<li>Management
+					<ul>
+						<li data-sort="management_desc"> BAMF - crap</li>
+						<li data-sort="management_asc"> crap - BAMF </li>
+					</ul>
+				</li>
+			</ul>
+		</div> <!sort-->
+
+		<div id="results" class="grid_12">     					<!--results container-->
+			
+		</div> <!--results-->
+
+	</div> <!--container-12-->
+
+<script type="text/javascript">
+	var query = "";
+	var sort = "date_desc";
+	var min_bedrooms = 1;
+	var max_bedrooms = 5;
+	var min_bathrooms = 1;
+	var max_bathrooms = 5;
+	var min_roommates = 1;
+	var max_roommates = 7;
+	var min_price = 0;
+	var max_price = 9999;
+	var amenities = "";
+	$().ready(function() {
+		function search() {
+			if (query.trim() != "") {
+				$.ajax({
+					type: "GET",
+					url: "<%= search_apartments_path() %>.js",
+					data: { query: query,
+						min_bedrooms: min_bedrooms, max_bedrooms: max_bedrooms,
+						min_bathrooms: min_bathrooms, max_bathrooms: max_bathrooms,
+						min_roommates: min_roommates, max_roommates: max_roommates,
+						min_price: min_price, max_price: max_price, 
+						sort: sort, amenities: amenities},
+					headers: {
+						'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+					}
+				});
+				$('#slogan').closest('.container_12').find(".grid_12.placeholder:first-child").slideUp();
+				$('#toggle_filter').slideDown();
+			}
+		}
+		
+		$('#sort ul li').live("click", function(e) {
+			sort = $(this).attr("data-sort");
+			search();
+		});
+		
+		$('#price_ranges li').live("click", function(e) {
+			var data_price_range = $(this).attr("data-price-range").split("-");
+			min_price = data_price_range[0];
+			max_price = data_price_range[1];
+			$('#price_ranges li').removeClass("selected");
+			$(this).addClass("selected");
+			search();
+		});
+		
+		$('#filter .options').live("mouseover", function(e) {
+			var children = $(this).children();
+			var finalIndex = children.index(e.target);
+			$(children).slice(0, finalIndex+1).addClass("selected");
+			$(children).slice(finalIndex+1).removeClass("selected");
+		});
+		
+		$('#filter .options').live("mouseout", function(e) {
+			var children = $(this).children();
+			var finalIndex = parseInt($(this).attr("data-num-selected"));
+			$(children).slice(0, finalIndex).addClass("selected");
+			$(children).slice(finalIndex).removeClass("selected");
+		});
+		
+		$('#filter .options').live("click", function(e) {
+			var children = $(this).children();
+			var selected_num = parseInt(children.index(e.target)) + 1;
+			$(this).attr("data-num-selected", selected_num);
+			
+			if ($(this).hasClass("from")) {
+				// make sure max is at least selected_num
+				var to_option_div = $(this).siblings(".to");
+				var to_selected_num = $(to_option_div).attr("data-num-selected");
+				if (to_selected_num < selected_num) {
+					// update data attribute and apply classes
+					$(to_option_div).attr("data-num-selected", selected_num)
+					var children = $(to_option_div).children();
+					$(children).slice(0, selected_num).addClass("selected");
+				}
+			}
+			else {
+				// make sure min is at most selected_num
+				var from_option_div = $(this).siblings(".from");
+				var from_selected_num = $(from_option_div).attr("data-num-selected");
+				if (from_selected_num > selected_num) {
+					// update data attribute and apply classes
+					$(from_option_div).attr("data-num-selected", selected_num)
+					var children = $(from_option_div).children();
+					$(children).slice(selected_num).removeClass("selected");
+				}
+			}
+			
+			var subcolumn_type = $(this).closest(".subcolumn").attr('data-type');
+			window["min_"+subcolumn_type] = parseInt($(this).closest(".subcolumn").find(".options.from").attr("data-num-selected"));
+			window["max_"+subcolumn_type] = parseInt($(this).closest(".subcolumn").find(".options.to").attr("data-num-selected"));
+			search();
+		});
+		
+		$('#amenities_list').live("click", function(e) {
+			$(e.target).toggleClass('selected');
+			var selected_amenities = $(this).find('.selected');
+			var amenity_ids = [];
+			selected_amenities.each(function(index, amenity) {
+				amenity_ids.push($(amenity).attr('data-id'));
+			});
+			amenities = amenity_ids.join(",");
+			search();
+		});
+		
+		$('#search_query_input').live("keyup", function(e){
+			query = $(this).val();
+			if (e.keyCode == 13) {
+				$('#search .button.locate').click();
+			}
+		});
+		
+		$('#search .button.locate, #search_button').live("click", function(e) {
+			search();
+		});
+		
+		$('#toggle_filter').live("click", function(e) {
+			$('#filter').slideDown();
+		});
+	});
+</script>
+
+
+
