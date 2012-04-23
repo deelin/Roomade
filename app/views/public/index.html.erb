@@ -1,3 +1,4 @@
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCXm7UmHDyuyBm9-ySvmAEZHmkxuXvBB8Y&sensor=false"></script>
 <!-- <div>
 	Public page
 </div>
@@ -269,6 +270,8 @@
 	</div> <!--container-12-->
 
 <script type="text/javascript">
+	var geocoder = new google.maps.Geocoder();
+
 	var query = "";
 	var sort = "date_desc";
 	var min_bedrooms = 1;

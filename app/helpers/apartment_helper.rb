@@ -101,11 +101,9 @@ module ApartmentHelper
   				</div>
 
   				<div class="column">
-  					<div class="map">
-  						<img src="images/map.jpg" width="180" height="125">
-  					</div>
+  					<div class="map" id="apt_#{apartment.id}_map"></div>
 
-  					<div class="distance" data-address="#{address}">
+  					<div class="distance" data-address="#{address}" data-apartment-id="#{apartment.id}">
   						<div class="value">#{apartment.dist_to_campus * WALKING_MIN_PER_MILE} min walk to campus</div>
   					</div>
 
