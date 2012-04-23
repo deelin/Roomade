@@ -285,7 +285,8 @@
 	var amenities = "";
 	$().ready(function() {
 		function search() {
-			if (query.trim() != "") {
+			query = $('#search_query_input').val().trim();
+			if (query != "") {
 				$.ajax({
 					type: "GET",
 					url: "<%= search_apartments_path() %>.js",
@@ -379,7 +380,6 @@
 		});
 		
 		$('#search_query_input').live("keyup", function(e){
-			query = $(this).val();
 			if (e.keyCode == 13) {
 				$('#search .button.locate').click();
 			}
