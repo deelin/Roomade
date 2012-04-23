@@ -139,7 +139,20 @@ the following script includes the required mod
 				}
 			});
 		}
-	
+		
+		$('.button.cancel').live("click", function(e){
+			var cancel_review = confirm("Are you sure you want to cancel?");
+			if (cancel_review) {
+				history.back();	
+			}
+		});
+		
+		$('.button.submit').live("click", function(e){
+			$('.review_form').submit();
+			console.log("submitted");
+		});
+		
+		
 		
 	});
 </script>
@@ -529,10 +542,6 @@ the following script includes the required mod
 		<div class="grid_4 button cancel">cancel</div>
 		<div class="grid_4 button submit">submit</div>
 		
-
-	
-	
-	
 	<% end %>
 	</div><!--new review-->
 </div><!--container 12-->
