@@ -4,6 +4,8 @@ class ApartmentController < ApplicationController
     redirect_to home_path and return if @apartment.blank?
     
     @reviews = @apartment.reviews
+    redirect_to home_path and return if @reviews.blank?  
+    
     @amenities = @apartment.apartment_amenities.map(&:amenity_id)
     
     @recommendations = @reviews.count(:all, :conditions => {:recommendation => true})

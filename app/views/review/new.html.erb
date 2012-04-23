@@ -15,6 +15,69 @@ the following script includes the required mod
 	var geocoder = new google.maps.Geocoder();
 	var location1, location2;
 	
+	function validate_review_form() {
+		var error_count = 0;
+		if ($('#formatted_address').val().trim() == "" || $('#dist_to_campus').val().trim() == "") {
+			console.log("something wrong with map getting address and distance");
+			error_count++;
+		}
+		if (isNaN(parseFloat($('#rent_input').val().trim()))) {
+			console.log("Please enter your rent in $ (eg. 123.45)");
+			error_count++;
+		}
+		if ($('#rent_option').val().trim() == "") {
+			console.log("Please choose a rent option");
+			error_count++;
+		}
+		if ($('#bedrooms_input').val().trim() == "") {
+			console.log("How many bedrooms?");
+			error_count++;
+		}
+		if ($('#bathrooms_input').val().trim() == "") {
+			console.log("How many bathrooms?");
+			error_count++;
+		}
+		if ($('#roommates_input').val().trim() == "") {
+			console.log("How many roommates do you live with?");
+			error_count++;
+		}
+		if ($('#space_input').val().trim() == "") {
+			console.log("How spacious is your apartment?");
+			error_count++;
+		}
+		if ($('#noise_input').val().trim() == "") {
+			console.log("How noisy are the surroundings?");
+			error_count++;
+		}
+		if ($('#security_input').val().trim() == "") {
+			console.log("Is there a gate? Or do I need to hide my kids and wives?");
+			error_count++;
+		}
+		if ($('#security_level_input').val().trim() == "") {
+			console.log("How secure is it?");
+			error_count++;
+		}
+		if ($('#management_input').val().trim() == "") {
+			console.log("How awesome is the management here?");
+			error_count++;
+		}
+		if ($('#condition_input').val().trim() == "") {
+			console.log("What's the condition of the apartment?");
+			error_count++;
+		}
+		if ($('#rating_input').val().trim() == "") {
+			console.log("How would you rate living here overall?");
+			error_count++;
+		}
+		if ($('#recommendation_input').val().trim() == "") {
+			console.log("Would you recommend this apartment or not?");
+			error_count++;
+		}
+		if (error_count == 0) {
+			$('.review_form').submit();
+		}
+	}
+	
 	$().ready(function() {
 		
 	    var latlng = new google.maps.LatLng(37.8716, -122.2716);
@@ -148,29 +211,16 @@ the following script includes the required mod
 		});
 		
 		$('.button.submit').live("click", function(e){
-			$('.review_form').submit();
-			console.log("submitted");
+			validate_review_form();
 		});
+		
 		
 		
 		
 	});
 </script>
 <div class="container_12">
-	<div id="logo" class="grid_12">
-			<div class="grid_7" style="position:relative; bottom:0;"> ROOMADE
-					<div id="slogan">get the juice on apartments</div>
-			</div>	
-
-			<div class="grid_4" id="nav_bar">
-				<ul>
-					<li data-id="3">Login</li>
-					<li data-id="2">Review Your Apartment</li>
-					<li data-id="1">About</li>
-				</ul>
-			</div><!--nav_bar-->
-		</div> <!--logo-->
-		
+		<%= render :partial => "layouts/header" %>
 	<div class="new_review grid_12">
 	<%= form_for @review, :url => {:action => "create"}, :html => {:class => "review_form", :multipart => true} do |f| %>
 	<div id="address" class="question">
@@ -231,7 +281,7 @@ the following script includes the required mod
 			</div>
 
 		</div>
-		<%= f.hidden_field :bedrooms %>
+		<%= f.hidden_field :bedrooms, :id => "bedrooms_input" %>
 		<div class="clearfloat"></div>
 	</div>
 
@@ -259,7 +309,7 @@ the following script includes the required mod
 			</div>
 
 		</div>
-		<%= f.hidden_field :bathrooms %>
+		<%= f.hidden_field :bathrooms, :id => "bathrooms_input" %>
 		<div class="clearfloat"></div>
 	</div>
 
@@ -295,7 +345,7 @@ the following script includes the required mod
 				</div>
 
 		</div>
-		<%= f.hidden_field :roommates %>
+		<%= f.hidden_field :roommates, :id => "roommates_input" %>
 		<div class="clearfloat"></div>
 	</div>
 
@@ -325,7 +375,7 @@ the following script includes the required mod
 				</div>
 
 		</div>
-		<%= f.hidden_field :space %>	
+		<%= f.hidden_field :space, :id => "space_input" %>	
 		<div class="clearfloat"></div>
 
 	</div>
@@ -358,7 +408,7 @@ the following script includes the required mod
 				</div>
 
 		</div>
-		<%= f.hidden_field :noise %>
+		<%= f.hidden_field :noise, :id => "noise_input" %>
 		<div class="clearfloat"></div>
 	</div>
 
@@ -374,7 +424,7 @@ the following script includes the required mod
 			<li>yes</li>
 			<li>no</li>
 		</ul>
-		<%= f.hidden_field :security %>
+		<%= f.hidden_field :security, :id => "security_input" %>
 		<div class="clearfloat"></div>
 
 		<div class="description">
@@ -398,7 +448,7 @@ the following script includes the required mod
 			<div class="option_box non-selected"> 
 			</div>
 		</div>
-		<%= f.hidden_field :security_level %>
+		<%= f.hidden_field :security_level, :id => "security_level_input" %>
 		<div class="clearfloat"></div>
 		<br>
 	</div>
@@ -429,7 +479,7 @@ the following script includes the required mod
 				</div>
 
 		</div>
-		<%= f.hidden_field :management %>
+		<%= f.hidden_field :management, :id => "management_input" %>
 		<div class="clearfloat"></div>
 	</div>
 
@@ -459,7 +509,7 @@ the following script includes the required mod
 				</div>
 
 		</div>
-		<%= f.hidden_field :condition %>
+		<%= f.hidden_field :condition, :id => "condition_input" %>
 		<div class="clearfloat"></div>
 	</div>
 	
@@ -528,7 +578,7 @@ the following script includes the required mod
 			<li>yes</li>
 			<li>no</li>
 		</ul>
-		<%= f.hidden_field :recommendation %>
+		<%= f.hidden_field :recommendation, :id => "recommendation_input" %>
 		<div class="clearfloat"></div>
 	</div>
 	
