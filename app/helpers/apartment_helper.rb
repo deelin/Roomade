@@ -94,11 +94,13 @@ module ApartmentHelper
     
     html = %{
       <div class="apt_detail apt_sum_container grid_12">
-  			<div class="inner">								
-  				<div class="address">
-  					<div class="street">#{street}</div>
-  					<div class="city">#{city_state}</div>
-  				</div>
+  			<div class="inner">
+  			  <a href="http://maps.google.com/maps?q=#{address.gsub(" ", "%20")}" target="_blank">
+    				<div class="address">
+    					<div class="street">#{street}</div>
+    					<div class="city">#{city_state}</div>
+    				</div> 
+  				</a>
 
   				<div class="column">
   					<div class="map" id="apt_#{apartment.id}_map"></div>
