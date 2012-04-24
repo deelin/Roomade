@@ -24,6 +24,53 @@ $darkblue:rgba(30,144,255,0.7);
 	clear:both;
 }
 
+.signin{
+	
+	.category{
+		font-size:$large-font;
+		color:gray;
+		padding:0px 10px 5px 0px;
+	}
+	
+	.title{
+		padding:25px;
+		color:$medgray;
+		font-size:20px;
+	}
+	
+	ul{
+		list-style:none;
+		
+		label{
+			font-size:$large-font;
+			color:gray;
+			padding:0px 10px 5px 0px;
+		}
+		
+		input[type="text"], input[type="password"]{
+				border:1px solid $lightestgray;
+				padding:5px;
+				font-size:14px;
+		}
+	}
+	
+	.submit-btn{
+		margin-top:10px;
+		border:none;
+		text-align:center;
+		padding:11px 25px 11px 25px;
+		font-size:14px;
+		border-radius:5px;
+		color:gray;
+		background-color:$orange-dim;
+	}
+	
+	.submit-btn:hover{
+		background-color:$medorange;
+		color:white;
+	}
+}
+
 
 #search{
 		text-align:center;

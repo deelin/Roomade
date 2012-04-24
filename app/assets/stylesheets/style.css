@@ -2,6 +2,37 @@
 .clearfloat {
   clear: both; }
 
+.signin .category {
+  font-size: 16px;
+  color: gray;
+  padding: 0px 10px 5px 0px; }
+.signin .title {
+  padding: 25px;
+  color: rgba(51, 51, 51, 0.4);
+  font-size: 20px; }
+.signin ul {
+  list-style: none; }
+  .signin ul label {
+    font-size: 16px;
+    color: gray;
+    padding: 0px 10px 5px 0px; }
+  .signin ul input[type="text"], .signin ul input[type="password"] {
+    border: 1px solid #cccccc;
+    padding: 5px;
+    font-size: 14px; }
+.signin .submit-btn {
+  margin-top: 10px;
+  border: none;
+  text-align: center;
+  padding: 11px 25px 11px 25px;
+  font-size: 14px;
+  border-radius: 5px;
+  color: gray;
+  background-color: rgba(245, 140, 0, 0.4); }
+.signin .submit-btn:hover {
+  background-color: rgba(245, 140, 0, 0.8);
+  color: white; }
+
 #search {
   text-align: center; }
   #search .button {

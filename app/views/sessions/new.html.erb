@@ -1,9 +1,23 @@
-<div id="signin-form" class="container">
+<div id="signin-form" class="container_12">
 	
-	<div class="row">
-		<div class="onecol"></div>
-		<div class="tencol">
-			<h2>Welcome back!</h2>
+	<div id="logo" class="grid_12">
+					<div class="grid_7" style="position:relative; bottom:0;"> ROOMADE
+							<div id="slogan">get the juice on apartments</div>
+					</div>	
+
+					<div class="grid_4" id="nav_bar">
+						<ul>
+							<li data-id="3">Login</li>
+							<li data-id="2">Review Your Apartment</li>
+							<li data-id="1">About</li>
+						</ul>
+					</div><!--nav_bar-->
+	</div> <!--logo-->
+				
+	<div class="grid_12 signin">	
+		<br>	
+		<div class="title"> Welcome back!</div>
+	
 			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "new-session") do |f| %>
 				<ul>
 					<fieldset>
@@ -18,13 +32,12 @@
 					</li>
 					<li>
 						<%= label_tag " " %>
-						<%= f.submit "Sign In", :class => "submit-btn", :id => "signin-submit" %>
-					</li>
+						<%= f.submit "Sign In", :class => "grid_4 submit-btn", :id => "signin-submit" %>
+					</li> <!--button-->
+					
 					</fieldset>
 				</ul>
 
 			<% end %>
-		</div>
-		<div class="onecol last"></div>
-	</div>
-</div>
+		</div> <!--signin-->
+</div> <!--container_12-->

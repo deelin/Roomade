@@ -1,7 +1,19 @@
-<div id="registrations-form" class="container">
-	<div class="row">
-		
-		<div class="onecol"></div>
+<div id="registrations-form" class="container-12">
+	
+	<div id="logo" class="grid_12">
+					<div class="grid_7" style="position:relative; bottom:0;"> ROOMADE
+							<div id="slogan">get the juice on apartments</div>
+					</div>	
+
+					<div class="grid_4" id="nav_bar">
+						<ul>
+							<li data-id="3">Login</li>
+							<li data-id="2">Review Your Apartment</li>
+							<li data-id="1">About</li>
+						</ul>
+					</div><!--nav_bar-->
+	</div> <!--logo-->
+	
 		<div class="tencol">
 			<h2>Create an account</h2>
 
@@ -33,11 +45,8 @@
 			</ul>
 			<% end %>
 		</div>
-		
-		<div class="onecol last"></div>
-	</div>
 	
-</div>
+</div> <!--container-12-->
 
 <script type="text/javascript">
 	<% if !@user.password_required? %>
