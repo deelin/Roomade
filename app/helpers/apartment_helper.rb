@@ -94,18 +94,18 @@ module ApartmentHelper
     
     html = %{
       <div class="apt_detail apt_sum_container grid_12">
-  			<div class="inner">								
-  				<div class="address">
-  					<div class="street">#{street}</div>
-  					<div class="city">#{city_state}</div>
-  				</div>
+  			<div class="inner">
+  			  <a href="http://maps.google.com/maps?q=#{address.gsub(" ", "%20")}" target="_blank">
+    				<div class="address">
+    					<div class="street">#{street}</div>
+    					<div class="city">#{city_state}</div>
+    				</div> 
+  				</a>
 
   				<div class="column">
-  					<div class="map">
-  						<img src="images/map.jpg" width="180" height="125">
-  					</div>
+  					<div class="map" id="apt_#{apartment.id}_map"></div>
 
-  					<div class="distance" data-address="#{address}">
+  					<div class="distance" data-address="#{address}" data-apartment-id="#{apartment.id}">
   						<div class="value">#{apartment.dist_to_campus * WALKING_MIN_PER_MILE} min walk to campus</div>
   					</div>
 
@@ -251,7 +251,7 @@ module ApartmentHelper
   				<div class="column buttons_container">
 
   					<div class="button see_more">#{link_to "see more", show_apartment_path(apartment.id)}</div>
-  					<div class="button add_queue">add to queue</div>
+  					<div class="button add_queue" data-apartment-id="#{apartment.id}">add to queue</div>
   				</div>
   			</div>
 

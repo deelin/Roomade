@@ -1,3 +1,4 @@
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCXm7UmHDyuyBm9-ySvmAEZHmkxuXvBB8Y&sensor=false"></script>
 <!-- <div>
 	Public page
 </div>
@@ -9,25 +10,6 @@
 </div> -->
 
 
-
-	<div class="container_12">
-		<div class="grid_12 placeholder" style="height:70px; background-color:rgba(51,51,51,0.6);">
-		</div>
-		
-		<div id="logo" class="grid_12">
-			<div class="grid_7" style="position:relative; bottom:0;"> ROOMADE
-					<div id="slogan">get the juice on apartments</div>
-			</div>	
-			
-			<div class="grid_4" id="nav_bar">
-				<ul>
-					<li><%= link_to "Login", sign_in_path() %></li>
-					<li><%= link_to "Review Your Apartment", new_review_path() %></li>
-					<li><%= link_to "About", "#", :onclick => "return false;" %></li>
-				</ul>
-			</div><!--nav_bar-->
-		</div> <!--logo-->
-	
 		
 		<div id="filter_container" class="grid_12">
 			
@@ -266,9 +248,10 @@
 			
 		</div> <!--results-->
 
-	</div> <!--container-12-->
 
 <script type="text/javascript">
+	var geocoder = new google.maps.Geocoder();
+
 	var query = "";
 	var sort = "date_desc";
 	var min_bedrooms = 1;
@@ -282,23 +265,21 @@
 	var amenities = "";
 	$().ready(function() {
 		function search() {
-			if (query.trim() != "") {
-				$.ajax({
-					type: "GET",
-					url: "<%= search_apartments_path() %>.js",
-					data: { query: query,
-						min_bedrooms: min_bedrooms, max_bedrooms: max_bedrooms,
-						min_bathrooms: min_bathrooms, max_bathrooms: max_bathrooms,
-						min_roommates: min_roommates, max_roommates: max_roommates,
-						min_price: min_price, max_price: max_price, 
-						sort: sort, amenities: amenities},
-					headers: {
-						'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
-					}
-				});
-				$('#slogan').closest('.container_12').find(".grid_12.placeholder:first-child").slideUp();
-				$('#toggle_filter').slideDown();
-			}
+			$.ajax({
+				type: "GET",
+				url: "<%= search_apartments_path() %>.js",
+				data: { query: query,
+					min_bedrooms: min_bedrooms, max_bedrooms: max_bedrooms,
+					min_bathrooms: min_bathrooms, max_bathrooms: max_bathrooms,
+					min_roommates: min_roommates, max_roommates: max_roommates,
+					min_price: min_price, max_price: max_price, 
+					sort: sort, amenities: amenities},
+				headers: {
+					'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+				}
+			});
+			$('#slogan').closest('.container_12').find(".grid_12.placeholder:first-child").slideUp();
+			$('#toggle_filter').slideDown();
 		}
 		
 		$('#sort ul li').live("click", function(e) {
@@ -375,18 +356,30 @@
 		});
 		
 		$('#search_query_input').live("keyup", function(e){
-			query = $(this).val();
 			if (e.keyCode == 13) {
 				$('#search .button.locate').click();
 			}
 		});
 		
 		$('#search .button.locate, #search_button').live("click", function(e) {
-			search();
+			query = $('#search_query_input').val().trim();
+			if (query != "") {
+				$('#filter_container').slideUp();
+				$('#search_button').hide();
+				search();
+			}
 		});
 		
 		$('#toggle_filter').live("click", function(e) {
-			$('#filter').slideDown();
+			$('#filter_container').slideDown();
+			$('#search_button').show();
+			$(this).hide();
+		});
+		
+		$('.button.add_queue').live("click", function(e) {
+			$.ajax({
+				url: "enqueue/"+$(this).attr("data-apartment-id")
+			});
 		});
 	});
 </script>

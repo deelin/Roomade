@@ -29,7 +29,7 @@ class AuthenticationController < ApplicationController
   
   def destroy
     @authentication = current_user.authentications.find(params[:id])
-    if current_user.password.blank?
+    if current_user.encrypted_password.blank?
       flash[:error] = "You must set a password before you can unlink your Facebook account"
       redirect_to home_path and return
     end

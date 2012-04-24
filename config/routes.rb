@@ -78,7 +78,11 @@ Roomade::Application.routes.draw do
   match '/profile/edit' => 'user#edit', :as => :edit_profile
   match '/profile/update' => 'user#update', :as => :update_profile
   # See how all your routes lay out with "rake routes"
-
+  
+  # Queue
+  match '/enqueue/:apartment_id' => 'user#enqueue', :as => :enqueue_apartment
+  match '/dequeue/:apartment_id' => 'user#dequeue', :as => :dequeue_apartment
+  
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
