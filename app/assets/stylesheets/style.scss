@@ -24,6 +24,19 @@ $darkblue:rgba(30,144,255,0.7);
 	clear:both;
 }
 
+
+a{
+	color:white;
+}
+
+a:hover{
+	color:$lightestgray;
+}
+
+a:active{
+	color:$lightestgray;
+}
+
 .signin{
 	
 	.category{
