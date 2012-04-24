@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   
   has_many :reviews
   has_many :authentications
+  has_many :user_apartment_queues
   
   def apply_omniauth(omniauth)
     authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])

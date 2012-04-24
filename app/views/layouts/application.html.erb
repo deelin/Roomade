@@ -8,11 +8,31 @@
 	<%= stylesheet_link_tag "text" %>
 	<%= stylesheet_link_tag "960" %>
 	<%= stylesheet_link_tag "style" %>
-	<%= javascript_include_tag "jquery.min" %>
+
+
+
+	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" %>
+	<%= javascript_include_tag "http://code.jquery.com/ui/1.8.19/jquery-ui.min.js" %>
+
+
 	
 	<%= csrf_meta_tags %>
+	
+	<script type="text/javascript">
+		$().ready(function(){
+			<% if flash[:error].present? %>
+				$('.error-bar').text('<%= escape_javascript(flash[:error]) %>');
+				$('.error-bar').slideDown().delay(5000).slideUp();
+			<% elsif flash[:notice].present? %>
+				$('.notice-bar').text('<%= escape_javascript(flash[:notice]) %>');
+				$('.notice-bar').slideDown().delay(5000).slideUp();
+			<% end %>
+		});
+	</script>
 </head>
 <body>
+	<div class="notice-bar"></div>
+	<div class="error-bar"></div>
 <%= yield %>
 
 </body>

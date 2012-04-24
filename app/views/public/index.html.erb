@@ -392,6 +392,12 @@
 		$('#toggle_filter').live("click", function(e) {
 			$('#filter').slideDown();
 		});
+		
+		$('.button.add_queue').live("click", function(e) {
+			$.ajax({
+				url: "enqueue/"+$(this).attr("data-apartment-id")
+			});
+		});
 	});
 </script>
 

@@ -214,7 +214,7 @@ DEPENDENCIES
   cucumber-rails-training-wheels
   database_cleaner
   devise
-  jquery-rails
+  jquery-rails (>= 1.0.12)
   json
   launchy
   omniauth

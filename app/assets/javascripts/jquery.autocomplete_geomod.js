@@ -643,7 +643,6 @@ $.Autocompleter.Select = function (options, input, select, config) {
 	}
 
 	function moveSelect(step) {
-		console.log("move select");
 		listItems.slice(active, active + 1).removeClass(CLASSES.ACTIVE);
 		movePosition(step);
         var activeItem = listItems.slice(active, active + 1).addClass(CLASSES.ACTIVE);
@@ -661,7 +660,6 @@ $.Autocompleter.Select = function (options, input, select, config) {
 	};
 	
 	function movePosition(step) {
-		console.log("move position");
 		active += step;
 		if (active < 0) {
 			active = listItems.size() - 1;
@@ -671,7 +669,6 @@ $.Autocompleter.Select = function (options, input, select, config) {
 	}
 	
 	function limitNumberOfItems(available) {
-		console.log("limit number of items")
 		return options.max && options.max < available
 			? options.max
 			: available;
@@ -738,7 +735,6 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			return this.visible() && (listItems.filter("." + CLASSES.ACTIVE)[0] || options.selectFirst && listItems[0]);
 		},
 		show: function() {
-			console.log($(input).css("border"));
 			var offset = $(input).offset();
 			element.css({
 				// width: typeof options.width == "string" || $options.width > 0 ? options.width : $(input).width(),

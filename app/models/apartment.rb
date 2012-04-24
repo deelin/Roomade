@@ -3,6 +3,8 @@ class Apartment < ActiveRecord::Base
   has_many :apartment_amenities, :foreign_key => "apartment_id"
   has_many :amenities, :through => :apartment_amenities, :source => :amenity
   has_many :apartment_photos, :order => "created_at desc"
+  has_many :user_apartment_queues
+  
   accepts_nested_attributes_for :apartment_photos, :allow_destroy => true
   
   def get_ratings_hash

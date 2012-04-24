@@ -1,11 +1,10 @@
-<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
+<!-- <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script> -->
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCXm7UmHDyuyBm9-ySvmAEZHmkxuXvBB8Y&sensor=false"></script>
 
 <!-- 
 jquery.autocomplete.js requires a minor modification for geo_autocomplete to work
 the following script includes the required mod
 -->
-<%= javascript_include_tag "jquery-ui-1.8.18.custom.min" %>
 <%= javascript_include_tag "jquery.autocomplete_geomod" %>
 <%= javascript_include_tag "geo_autocomplete" %>
 <%= stylesheet_link_tag "jquery.autocomplete" %>
@@ -114,7 +113,6 @@ the following script includes the required mod
 				for (var key in location_hash) {
  					latLngArr.push(location_hash[key]);
 				}
-				console.log(latLngArr[0] + " " + latLngArr[1]);
 				var myLatlng = new google.maps.LatLng(latLngArr[0], latLngArr[1]);
 				// create marker
 				var marker = new google.maps.Marker({
