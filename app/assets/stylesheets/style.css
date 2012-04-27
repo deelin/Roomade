@@ -231,17 +231,17 @@ a:active {
       background-color: rgba(51, 51, 51, 0.6);
       color: white; }
 
-.apt_sum_container {
+.results {
+  padding: 0px; }
+
+.apt_detail {
   margin-left: 0px;
   border: solid 1px #cccccc;
   color: #666666;
-  height: 220px;
-  width: 100%;
-  margin-bottom: 20px; }
-
-.apt_detail {
   padding: 0px;
-  margin: 0px;
+  height: 220px;
+  width: 958px;
+  margin-top: 20px;
   /***inner**/ }
   .apt_detail .inner {
     padding-left: 20px;
@@ -300,7 +300,8 @@ a:active {
       line-height: 20px;
       height: 60px;
       text-align: center; }
-    .apt_detail .inner .distance .value {
+    .apt_detail .inner .distance {
+      font-weight: none;
       margin-top: 3px;
       width: 180px; }
     .apt_detail .inner .item {
@@ -365,6 +366,8 @@ a:active {
       border-radius: 5px;
       margin-bottom: 10px;
       background-color: rgba(51, 51, 51, 0.2); }
+    .apt_detail .buttons_container .button:hover {
+      cursor: pointer; }
 
 /***result***/
 .recommendation {
@@ -565,17 +568,15 @@ a:active {
     float: right; }
 
 /**footer**/
-.footer {
-  background-color: #cccccc; }
-  .footer .copyright {
-    padding: 20px;
-    font-size: 14px;
-    color: gray; }
-  .footer .links {
-    padding: 20px; }
-    .footer .links ul {
-      list-style: none; }
-      .footer .links ul li {
-        font-size: 12px;
-        color: gray;
-        float: right; }
+.footer .copyright {
+  padding: 20px;
+  font-size: 14px;
+  color: gray; }
+.footer .links {
+  padding: 20px; }
+  .footer .links ul {
+    list-style: none; }
+    .footer .links ul li {
+      font-size: 12px;
+      color: gray;
+      float: right; }
