@@ -392,12 +392,19 @@
 	        mouse_in_filter = false; 
 	    });
 
-			// 	    $("html").live("click", function(e) { 
-			// 	        if (!mouse_in_filter && search_count > 0) {
-			// 	$('#filter_container').slideUp();
-			// 	$('#toggle_filter').slideDown();
-			// }
-			// 	    });
+		$("html").live("click", function(e) { 
+			var clicked_outside = ($(e.target).closest('#filter_container').length == 0 && $(e.target).closest('#toggle_filter').length == 0);
+			console.log(clicked_outside);
+		    if (!mouse_in_filter && search_count > 0 && clicked_outside) {
+				$('#filter_container').slideUp();
+				$('#toggle_filter').slideDown();
+			}
+		});
+		
+		$('.button.see_more').live("click", function(e) {
+			var apartment_id = $(this).attr("data-apartment-id");
+			location.href = '/apartment/'+apartment_id;
+		});
 	});
 </script>
 

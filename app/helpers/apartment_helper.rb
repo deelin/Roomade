@@ -250,7 +250,7 @@ module ApartmentHelper
 
   				<div class="column buttons_container">
 
-  					<div class="button see_more">#{link_to "see more", show_apartment_path(apartment.id)}</div>
+  					<div class="button see_more" data-apartment-id="#{apartment.id}">#{link_to "see more", show_apartment_path(apartment.id)}</div>
   					<div class="button add_queue" data-apartment-id="#{apartment.id}">add to queue</div>
   				</div>
   			</div>
