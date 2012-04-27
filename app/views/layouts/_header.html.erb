@@ -5,7 +5,11 @@
 
 		<div class="grid_4" id="nav_bar">
 			<ul>
-				<li data-id="3"><%= link_to "Login", sign_in_path() %></li>
+				<% if current_user.present? %>
+					<li><%= link_to "Logout", sign_out_path() %></li>
+				<% else %>
+					<li><%= link_to "Login", sign_in_path() %></li>
+				<% end %>
 				<li data-id="2"><%= link_to "Review Your Apartment", new_review_path() %></li>
 				<li data-id="1"><%= link_to "About", "#", :onclick => "return false;" %></li>
 			</ul>

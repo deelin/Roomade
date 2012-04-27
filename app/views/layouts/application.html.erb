@@ -19,21 +19,10 @@
 	<%= csrf_meta_tags %>
 	
 	<script type="text/javascript">
-		$().ready(function(){
-			<% if flash[:error].present? %>
-				$('.error-bar').text('<%= escape_javascript(flash[:error]) %>');
-				$('.error-bar').slideDown().delay(5000).slideUp();
-			<% elsif flash[:notice].present? %>
-				$('.notice-bar').text('<%= escape_javascript(flash[:notice]) %>');
-				$('.notice-bar').slideDown().delay(5000).slideUp();
-			<% end %>
-		});
+	
 	</script>
 </head>
-<body>
-	<div class="notice-bar"></div>
-	<div class="error-bar"></div>
-	
+<body>	
 	<div class="container_12">
 		<% if params[:controller] == "public" %>
 			<%= render :partial => "layouts/public_header" %>
