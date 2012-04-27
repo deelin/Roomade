@@ -241,12 +241,28 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCXm7UmHDyuyBm9-ySvmAEZHmkxuXvBB8Y&sensor=false"></script>
 <script type="text/javascript">
 	var geocoder, location1, location2;
-
+	
 	function initialize() {
 		geocoder = new google.maps.Geocoder();
+		geocoder.geocode( { 'address': "<%= @apartment.address %>" }, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				var latlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+				var myOptions = {
+					zoom: 14,
+					center: latlng,
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					mapTypeControl: false,
+					draggable: false,
+					streetViewControl: false,
+					zoomControl: false,
+					draggableCursor: "pointer"
+				};
+				var map = new google.maps.Map(document.getElementById("google-map-small"), myOptions);
+			}
+		});
 	}
 
-	$().ready(function(){
+	$().ready(function() {	
 		$('.new_review').live("click", function(e) {
 			location.href = '<%= new_review_path() %>';
 		});
@@ -254,13 +270,13 @@
 		initialize();
 
 		function showLocation() {
-
-			geocoder.geocode( { 'address': "UC Berkeley"}, function(results, status) {
+			
+			geocoder.geocode( { 'address': "UC Berkeley" }, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
-					location1 = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
-					geocoder.geocode( { 'address': '<%= @apartment.address %>'}, function(results, status) {
+					location1 = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
+					geocoder.geocode( { 'address': '<%= @apartment.address %>' }, function(results, status) {
 						if (status == google.maps.GeocoderStatus.OK) {
-							location2 = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+							location2 = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
 							calculateDistance();
 						}
 						else {
