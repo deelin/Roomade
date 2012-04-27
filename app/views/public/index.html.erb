@@ -271,9 +271,14 @@
 	$().ready(function() {
 		var latlng = new google.maps.LatLng(37.8716, -122.2716);
 		var myOptions = {
-			zoom: 13,
+			zoom: 14,
 			center: latlng,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			mapTypeControl: false,
+			draggable: false,
+			streetViewControl: false,
+			zoomControl: false,
+			draggableCursor: "pointer"
 		};
 		var map = new google.maps.Map(document.getElementById("google-map"), myOptions);
 
@@ -460,7 +465,6 @@
 
 		$("html").live("click", function(e) { 
 			var clicked_outside = ($(e.target).closest('#filter_container').length == 0 && $(e.target).closest('#toggle_filter').length == 0);
-			console.log(clicked_outside);
 		    if (!mouse_in_filter && search_count > 0 && clicked_outside) {
 				$('#filter_container').slideUp();
 				$('#toggle_filter').slideDown();
