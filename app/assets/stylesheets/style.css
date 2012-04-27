@@ -99,12 +99,11 @@ a:active {
       text-align: center; }
     #filter_container #filter .map_canvas {
       background-color: white;
-      width: 220px;
-      height: 160px; }
-      #filter_container #filter .map_canvas .google-map {
+      padding: 5px; }
+      #filter_container #filter .map_canvas #google-map {
         padding: 2px;
-        width: 2150px;
-        height: 150px; }
+        width: 220px;
+        height: 161px; }
     #filter_container #filter .subcolumn {
       float: left;
       padding: 0px 0px 10px 20px; }
