@@ -761,7 +761,7 @@ a:active{
 #info_container{
 	background-color:$lightestgray;
 	padding:none;
-	height:250px;
+	height:235px;
 	
 	.inner{
 		margin-top:20px;
@@ -819,12 +819,14 @@ a:active{
 	
 }
 .address{
+	font-size:$large-font;
+	padding-bottom:5px;
 	color:gray;
-	margin-left:20px;
 }
 
 .add_address{
-	width:300px;
+	width:200px;
+	margin-top:5px;
 }
 
 

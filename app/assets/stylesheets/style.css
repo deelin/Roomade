@@ -478,7 +478,7 @@ a:active {
 #info_container {
   background-color: #cccccc;
   padding: none;
-  height: 250px; }
+  height: 235px; }
   #info_container .inner {
     margin-top: 20px; }
     #info_container .inner .subcolumn {
@@ -515,11 +515,13 @@ a:active {
   background-color: rgba(51, 51, 51, 0.2); }
 
 .address {
-  color: gray;
-  margin-left: 20px; }
+  font-size: 16px;
+  padding-bottom: 5px;
+  color: gray; }
 
 .add_address {
-  width: 300px; }
+  width: 200px;
+  margin-top: 5px; }
 
 .total_reviews {
   margin-top: 10px;
