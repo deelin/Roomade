@@ -159,7 +159,19 @@ a:active{
 			text-align:center;
 			
 		}
-
+		
+		.map_canvas{
+			background-color:white;
+			width:220px;
+			height:160px;
+			
+			.google-map{
+			padding:2px;
+			width:2150px;
+			height:150px;
+			}
+			
+		}
 		.subcolumn{
 			float:left;
 			padding:0px 0px 10px 20px;
@@ -696,6 +708,7 @@ a:active{
 		}
 	}
 	
+
 	
 	#amenities_list{
 			margin-top:3px;
