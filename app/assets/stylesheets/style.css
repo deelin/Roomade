@@ -574,6 +574,9 @@ a:active {
   .review .apt_setup {
     float: right; }
 
+.new_review {
+  padding-left: 0px; }
+
 /**footer**/
 .footer {
   margin-top: 200px;
