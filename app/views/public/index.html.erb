@@ -251,7 +251,9 @@
 
 <script type="text/javascript">
 	var geocoder = new google.maps.Geocoder();
-
+	var mouse_in_filter = false;
+	var search_count = 0;
+	
 	var query = "";
 	var sort = "date_desc";
 	var min_bedrooms = 1;
@@ -265,6 +267,7 @@
 	var amenities = "";
 	$().ready(function() {
 		function search() {
+			search_count++;
 			$.ajax({
 				type: "GET",
 				url: "<%= search_apartments_path() %>.js",
@@ -279,7 +282,6 @@
 				}
 			});
 			$('#slogan').closest('.container_12').find(".grid_12.placeholder:first-child").slideUp();
-			$('#toggle_filter').slideDown();
 		}
 		
 		$('#sort ul li').live("click", function(e) {
@@ -365,6 +367,7 @@
 			query = $('#search_query_input').val().trim();
 			if (query != "") {
 				$('#filter_container').slideUp();
+				$('#toggle_filter').slideDown();
 				$('#search_button').hide();
 				search();
 			}
@@ -372,7 +375,7 @@
 		
 		$('#toggle_filter').live("click", function(e) {
 			$('#filter_container').slideDown();
-			$('#search_button').show();
+			// $('#search_button').show();
 			$(this).hide();
 		});
 		
@@ -381,6 +384,20 @@
 				url: "enqueue/"+$(this).attr("data-apartment-id")
 			});
 		});
+		
+		// 
+		$('#filter_container').hover(function(){ 
+	        mouse_in_filter = true; 
+	    }, function(){ 
+	        mouse_in_filter = false; 
+	    });
+
+	    $("html").live("click", function() { 
+	        if (!mouse_in_filter && search_count > 0) {
+				$('#filter_container').slideUp();
+				$('#toggle_filter').slideDown();
+			}
+	    });
 	});
 </script>
 
