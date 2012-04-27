@@ -884,3 +884,26 @@ a:active{
 		float:right;
 	}
 }
+
+
+/**footer**/
+
+.footer{
+	background-color:$lightestgray;
+		.copyright{
+			padding:20px;
+			font-size:14px;
+			color:gray;
+		}
+		.links{
+			padding:20px;
+			ul{
+				list-style:none;
+				li{
+					font-size:12px;
+					color:gray;
+					float:right;
+				}
+			}
+		}
+}

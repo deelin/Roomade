@@ -563,3 +563,19 @@ a:active {
       color: gray; }
   .review .apt_setup {
     float: right; }
+
+/**footer**/
+.footer {
+  background-color: #cccccc; }
+  .footer .copyright {
+    padding: 20px;
+    font-size: 14px;
+    color: gray; }
+  .footer .links {
+    padding: 20px; }
+    .footer .links ul {
+      list-style: none; }
+      .footer .links ul li {
+        font-size: 12px;
+        color: gray;
+        float: right; }
