@@ -781,10 +781,21 @@ a:active{
 	
 	.inner{
 		margin-top:20px;
-	
+		
+		.map_canvas{
+			padding:3px;
+			background-color:white;
+		}
+		
+		#google-map-small{
+			width:120px;
+			height:90px;
+		}
+		
 		.subcolumn{
 			float:left;
 			padding:0px 0px 10px 20px;
+			
 		}
 		
 			.amenities{
@@ -808,11 +819,6 @@ a:active{
 						margin-bottom:3px;
 						background-color:$lightgray;
 
-					}
-
-					li:hover{
-						background-color:$darkgray;
-						color:white;
 					}
 			}
 		
@@ -889,6 +895,7 @@ a:active{
 		.review_text{
 			font-size:14px;
 			padding-bottom:10px;
+			width:300px;
 		}
 		
 		.date{
@@ -903,6 +910,10 @@ a:active{
 
 .new_review{
 	padding-left:0px;
+}
+
+.new_review:hover{
+	cursor:pointer;
 }
 
 /**footer**/

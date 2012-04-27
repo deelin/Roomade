@@ -494,6 +494,12 @@ a:active {
   height: 235px; }
   #info_container .inner {
     margin-top: 20px; }
+    #info_container .inner .map_canvas {
+      padding: 3px;
+      background-color: white; }
+    #info_container .inner #google-map-small {
+      width: 120px;
+      height: 90px; }
     #info_container .inner .subcolumn {
       float: left;
       padding: 0px 0px 10px 20px; }
@@ -513,9 +519,6 @@ a:active {
         margin-right: 3px;
         margin-bottom: 3px;
         background-color: rgba(51, 51, 51, 0.2); }
-      #info_container .inner #amenities_list li:hover {
-        background-color: rgba(51, 51, 51, 0.6);
-        color: white; }
 
 .recommendation-rating, .apt_price {
   color: #666666;
@@ -571,7 +574,8 @@ a:active {
     float: left; }
     .review .subcolumn .review_text {
       font-size: 14px;
-      padding-bottom: 10px; }
+      padding-bottom: 10px;
+      width: 300px; }
     .review .subcolumn .date {
       color: gray; }
   .review .apt_setup {
@@ -579,6 +583,9 @@ a:active {
 
 .new_review {
   padding-left: 0px; }
+
+.new_review:hover {
+  cursor: pointer; }
 
 /**footer**/
 .footer {
