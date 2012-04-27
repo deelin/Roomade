@@ -19,12 +19,12 @@
 					<div class="address"><%= @address_hash["street"] %></div>
 					<div class="city"><%= @address_hash["city"] %></div>
 					<div class="phone"><%= @apartment.phone_number %> </div>
-					<div class="distance"></div>
+					<div class="distance"><%= WALKING_MIN_PER_MILE * @apartment.dist_to_campus %> min walk to campus</div>
 				</div>
 				
 				<div class="subcolumn_right recommendation-container">
 					
-					<div class="category"> recommndation 
+					<div class="category"> recommendation 
 					</div>
 				
 					<div class="number recommendation-rating">
@@ -258,6 +258,13 @@
 					draggableCursor: "pointer"
 				};
 				var map = new google.maps.Map(document.getElementById("google-map-small"), myOptions);
+				
+				// create marker
+				var marker = new google.maps.Marker({
+		   			position: latlng
+				});
+				// add to map
+				marker.setMap(map);
 			}
 		});
 	}
@@ -277,7 +284,9 @@
 					geocoder.geocode( { 'address': '<%= @apartment.address %>' }, function(results, status) {
 						if (status == google.maps.GeocoderStatus.OK) {
 							location2 = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
-							calculateDistance();
+							// calculateDistance();
+							// var time_to_campus = (15*<%= @apartment.dist_to_campus %>).toFixed();
+							// $('.distance').text(time_to_campus + " min walk to campus").hide().fadeIn(); 
 						}
 						else {
 						}
@@ -288,23 +297,6 @@
 			});
 		}
 
-		function calculateDistance()
-		{
-			try
-			{
-				var latlng1 = new google.maps.LatLng(location1.lat, location1.lng);
-				var latlng2 = new google.maps.LatLng(location2.lat, location2.lng);
-				var km_dist = google.maps.geometry.spherical.computeDistanceBetween(latlng1, latlng2)/1000;
-				var mile_dist = (km_dist/1.609344).toFixed(1);
-				var time_to_campus = (15*mile_dist).toFixed();
-				$('.distance').text(time_to_campus + " min walk to campus").hide().fadeIn(); 
-				// document.getElementById('results').innerHTML = '<strong>Address 1: </strong>' + location1.address + ' (' + location1.lat + ':' + location1.lon + ')<br /><strong>Address 2: </strong>' + location2.address + ' (' + location2.lat + ':' + location2.lon + ')<br /><strong>Distance: </strong>' + miledistance + ' miles (or ' + kmdistance + ' kilometers)';
-			}
-			catch (error)
-			{
-			}
-		}
-		
 		showLocation();
 		
 		<% @amenities.each do |amenity_id| %>
