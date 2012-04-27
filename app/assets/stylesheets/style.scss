@@ -25,6 +25,66 @@ $darkblue:rgba(30,144,255,0.7);
 }
 
 
+a{
+	color:white;
+}
+
+a:hover{
+	color:$lightestgray;
+}
+
+a:active{
+	color:$lightestgray;
+}
+
+.signin{
+	
+	.category{
+		font-size:$large-font;
+		color:gray;
+		padding:0px 10px 5px 0px;
+	}
+	
+	.title{
+		padding:25px;
+		color:$medgray;
+		font-size:20px;
+	}
+	
+	ul{
+		list-style:none;
+		
+		label{
+			font-size:$large-font;
+			color:gray;
+			padding:0px 10px 5px 0px;
+		}
+		
+		input[type="text"], input[type="password"]{
+				border:1px solid $lightestgray;
+				padding:5px;
+				font-size:14px;
+		}
+	}
+	
+	.submit-btn{
+		margin-top:10px;
+		border:none;
+		text-align:center;
+		padding:11px 25px 11px 25px;
+		font-size:14px;
+		border-radius:5px;
+		color:gray;
+		background-color:$orange-dim;
+	}
+	
+	.submit-btn:hover{
+		background-color:$medorange;
+		color:white;
+	}
+}
+
+
 #search{
 		text-align:center;
 		.button{
@@ -701,7 +761,7 @@ $darkblue:rgba(30,144,255,0.7);
 #info_container{
 	background-color:$lightestgray;
 	padding:none;
-	height:250px;
+	height:235px;
 	
 	.inner{
 		margin-top:20px;
@@ -759,12 +819,14 @@ $darkblue:rgba(30,144,255,0.7);
 	
 }
 .address{
+	font-size:$large-font;
+	padding-bottom:5px;
 	color:gray;
-	margin-left:20px;
 }
 
 .add_address{
-	width:300px;
+	width:200px;
+	margin-top:5px;
 }
 
 
