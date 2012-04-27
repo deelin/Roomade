@@ -568,15 +568,19 @@ a:active {
     float: right; }
 
 /**footer**/
-.footer .copyright {
-  padding: 20px;
-  font-size: 14px;
-  color: gray; }
-.footer .links {
-  padding: 20px; }
-  .footer .links ul {
-    list-style: none; }
-    .footer .links ul li {
-      font-size: 12px;
-      color: gray;
-      float: right; }
+.footer {
+  margin-top: 200px;
+  padding-top: 20px;
+  padding-bottom: 20px; }
+  .footer .copyright {
+    padding: 10px;
+    font-size: 14px;
+    color: gray; }
+  .footer .links {
+    padding: 10px; }
+    .footer .links ul {
+      list-style: none; }
+      .footer .links ul li {
+        font-size: 12px;
+        color: gray;
+        float: right; }

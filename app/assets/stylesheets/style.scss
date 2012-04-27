@@ -890,13 +890,16 @@ a:active{
 /**footer**/
 
 .footer{
+	margin-top:200px;
+	padding-top:20px;
+	padding-bottom:20px;
 		.copyright{
-			padding:20px;
+			padding:10px;
 			font-size:14px;
 			color:gray;
 		}
 		.links{
-			padding:20px;
+			padding:10px;
 			ul{
 				list-style:none;
 				li{
