@@ -4,9 +4,13 @@
 		<br>	
 		<div class="title"> Welcome back!</div>
 	
+	
+	
+	
 			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "new-session") do |f| %>
 				<ul>
 					<fieldset>
+					
 					<li>
 						<%= f.label :email %>
 						<%= f.text_field :email %>
@@ -20,6 +24,12 @@
 						<%= label_tag " " %>
 						<%= f.submit "Sign In", :class => "grid_4 submit-btn", :id => "signin-submit" %>
 					</li> <!--button-->
+					<div class="clearfloat">
+		
+					<li>
+							<%= link_to (image_tag "signin-fb.png"), "/auth/facebook", :class => "popup", :"data-width" => 600, :"data-height" => 300 %><br/>
+					</li>
+					
 					
 					</fieldset>
 				</ul>
@@ -28,4 +38,3 @@
 		</div> <!--signin-->
 </div> <!--container_12-->
 
-	<%= link_to (image_tag "signin-fb.png"), "/auth/facebook", :class => "popup", :"data-width" => 600, :"data-height" => 300 %><br/>
