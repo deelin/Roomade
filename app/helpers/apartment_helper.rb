@@ -93,7 +93,7 @@ module ApartmentHelper
     max_bathrooms = reviews.maximum(:bathrooms)
     
     html = %{
-      <div class="apt_detail apt_sum_container grid_12">
+      <div class="apt_detail grid_12">
   			<div class="inner">
   			  <a href="http://maps.google.com/maps?q=#{address.gsub(" ", "%20")}" target="_blank">
     				<div class="address">
@@ -106,7 +106,7 @@ module ApartmentHelper
   					<div class="map" id="apt_#{apartment.id}_map"></div>
 
   					<div class="distance" data-address="#{address}" data-apartment-id="#{apartment.id}">
-  						<div class="value">#{apartment.dist_to_campus * WALKING_MIN_PER_MILE} min walk to campus</div>
+  						<div>#{apartment.dist_to_campus * WALKING_MIN_PER_MILE} min walk to campus</div>
   					</div>
 
   				</div>
@@ -250,7 +250,7 @@ module ApartmentHelper
 
   				<div class="column buttons_container">
 
-  					<div class="button see_more">#{link_to "see more", show_apartment_path(apartment.id)}</div>
+  					<div class="button see_more">see more</div>
   					<div class="button add_queue" data-apartment-id="#{apartment.id}">add to queue</div>
   				</div>
   			</div>
