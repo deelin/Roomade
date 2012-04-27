@@ -161,7 +161,7 @@
 
 				<div class="neighborhood_map">
 					<div class="category">map</div>
-					<img src="images/neighborhood_map.png" width="220" height="163">
+					<div id="map_canvas"><img src="images/neighborhood_map.png" width="220" height="163"></div>
 				</div><!--column-->
 
 				<div class="subcolumn amenities">
@@ -266,6 +266,69 @@
 	var max_price = 9999;
 	var amenities = "";
 	$().ready(function() {
+		var latlng = new google.maps.LatLng(37.8716, -122.2716);
+		var myOptions = {
+			zoom: 13,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+
+
+		// use all the autocomplete options as documented at http://docs.jquery.com/Plugins/Autocomplete
+		/* additional geo_autocomplete options:
+		mapkey : 'ABQ...' (required for Static Maps thumbnails, obtain a key for your site from http://code.google.com/apis/maps/signup.html)
+		mapwidth : 100
+		mapheight : 100
+		maptype : 'terrain' (see http://code.google.com/apis/maps/documentation/staticmaps/#MapTypes)
+		mapsensor : true or false
+*/
+		// $('#address_input').geo_autocomplete(new google.maps.Geocoder, {
+		// 			mapkey: 'ABQIAAAAbnvDoAoYOSW2iqoXiGTpYBTIx7cuHpcaq3fYV4NM0BaZl8OxDxS9pQpgJkMv0RxjVl6cDGhDNERjaQ', 
+		// 			selectFirst: false,
+		// 			minChars: 3,
+		// 			cacheLength: 50,
+		// 			width: 300,
+		// 			scroll: true,
+		// 			scrollHeight: 330
+		// 		}).result(function(_event, _data) {
+		// 			if (_data) {
+		// 				map.fitBounds(_data.geometry.viewport);
+		// 				var location_hash = _data.geometry.location;
+		// 				var latLngArr = [];
+		// 				for (var key in location_hash) {
+		// 					latLngArr.push(location_hash[key]);
+		// 				}
+		// 				var myLatlng = new google.maps.LatLng(latLngArr[0], latLngArr[1]);
+		// 				// create marker
+		// 				var marker = new google.maps.Marker({
+		// 		   			position: myLatlng
+		// 				});
+		// 				// add to map
+		// 				marker.setMap(map);
+		// 				// populate dist
+		// 				showLocation();
+		// 			}
+		// 		});
+		
+		function showLocation() {
+			var address = $('#search_query_input').val();
+			geocoder.geocode( { 'address': address}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					var myLatlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+					// create marker
+					var marker = new google.maps.Marker({
+			   			position: myLatlng
+					});
+					marker.setMap(map);
+				}
+			});
+		}
+		
+		
+		
+		
 		function search() {
 			search_count++;
 			$.ajax({
