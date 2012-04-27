@@ -161,7 +161,10 @@
 
 				<div class="neighborhood_map">
 					<div class="category">map</div>
-					<div id="map_canvas"><img src="images/neighborhood_map.png" width="220" height="163"></div>
+					<div class="map_canvas">
+						<div id="google-map">
+						</div>
+					</div>
 				</div><!--column-->
 
 				<div class="subcolumn amenities">
@@ -272,7 +275,7 @@
 			center: latlng,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
-		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		var map = new google.maps.Map(document.getElementById("google-map"), myOptions);
 
 
 
