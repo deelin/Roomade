@@ -197,7 +197,7 @@ a:active {
     padding: 10px; }
 
 #toggle_filter:hover {
-  background-color: gray;
+  background-color: rgba(245, 140, 0, 0.8);
   color: white; }
 
 #sort {
