@@ -25,7 +25,7 @@ a:active {
     font-size: 16px;
     color: gray;
     padding: 0px 10px 5px 0px; }
-  .signin ul input[type="text"], .signin ul input[type="password"] {
+  .signin ul input[type="text"], .signin ul input[type="password"], .signin ul input[type="email"] {
     border: 1px solid #cccccc;
     padding: 5px;
     font-size: 14px; }
