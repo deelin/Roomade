@@ -35,6 +35,7 @@ class Review < ActiveRecord::Base
     review.apartment_id = apartment.id
     review.recommendation = (reviews_hash[:recommendation] == "yes" ? true : false)
     review.security = (reviews_hash[:security] == "yes" ? true : false)
+    review.description = reviews_hash[:description].gsub("\r\n", "<br/>")
     
     if rent_option != "apartment"
       # per person, so multiply by number of roommates
