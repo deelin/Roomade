@@ -5,5 +5,3 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
-
-# Apartment.create(:id => 1, :address =>, :name => ?, :phone_number => ?, :dist_to_campus => ?) 

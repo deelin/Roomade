@@ -17,7 +17,7 @@ class Review < ActiveRecord::Base
   validates :description, :presence => true
   
   # uniqueness of review based on user and apartment
-  # validates_uniqueness_of :user_id, :scope => [:apartment_id], :message => "has already created a review for this apartment."
+  validates_uniqueness_of :user_id, :scope => [:apartment_id], :message => "has already created a review for this apartment", :unless => Proc.new { |review| review.user_id == 1 }
 
   
   

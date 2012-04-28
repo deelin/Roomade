@@ -2,6 +2,7 @@
 	
 		<div class="grid_12 signin">
 			<div class="title">Create an Account</div>
+			<div class="signup">Already have an account?  <%= link_to "Login", sign_in_path() %></div>
 
 			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 			<ul>

@@ -51,14 +51,14 @@ class Apartment < ActiveRecord::Base
   
   def self.search(query, filter_hash, sort, amenities)
     logger.debug(query)
-    return [] if query.blank? 
+    # return [] if query.blank? 
     # determine query
     query_cond = ""
-    terms = query.gsub(",", "").split(" ")
+    terms = query.gsub(" street", " st").gsub(" california", " ca").gsub(",", " ").split(" ")
     terms.each do |term|
-      query_cond += "upper(address) like upper('%#{term}%')"
-      query_cond += " and " unless terms.last == term
+      query_cond += " upper(address) like upper('%#{term}%') and"
     end
+    logger.debug(query_cond)
     # determine bedroom range
     min_bedrooms = filter_hash[:bedrooms][:min].to_i
     max_bedrooms = filter_hash[:bedrooms][:max].to_i
@@ -124,8 +124,7 @@ class Apartment < ActiveRecord::Base
     (select avg(security_level) from reviews where reviews.apartment_id = apartments.id) as avg_security_level,
     (select avg(management) from reviews where reviews.apartment_id = apartments.id) as avg_management,
     sum(case when apartment_amenities.amenity_id in (#{joined_amenities}) then 1 else 0 end) as matched_amenities_count").where(
-    ["#{query_cond}
-      and (select avg(rent) from reviews where reviews.apartment_id = apartments.id) > ? and (select avg(rent) from reviews where reviews.apartment_id = apartments.id) <= ? 
+    ["#{query_cond} (select avg(rent) from reviews where reviews.apartment_id = apartments.id) > ? and (select avg(rent) from reviews where reviews.apartment_id = apartments.id) <= ? 
       and (select avg(bedrooms) from reviews where reviews.apartment_id = apartments.id) >= ? and (select avg(bedrooms) from reviews where reviews.apartment_id = apartments.id) <= ? 
       and (select avg(bathrooms) from reviews where reviews.apartment_id = apartments.id) >= ? and (select avg(bathrooms) from reviews where reviews.apartment_id = apartments.id) <= ? 
       and (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) >= ? and (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) <= ?", min_price, max_price, min_bedrooms, max_bedrooms, min_bathrooms, max_bathrooms, min_roommates, max_roommates]).includes([:reviews, :apartment_amenities, :apartment_photos]).order("#{sort_type} #{sort_order}").group("apartments.id, apartments.address, apartments.name, apartments.created_at, apartments.updated_at, apartments.phone_number, apartments.dist_to_campus, reviews.id, reviews.rent,  apartment_amenities.apartment_id").having("sum(case when apartment_amenities.amenity_id in (#{joined_amenities}) then 1 else 0 end) = #{amenity_ids.length}").uniq.group_by { |apartment| apartment.id }
