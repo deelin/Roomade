@@ -14,7 +14,7 @@ class Review < ActiveRecord::Base
   validates :rating, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
   validates :recommendation, :inclusion => { :in => [true, false] }
   validates :security, :inclusion => { :in => [true, false] }
-  validates :description, :presence => true
+  # validates :description, :presence => true
   
   # uniqueness of review based on user and apartment
   validates_uniqueness_of :user_id, :scope => [:apartment_id], :message => "has already created a review for this apartment", :unless => Proc.new { |review| review.user_id == 1 }
