@@ -46,7 +46,7 @@ class Apartment < ActiveRecord::Base
   end
   
   def get_photos
-    return self.apartment_photos
+    return self.apartment_photos.where("photo_file_name is NOT NULL")
   end
   
   def self.search(query, filter_hash, sort, amenities)
