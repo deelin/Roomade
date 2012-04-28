@@ -6,7 +6,7 @@ class ReviewController < ApplicationController
   end
   
   def create
-    apartment = Apartment.find_or_create_by_address(params[:formatted_address])
+    apartment = Apartment.find_or_create_by_address(params[:formatted_address].gsub("Street", "St"))
     if apartment.dist_to_campus.nil?
       if params[:dist_to_campus].to_f.to_s != params[:dist_to_campus]
         flash[:error] = "Failed to create review."

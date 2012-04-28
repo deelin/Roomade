@@ -12,7 +12,7 @@ class AuthenticationController < ApplicationController
       sign_in_and_redirect(:user, authentication.user)
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
-      redirect_to home_path and return
+      redirect_to root_path and return
     else
       user = User.new
       user.apply_omniauth(omniauth)
@@ -31,11 +31,11 @@ class AuthenticationController < ApplicationController
     @authentication = current_user.authentications.find(params[:id])
     if current_user.encrypted_password.blank?
       flash[:error] = "You must set a password before you can unlink your Facebook account"
-      redirect_to home_path and return
+      redirect_to root_path and return
     end
     @authentication.destroy
     flash[:notice] = "Successfully destroyed authentication"
-    redirect_to home_path and return
+    redirect_to root_path and return
   end
   
   protected

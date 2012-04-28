@@ -22,7 +22,7 @@ class UserController < ApplicationController
     else
       flash[:error] = "Photo is invalid"
     end
-    redirect_to home_path and return
+    redirect_to root_path and return
   end
   
   def enqueue

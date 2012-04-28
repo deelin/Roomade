@@ -1,10 +1,10 @@
 class ApartmentController < ApplicationController
   def show
     @apartment = Apartment.find_by_id(params[:id])
-    redirect_to home_path and return if @apartment.blank?
+    redirect_to root_path and return if @apartment.blank?
     
     @reviews = @apartment.reviews
-    redirect_to home_path and return if @reviews.blank?  
+    redirect_to root_path and return if @reviews.blank?  
     
     @amenities = @apartment.apartment_amenities.map(&:amenity_id)
     
