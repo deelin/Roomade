@@ -285,7 +285,6 @@
 		
 		function showLocation() {
 			var address = $('#search_query_input').val();
-			console.log("HI");
 			geocoder.geocode( { 'address': address}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					var myLatlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
