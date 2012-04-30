@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
   rescue ActionController::RedirectBackError
     redirect_to path and return
   end
+  
+  def check_admin
+    redirect_to root_path and return unless current_user.present? && current_user.id == 1
+  end
       
   private
     # Overwriting the sign_out redirect path method
