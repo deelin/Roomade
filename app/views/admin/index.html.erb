@@ -2,61 +2,44 @@
 	<div class="container_12">
 		<div id="admin_users" class="admin grid_12">
 			<h1>Users</h1>
-			<table>
+			<table id="users">
 				<thead>
 					<tr>
-						<td>ID</td>
-						<td>Email</td>
+						<td class="sortable" data-col="id">ID</td>
+						<td class="sortable" data-col="email">Email</td>
 						<td># Sign in</td>
 						<td># Reviews</td>
 						<td>FB id</td>
 					</tr>
 				</thead>
 				<tbody>
-					<% @users.each do |user| %>
-						<tr>
-							<td><%= user.id %></td>
-							<td><%= user.email %></td>
-							<td><%= user.sign_in_count %></td>
-							<td><%= user.reviews.length %></td>
-							<td><%= (user.authentications.present? ? user.authentications.first.uid : "-") %></td>
-						</tr>
-					<% end %>
+					<%= render :partial => "users" %>
 				</tbody>
 			</table>
 		</div>
 		
 		<div id="admin_apartments" class="admin grid_12">
 			<h1>Apartments</h1>
-			<table>
+			<table id="apartments">
 				<thead>
 					<tr>
-						<td>ID</td>
-						<td>Address</td>
+						<td class="sortable" data-col="id">ID</td>
+						<td class="sortable" data-col="address">Address</td>
 						<td>Name</td>
 						<td>Phone #</td>
-						<td>Distance To Campus</td>
+						<td class="sortable" data-col="dist_to_campus">Distance To Campus</td>
 						<td># Reviews</td>
 					</tr>
 				</thead>
 				<tbody>
-					<% @apartments.each do |apartment| %>
-						<tr>
-							<td><%= apartment.id %></td>
-							<td><%= apartment.address %></td>
-							<td><%= apartment.name %></td>
-							<td><%= apartment.phone_number %></td>
-							<td><%= apartment.dist_to_campus %></td>
-							<td><%= apartment.reviews.length %></td>
-						</tr>
-					<% end %>
+					<%= render :partial => "apartments" %>
 				</tbody>
 			</table>
 		</div>
 		
 		<div id="admin_reviews" class="admin grid_12">
 			<h1>Reviews</h1>
-			<table>
+			<table id="reviews">
 				<thead>
 					<tr>
 						<td>ID</td>
@@ -65,13 +48,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% @reviews.each do |review| %>
-						<tr>
-							<td><%= review.id %></td>
-							<td><%= "#{review.user.id} #{review.user.email}"%></td>
-							<td><%= (review.apartment.present? ? review.apartment.address : "-") %></td>
-						</tr>
-					<% end %>
+					<%= render :partial => "reviews" %>
 				</tbody>
 			</table>
 		</div>
@@ -79,3 +56,21 @@
 	
 			
 </div> <!--wrapper-->
+
+<script type="text/javascript">
+	var table = "";
+	var col = "id";
+	var order = "asc";
+	$().ready(function() {
+		$('td.sortable').live("click", function(e) {
+			table = $(this).closest("table").attr("id");
+			col = $(this).attr("data-col");
+			order = (order == "asc" ? "desc" : "asc");
+			console.log(order);
+			$.ajax({
+				url: "<%= admin_path() %>.js",
+				data: {table: table, col: col, order: order}
+			});
+		});
+	});
+</script>

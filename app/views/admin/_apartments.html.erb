@@ -1,0 +1,10 @@
+<% @apartments.each do |apartment| %>
+	<tr>
+		<td><%= apartment.id %></td>
+		<td><%= apartment.address %></td>
+		<td><%= apartment.name %></td>
+		<td><%= apartment.phone_number %></td>
+		<td><%= apartment.dist_to_campus %></td>
+		<td><%= apartment.reviews.length %></td>
+	</tr>
+<% end %>

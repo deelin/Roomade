@@ -626,4 +626,10 @@ a:active {
     border: 1px solid black; }
     .admin.grid_12 table tr td {
       border: 1px solid black;
-      padding: 3px; }
+      padding: 5px; }
+    .admin.grid_12 table tr td.sortable {
+      color: #f58c00; }
+    .admin.grid_12 table tr td.sortable:hover {
+      cursor: pointer; }
+  .admin.grid_12 table thead {
+    font-weight: bold; }

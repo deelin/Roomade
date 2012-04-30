@@ -1,0 +1,9 @@
+<% @users.each do |user| %>
+	<tr>
+		<td><%= user.id %></td>
+		<td><%= user.email %></td>
+		<td><%= user.sign_in_count %></td>
+		<td><%= user.reviews.length %></td>
+		<td><%= (user.authentications.present? ? user.authentications.first.uid : "-") %></td>
+	</tr>
+<% end %>

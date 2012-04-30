@@ -971,8 +971,18 @@ a:active{
 			border: 1px solid black;
 			td {
 				border: 1px solid black;
-				padding: 3px;
+				padding: 5px;
+			}
+			td.sortable {
+				color: $orange;
+			}
+			td.sortable:hover {
+				cursor: pointer;
 			}
 		}
+		thead {
+			font-weight: bold;
+		}
 	}
+	
 }
