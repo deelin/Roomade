@@ -978,11 +978,20 @@ a:active{
 			}
 			td.sortable:hover {
 				cursor: pointer;
+				text-decoration: underline;
+			}
+			td.deletable {
+				color: $orange;
+			}
+			td.deletable:hover {
+				cursor: pointer;
+				text-decoration: underline;
 			}
 		}
 		thead {
 			font-weight: bold;
 		}
+		
 	}
 	
 }

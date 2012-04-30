@@ -1,0 +1,6 @@
+$('#apartment-<%= @apartment.id %>-record').find('.deletable').fadeOut(200, function(){
+	$(this).html("Deleted!").removeClass("deletable").fadeIn(400);
+});
+setTimeout(function(){
+	$('#apartment-<%= @apartment.id %>-record').fadeOut(1000);
+}, 3000);

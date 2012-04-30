@@ -22,4 +22,16 @@ class AdminController < ApplicationController
     
       
   end
+  
+  def destroy_apartment
+    @apartment = Apartment.find_by_id(params[:id])
+    if @apartment.nil?
+      redirect_to "index" and return
+      @message = "That apartment does not exist"
+    else
+      @apartment.destroy
+      @success = true
+      @message = "Apartment record deleted!"
+    end
+  end
 end

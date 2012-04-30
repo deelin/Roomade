@@ -630,6 +630,12 @@ a:active {
     .admin.grid_12 table tr td.sortable {
       color: #f58c00; }
     .admin.grid_12 table tr td.sortable:hover {
-      cursor: pointer; }
+      cursor: pointer;
+      text-decoration: underline; }
+    .admin.grid_12 table tr td.deletable {
+      color: #f58c00; }
+    .admin.grid_12 table tr td.deletable:hover {
+      cursor: pointer;
+      text-decoration: underline; }
   .admin.grid_12 table thead {
     font-weight: bold; }

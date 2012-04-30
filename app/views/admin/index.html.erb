@@ -29,6 +29,7 @@
 						<td>Phone #</td>
 						<td class="sortable" data-col="dist_to_campus">Distance To Campus</td>
 						<td># Reviews</td>
+						<td>Delete</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -66,11 +67,19 @@
 			table = $(this).closest("table").attr("id");
 			col = $(this).attr("data-col");
 			order = (order == "asc" ? "desc" : "asc");
-			console.log(order);
 			$.ajax({
 				url: "<%= admin_path() %>.js",
 				data: {table: table, col: col, order: order}
 			});
 		});
+		
+		$('td.deletable').live("click", function(e) {
+			var delete_confirm = confirm("Delete this apartment?");
+			if (delete_confirm) {
+				$.ajax({
+					url: "/admin/destroy_apartment/"+$(this).attr("data-apartment-id")+".js"
+				});	
+			}
+		})
 	});
 </script>
