@@ -69,7 +69,7 @@
 						<tr>
 							<td><%= review.id %></td>
 							<td><%= "#{review.user.id} #{review.user.email}"%></td>
-							<td><%= review.apartment.address %></td>
+							<td><%= (review.apartment.present? ? review.apartment.address : "-") %></td>
 						</tr>
 					<% end %>
 				</tbody>
