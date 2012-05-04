@@ -133,7 +133,7 @@ class Apartment < ActiveRecord::Base
   end
   
   def merge(apartment)
-    # gets this apartment reviews, and puts them to apartment
+    # gets this apartment reviews, and puts them to target apartment
     reviews = this.reviews
     reviews.each do |review|
       review.apartment_id = apartment.id
