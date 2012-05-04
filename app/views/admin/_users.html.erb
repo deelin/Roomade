@@ -5,5 +5,6 @@
 		<td><%= user.sign_in_count %></td>
 		<td><%= user.reviews.length %></td>
 		<td><%= (user.authentications.present? ? user.authentications.first.uid : "-") %></td>
+		<td><%= user.created_at.strftime("%m/%d/%Y") %></td>
 	</tr>
 <% end %>
