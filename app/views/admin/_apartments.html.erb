@@ -7,6 +7,7 @@
 		<td><%= apartment.dist_to_campus %></td>
 		<td><%= apartment.reviews.length %></td>
 		<td><%= apartment.apartment_photos.length %></td>
-		<td class="deletable" data-apartment-id="<%= apartment.id %>">Delete</td>
+		<td class="linkable merge" data-apartment-id="<%= apartment.id %>">Merge</td>
+		<td class="linkable delete" data-apartment-id="<%= apartment.id %>">Delete</td>
 	</tr>
 <% end %>

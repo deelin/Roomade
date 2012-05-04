@@ -19,10 +19,39 @@
 	<%= csrf_meta_tags %>
 	
 	<script type="text/javascript">
+		var flash_timeout;
+
+		function show_flash_error(message) {
+			clearTimeout(flash_timeout);
+			$('.error-bar').text(message);
+			$('.error-bar').slideDown();
+			flash_timeout = setTimeout(function(){
+				$('.error-bar').slideUp();
+			}, 5000);
+		}
+
+		function show_flash_notice(message) {
+			clearTimeout(flash_timeout);
+			$('.notice-bar').text(message);
+			flash_timeout = setTimeout(function(){
+				$('.notice-bar').slideUp();
+			}, 5000);
+		}
+	
 		var loc = window.location;
 		if (loc.hash != "" && loc.hash.indexOf("#") != -1) {
 			location.href = loc.href.split("#")[0];	
 		}
+		
+		$().ready(function(){
+			<% if flash[:warning].present? %>
+				$('.error-bar').text('<%= escape_javascript(flash[:error]) %>');
+				$('.error-bar').slideDown().delay(5000).slideUp();
+			<% elsif flash[:notice].present? %>
+				$('.notice-bar').text('<%= escape_javascript(flash[:notice]) %>');
+				$('.notice-bar').slideDown().delay(5000).slideUp();
+			<% end %>
+		});
 	</script>
 </head>
 <body>	
@@ -32,6 +61,7 @@
 		<% else %>
 			<%= render :partial => "layouts/header" %>
 		<% end %>
+		<%= render :partial => "layouts/flash_messages" %>
 		<%= yield %>
 		<%= render :partial => "layouts/footer" %>
 	</div>

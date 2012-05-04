@@ -984,10 +984,10 @@ a:active{
 				cursor: pointer;
 				text-decoration: underline;
 			}
-			td.deletable {
+			td.linkable {
 				color: $orange;
 			}
-			td.deletable:hover {
+			td.linkable:hover {
 				cursor: pointer;
 				text-decoration: underline;
 			}
@@ -1001,7 +1001,7 @@ a:active{
 
 /*flash messages*/
 .feedback {
-	border-bottom: 1px solid #999999;
+	border-bottom: 1px solid #dedede;
 	color: black;
 	width: 100%;
 	font-size: 15px;
@@ -1016,5 +1016,5 @@ a:active{
 	background-color: rgba(255, 247, 235, 0.5);
 }
 .error-bar {
-	background-color: rgba(180, 0, 0, 0.5);
+	background-color: rgba(200, 0, 0, 0.3);
 }

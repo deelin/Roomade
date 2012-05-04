@@ -31,7 +31,8 @@
 						<td class="sortable" data-col="dist_to_campus">Distance To Campus</td>
 						<td class="sortable" data-col="num_reviews"># Reviews</td>
 						<td class="sortable" data-col="num_photos"># Photos</td>
-						<td>Delete</td>
+						<td class="merge">Merge</td>
+						<td class="delete">Delete</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,13 +76,22 @@
 			});
 		});
 		
-		$('td.deletable').live("click", function(e) {
+		$('td.delete').live("click", function(e) {
 			var delete_confirm = confirm("Delete this apartment?");
 			if (delete_confirm) {
 				$.ajax({
-					url: "/admin/destroy_apartment/"+$(this).attr("data-apartment-id")+".js"
+					url: "/admin/apartment/"+$(this).attr("data-apartment-id")+"destroy.js"
 				});	
 			}
-		})
+		});
+		
+		$('td.merge').live("click", function(e) {
+			var merge_to_apartment_id = prompt("Merge reviews FROM this apartment TO apartment id:");
+			if (merge_to_apartment_id) {
+				$.ajax({
+					url: "/admin/apartment/"+$(this).attr("data-apartment-id")+"/merge/"+merge_to_apartment_id+".js"
+				});	
+			}
+		});
 	});
 </script>
