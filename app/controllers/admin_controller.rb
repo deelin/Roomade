@@ -9,9 +9,9 @@ class AdminController < ApplicationController
       order_cond = "#{col} #{order}"
       if @table == "apartments"
         if col == "num_reviews"
-          @apartments = Apartment.joins("left outer join reviews on reviews.apartment_id = apartments.id").select("apartments.*, (select count(*) from reviews where reviews.apartment_id = apartments.id) as reviews_count").includes([:apartment_photos, :reviews]).order("reviews_count #{order}")
+          @apartments = Apartment.joins("left outer join reviews on reviews.apartment_id = apartments.id").select("apartments.*, (select count(*) from reviews where reviews.apartment_id = apartments.id) as reviews_count").includes([:apartment_photos, :reviews]).order("reviews_count #{order}").group("apartments.id")
         elsif col == "num_photos"
-          @apartments = Apartment.joins("left outer join apartment_photos on apartment_photos.apartment_id = apartments.id").select("apartments.*, (select count(*) from apartment_photos where apartment_photos.apartment_id = apartments.id) as apartment_photos_count").includes([:apartment_photos, :reviews]).order("apartment_photos_count #{order}")          
+          @apartments = Apartment.joins("left outer join apartment_photos on apartment_photos.apartment_id = apartments.id").select("apartments.*, (select count(*) from apartment_photos where apartment_photos.apartment_id = apartments.id) as apartment_photos_count").includes([:apartment_photos, :reviews]).order("apartment_photos_count #{order}").group("apartments.id")        
         else
           @apartments = Apartment.find(:all, :include => [:apartment_photos, :reviews], :order => order_cond)
         end
