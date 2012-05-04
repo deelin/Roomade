@@ -23,6 +23,9 @@
 
 		function show_flash_error(message) {
 			clearTimeout(flash_timeout);
+			if ($('.notice-bar').is(":visible")) {
+				$('.notice-bar').hide();
+			}
 			$('.error-bar').text(message);
 			$('.error-bar').slideDown();
 			flash_timeout = setTimeout(function(){
@@ -32,6 +35,9 @@
 
 		function show_flash_notice(message) {
 			clearTimeout(flash_timeout);
+			if ($('.error-bar').is(":visible")) {
+				$('.error-bar').hide();
+			}
 			$('.notice-bar').text(message);
 			$('.notice-bar').slideDown();
 			flash_timeout = setTimeout(function(){
