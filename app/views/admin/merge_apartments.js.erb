@@ -1,5 +1,4 @@
 <% if @success %>
-	alert("HI");
 	$('#apartment-<%= @apartment_two.id %>-record').find('.merge').fadeOut(200, function(){
 		$(this).removeClass("merge").html("Merged!").fadeIn(400);
 	});
@@ -8,6 +7,5 @@
 	}, 3000);
 	show_flash_notice("<%= escape_javascript(@message) %>");
 <% else %>
-alert("FAIL");
 show_flash_error("<%= escape_javascript(@message) %>");
 <% end %>
