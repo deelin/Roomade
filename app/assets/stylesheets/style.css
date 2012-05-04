@@ -635,9 +635,9 @@ a:active {
     .admin.grid_12 table tr td.sortable:hover {
       cursor: pointer;
       text-decoration: underline; }
-    .admin.grid_12 table tr td.linkable {
+    .admin.grid_12 table tr td.deletable {
       color: #f58c00; }
-    .admin.grid_12 table tr td.linkable:hover {
+    .admin.grid_12 table tr td.deletable:hover {
       cursor: pointer;
       text-decoration: underline; }
   .admin.grid_12 table thead {

@@ -44,9 +44,9 @@ class AdminController < ApplicationController
   def merge_apartments
     @apartment_one = Apartment.find_by_id(params[:apartment_one_id])
     @apartment_two = Apartment.find_by_id(params[:apartment_two_id])
+    render :nothing => true and return if @apartment_one.nil? || @apartment_two.nil?
     if @apartment_one.merge(@apartment_two)
       @message = "Successfully merged reviews from apartments!"
-      @new_apartment_count = @apartment_two.reviews.size
       @success = true
     else
       @message = "Could not merge apartments"

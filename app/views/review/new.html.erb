@@ -28,12 +28,12 @@ the following script includes the required mod
 		if (isNaN(parseFloat($('#rent_input').val().trim()))) {
 			console.log("Please enter your rent in $ (eg. 123.45)");
 			error_div = $('#rent_input');
-			error_divs.push(error_div);
+error_divs.push(error_div);
 		}
 		if ($('#rent_option').val().trim() == "") {
 			console.log("Please choose a rent option");
 			error_div = $('#rent_option');
-			error_divs.push(error_div);
+error_divs.push(error_div);
 		}
 		if ($('#bedrooms_input').val().trim() == "") {
 			console.log("How many bedrooms?");
@@ -90,7 +90,7 @@ error_divs.push(error_div);
 			error_div = $('#recommendation_input');
 error_divs.push(error_div);
 		}
-		if (error_divs.length == 0) {
+		if (error_divs == []) {
 			$('.review_form').submit();
 		}
 		else {
@@ -105,7 +105,7 @@ error_divs.push(error_div);
 				$(category).addClass("error");
 				$(category).text($(category).text()+"*");
 			}
-			$("html, body").animate({ scrollTop: $(first_category).offset().top - 20 }, 400);
+			$("html, body").animate({scrollTop: $(first_category).offset().top - 20}, 400);
 		}
 	}
 	
@@ -276,6 +276,7 @@ error_divs.push(error_div);
 				}
 				$(category).text($(category).text().replace(/\*/gi, ""));
 				$(category).text($(category).text()+tempStr);
+				console.log($(this).attr("id") + " has " +numErrors + " errors"	);
 			}
 		});
 		

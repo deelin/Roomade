@@ -984,10 +984,10 @@ a:active{
 				cursor: pointer;
 				text-decoration: underline;
 			}
-			td.linkable {
+			td.deletable {
 				color: $orange;
 			}
-			td.linkable:hover {
+			td.deletable:hover {
 				cursor: pointer;
 				text-decoration: underline;
 			}
@@ -996,5 +996,5 @@ a:active{
 			font-weight: bold;
 		}
 		
-	}	
+	}
 }
