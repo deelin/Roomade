@@ -80,7 +80,7 @@
 			var delete_confirm = confirm("Delete this apartment?");
 			if (delete_confirm) {
 				$.ajax({
-					url: "/admin/apartment/"+$(this).attr("data-apartment-id")+"/destroy.js"
+					url: "/admin/destroy_apartment/"+$(this).attr("data-apartment-id")+".js"
 				});	
 			}
 		});
