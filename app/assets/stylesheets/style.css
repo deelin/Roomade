@@ -642,3 +642,22 @@ a:active {
       text-decoration: underline; }
   .admin.grid_12 table thead {
     font-weight: bold; }
+
+/*flash messages*/
+.feedback {
+  border-bottom: 1px solid #999999;
+  color: black;
+  width: 100%;
+  font-size: 15px;
+  margin: auto;
+  position: relative;
+  text-align: center;
+  padding: 8px 0 8px 0;
+  z-index: 5000;
+  display: none; }
+
+.notice-bar {
+  background-color: rgba(255, 247, 235, 0.5); }
+
+.error-bar {
+  background-color: rgba(180, 0, 0, 0.5); }
