@@ -1,0 +1,12 @@
+<% if @success %>
+	$('#apartment-<%= @apartment_one.id %>-record').find('.merge').fadeOut(200, function(){
+		$(this).removeClass("merge").html("Merged!").fadeIn(400);
+	});
+	setTimeout(function(){
+		$('#apartment-<%= @apartment_one.id %>-record').fadeOut(1000);
+		$('#apartment-<%= @apartment_two.id %>-record').find('.num_reviews').text('<%= @new_apartment_count %>');
+	}, 3000);
+	show_flash_notice("<%= escape_javascript(@message) %>");
+<% else %>
+	show_flash_error("<%= escape_javascript(@message) %>");
+<% end %>

@@ -1,6 +1,11 @@
-$('#apartment-<%= @apartment.id %>-record').find('.deletable').fadeOut(200, function(){
-	$(this).html("Deleted!").removeClass("deletable").fadeIn(400);
-});
-setTimeout(function(){
-	$('#apartment-<%= @apartment.id %>-record').fadeOut(1000);
-}, 3000);
+<% if @success %>
+	$('#apartment-<%= @apartment.id %>-record').find('.delete').fadeOut(200, function(){
+		$(this).html("Deleted!").removeClass("delete").fadeIn(400);
+	});
+	setTimeout(function(){
+		$('#apartment-<%= @apartment.id %>-record').fadeOut(1000);
+	}, 3000);
+	show_flash_notice("<%= escape_javascript(@message) %>");
+<% else %>
+	show_flash_error("<%= escape_javascript(@message) %>");
+<% end %>

@@ -134,12 +134,13 @@ class Apartment < ActiveRecord::Base
   
   def merge(apartment)
     # gets this apartment reviews, and puts them to target apartment
-    reviews = this.reviews
+    return false if self.id == apartment.id || self.nil? || apartment.nil?
+    reviews = self.reviews
     reviews.each do |review|
       review.apartment_id = apartment.id
       review.save
     end
-    this.destroy
+    self.destroy
   end
     
 end
