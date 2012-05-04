@@ -133,7 +133,7 @@ class Apartment < ActiveRecord::Base
   end
   
   def merge(apartment)
-    return false if self.id == apartment.id || self.nil? || apartment.nil?
+    return false if self.nil? || apartment.nil? || self.id == apartment.id
     reviews = self.reviews
     reviews.each do |review|
       review.apartment_id = apartment.id

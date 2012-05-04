@@ -90,7 +90,7 @@ error_divs.push(error_div);
 			error_div = $('#recommendation_input');
 error_divs.push(error_div);
 		}
-		if (error_divs == []) {
+		if (error_divs.length == 0) {
 			$('.review_form').submit();
 		}
 		else {
@@ -387,9 +387,6 @@ error_divs.push(error_div);
 				</div>
 
 				<div class="num_box"> 
-				</div>
-
-				<div class="num_box non-selected"> 
 				</div>
 
 				<div class="num_box non-selected"> 

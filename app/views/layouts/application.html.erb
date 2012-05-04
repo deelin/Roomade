@@ -33,6 +33,7 @@
 		function show_flash_notice(message) {
 			clearTimeout(flash_timeout);
 			$('.notice-bar').text(message);
+			$('.notice-bar').slideDown();
 			flash_timeout = setTimeout(function(){
 				$('.notice-bar').slideUp();
 			}, 5000);

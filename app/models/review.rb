@@ -5,7 +5,7 @@ class Review < ActiveRecord::Base
   # input validation
   validates :rent, :presence => true, :numericality => true
   validates :bedrooms, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
-  validates :roommates, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..8 }
+  validates :roommates, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..7 }
   validates :space, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
   validates :noise, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
   validates :management, :presence => true, :numericality => {:only_integer => true}, :inclusion => { :in => 1..5 }
