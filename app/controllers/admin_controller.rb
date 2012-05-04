@@ -34,4 +34,16 @@ class AdminController < ApplicationController
       @message = "Apartment record deleted!"
     end
   end
+  
+  def merge_apartments
+    @apartment_one = Apartment.find_by_id(params[:apartment_one_id])
+    @apartment_two = Apartment.find_by_id(params[:apartment_two_id])
+    render :nothing => true and return if @apartment_one.nil? || @apartment_two.nil?
+    if @apartment_one.merge(@apartment_two)
+      @message = "Successfully merged reviews from apartments!"
+      @success = true
+    else
+      @message = "Could not merge apartments"
+    end
+  end
 end

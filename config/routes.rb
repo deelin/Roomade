@@ -85,7 +85,8 @@ Roomade::Application.routes.draw do
   
   # Admin
   match '/admin' => 'admin#index', :as => :admin
-  match '/admin/destroy_apartment/:id' => 'admin#destroy_apartment', :as => :destroy_apartment
+  match '/admin/apartment/:id' => 'admin#destroy_apartment', :as => :destroy_apartment
+  match '/admin/apartment/:apartment_one_id/merge/:apartment_two_id' => 'admin#merge_apartments', :as => :merge_apartments
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'

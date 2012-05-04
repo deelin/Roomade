@@ -19,7 +19,10 @@
 	<%= csrf_meta_tags %>
 	
 	<script type="text/javascript">
-	
+		var loc = window.location;
+		if (loc.hash != "" && loc.hash.indexOf("#") != -1) {
+			location.href = loc.href.split("#")[0];	
+		}
 	</script>
 </head>
 <body>	

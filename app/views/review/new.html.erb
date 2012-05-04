@@ -17,64 +17,95 @@ the following script includes the required mod
 	
 	function validate_review_form() {
 		var error_count = 0;
-		if ($('#formatted_address').val().trim() == "" || $('#dist_to_campus').val().trim() == "") {
+		var error_div;
+		var error_divs = [];
+		if ($('#address_input').val().trim() == "" || $('#formatted_address').val().trim() == "" || $('#dist_to_campus').val().trim() == "") {
+			$('#address_input').val('');
 			console.log("something wrong with map getting address and distance");
-			error_count++;
+			error_div = $('#formatted_address');
+			error_divs.push(error_div);
 		}
 		if (isNaN(parseFloat($('#rent_input').val().trim()))) {
 			console.log("Please enter your rent in $ (eg. 123.45)");
-			error_count++;
+			error_div = $('#rent_input');
+error_divs.push(error_div);
 		}
 		if ($('#rent_option').val().trim() == "") {
 			console.log("Please choose a rent option");
-			error_count++;
+			error_div = $('#rent_option');
+error_divs.push(error_div);
 		}
 		if ($('#bedrooms_input').val().trim() == "") {
 			console.log("How many bedrooms?");
-			error_count++;
+			error_div = $('#bedrooms_input');
+error_divs.push(error_div);
 		}
 		if ($('#bathrooms_input').val().trim() == "") {
 			console.log("How many bathrooms?");
-			error_count++;
+			error_div = $('#bathrooms_input');
+error_divs.push(error_div);
 		}
 		if ($('#roommates_input').val().trim() == "") {
 			console.log("How many roommates do you live with?");
-			error_count++;
+			error_div = $('#roommates_input');
+error_divs.push(error_div);
 		}
 		if ($('#space_input').val().trim() == "") {
 			console.log("How spacious is your apartment?");
-			error_count++;
+			error_div = $('#space_input');
+error_divs.push(error_div);
 		}
 		if ($('#noise_input').val().trim() == "") {
 			console.log("How noisy are the surroundings?");
-			error_count++;
+			error_div = $('#noise_input');
+error_divs.push(error_div);
 		}
 		if ($('#security_input').val().trim() == "") {
 			console.log("Is there a gate? Or do I need to hide my kids and wives?");
-			error_count++;
+			error_div = $('#security_input');
+error_divs.push(error_div);
 		}
 		if ($('#security_level_input').val().trim() == "") {
 			console.log("How secure is it?");
-			error_count++;
+			error_div = $('#security_level_input');
+error_divs.push(error_div);
 		}
 		if ($('#management_input').val().trim() == "") {
 			console.log("How awesome is the management here?");
-			error_count++;
+			error_div = $('#management_input');
+error_divs.push(error_div);
 		}
 		if ($('#condition_input').val().trim() == "") {
 			console.log("What's the condition of the apartment?");
-			error_count++;
+			error_div = $('#condition_input');
+error_divs.push(error_div);
 		}
 		if ($('#rating_input').val().trim() == "") {
 			console.log("How would you rate living here overall?");
-			error_count++;
+			error_div = $('#rating_input');
+error_divs.push(error_div);
 		}
 		if ($('#recommendation_input').val().trim() == "") {
 			console.log("Would you recommend this apartment or not?");
-			error_count++;
+			error_div = $('#recommendation_input');
+error_divs.push(error_div);
 		}
-		if (error_count == 0) {
+		if (error_divs == []) {
 			$('.review_form').submit();
+		}
+		else {
+			$('.category').removeClass("error");
+			$('.category').each(function(index, div){
+				$(this).text($(this).text().replace(/\*/gi, ""));
+			});
+			var first_category = $(error_divs[0]).closest(".question").find('.category');
+			var len = error_divs.length;
+			for (var i = 0; i < len; i++) {
+				var category = $(error_divs[i]).closest(".question").find('.category');
+				$(category).addClass("error");
+				$(category).text($(category).text()+"*");
+			}
+			$("html, body").animate({scrollTop: $(first_category).offset().top - 20}, 400);
 		}
 	}
 	
@@ -160,9 +191,12 @@ the following script includes the required mod
 		$('.selectors, .options').live("click", function(e) {
 			var children = $(this).children();
 			var finalIndex = parseInt(children.index(e.target));
+			if (finalIndex == -1) {
+				return;
+			}
 			$(this).addClass("clicked");
 			$(this).attr("data-num", finalIndex);
-			$(this).next('input').val(finalIndex + 1);
+			$(this).next('input').val(finalIndex + 1).trigger("change");
 		});
 		
 		$('.option_selectors').live("click", function(e) {
@@ -171,7 +205,7 @@ the following script includes the required mod
 			}
 			$(this).addClass("clicked");
 			$(e.target).addClass('selected');
-			$(this).next('input').val($(e.target).text());
+			$(this).next('input').val($(e.target).text()).trigger("change");
 		});
 		
 		$('#amenities_list').live("click", function(e) {
@@ -201,7 +235,7 @@ the following script includes the required mod
 							var latlng2 = new google.maps.LatLng(location2.lat, location2.lng);
 							var km_dist = google.maps.geometry.spherical.computeDistanceBetween(latlng1, latlng2)/1000;
 							var mile_dist = (km_dist/1.609344).toFixed(1);
-							$('#dist_to_campus').val(mile_dist);
+							$('#dist_to_campus').val(mile_dist).trigger("change");
 						}
 						else {
 						}
@@ -219,12 +253,32 @@ the following script includes the required mod
 			}
 		});
 		
-		$('.button.submit').live("click", function(e){
+		$('.button.submit').live("click", function(e) {
 			validate_review_form();
 		});
 		
-		
-		
+		$('.required_input').live("change", function(e) {
+			var category = $(this).closest(".question").find('.category');
+			if ($(category).hasClass("error")) {
+				var inputs = $(this).closest(".question").find("input");
+				var numErrors = 0;
+				var tempStr = "";
+				inputs.each(function(index, div) {
+					if ($(this).val().trim() == "") {
+						numErrors++;
+					}
+				});
+				for (var i = 0; i < numErrors; i++) {
+					tempStr += "*";
+				}
+				if (numErrors == 0) {
+					$(category).removeClass("error");	
+				}
+				$(category).text($(category).text().replace(/\*/gi, ""));
+				$(category).text($(category).text()+tempStr);
+				console.log($(this).attr("id") + " has " +numErrors + " errors"	);
+			}
+		});
 		
 	});
 </script>
@@ -237,10 +291,10 @@ the following script includes the required mod
 			What's the address of your apartment?
 		</div>
 
-		<%= text_field_tag :address, nil, :id => "address_input" %>
-		<%= hidden_field_tag :formatted_address, "", :id => "formatted_address" %>
-		<%= hidden_field_tag :dist_to_campus, "", :id => "dist_to_campus" %>
-		<div id="map_canvas" style="width:310px;height:150px;"/>
+		<%= text_field_tag :address, nil, :id => "address_input", :class => "required_input" %>
+		<%= hidden_field_tag :formatted_address, "", :id => "formatted_address", :class => "required_input" %>
+		<%= hidden_field_tag :dist_to_campus, "", :id => "dist_to_campus", :class => "required_input" %>
+		<div id="map_canvas" style="width:310px;height:150px;"></div>
 	</div>
 
 	<div id="review" class="question">
@@ -256,13 +310,13 @@ the following script includes the required mod
 			Monthly Rent
 		</div>
 
-		<%= f.text_field :rent, :id => "rent_input" %>
+		<%= f.text_field :rent, :id => "rent_input", :class => "required_input", :placeholder => "700.25" %>
 
 		<ul class="option_selectors">
 			<li>per person</li>
 			<li>apartment</li>
 		</ul>
-		<%= hidden_field_tag :rent_option, "", :id => "rent_option" %>
+		<%= hidden_field_tag :rent_option, "", :id => "rent_option", :class => "required_input" %>
 
 		<div class="clearfloat"></div>
 	</div>
@@ -290,7 +344,7 @@ the following script includes the required mod
 			</div>
 
 		</div>
-		<%= f.hidden_field :bedrooms, :id => "bedrooms_input" %>
+		<%= f.hidden_field :bedrooms, :id => "bedrooms_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
 	</div>
 
@@ -318,7 +372,7 @@ the following script includes the required mod
 			</div>
 
 		</div>
-		<%= f.hidden_field :bathrooms, :id => "bathrooms_input" %>
+		<%= f.hidden_field :bathrooms, :id => "bathrooms_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
 	</div>
 
@@ -354,7 +408,7 @@ the following script includes the required mod
 				</div>
 
 		</div>
-		<%= f.hidden_field :roommates, :id => "roommates_input" %>
+		<%= f.hidden_field :roommates, :id => "roommates_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
 	</div>
 
@@ -384,7 +438,7 @@ the following script includes the required mod
 				</div>
 
 		</div>
-		<%= f.hidden_field :space, :id => "space_input" %>	
+		<%= f.hidden_field :space, :id => "space_input", :class => "required_input" %>	
 		<div class="clearfloat"></div>
 
 	</div>
@@ -417,7 +471,7 @@ the following script includes the required mod
 				</div>
 
 		</div>
-		<%= f.hidden_field :noise, :id => "noise_input" %>
+		<%= f.hidden_field :noise, :id => "noise_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
 	</div>
 
@@ -433,7 +487,7 @@ the following script includes the required mod
 			<li>yes</li>
 			<li>no</li>
 		</ul>
-		<%= f.hidden_field :security, :id => "security_input" %>
+		<%= f.hidden_field :security, :id => "security_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
 
 		<div class="description">
@@ -457,7 +511,7 @@ the following script includes the required mod
 			<div class="option_box non-selected"> 
 			</div>
 		</div>
-		<%= f.hidden_field :security_level, :id => "security_level_input" %>
+		<%= f.hidden_field :security_level, :id => "security_level_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
 		<br>
 	</div>
@@ -488,7 +542,7 @@ the following script includes the required mod
 				</div>
 
 		</div>
-		<%= f.hidden_field :management, :id => "management_input" %>
+		<%= f.hidden_field :management, :id => "management_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
 	</div>
 
@@ -518,7 +572,7 @@ the following script includes the required mod
 				</div>
 
 		</div>
-		<%= f.hidden_field :condition, :id => "condition_input" %>
+		<%= f.hidden_field :condition, :id => "condition_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
 	</div>
 	
@@ -548,7 +602,7 @@ the following script includes the required mod
 				</div>
 
 		</div>
-		<%= f.hidden_field :rating, :id => "rating_input" %>
+		<%= f.hidden_field :rating, :id => "rating_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
 	</div>
 	
@@ -587,7 +641,7 @@ the following script includes the required mod
 			<li>yes</li>
 			<li>no</li>
 		</ul>
-		<%= f.hidden_field :recommendation, :id => "recommendation_input" %>
+		<%= f.hidden_field :recommendation, :id => "recommendation_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
 	</div>
 	

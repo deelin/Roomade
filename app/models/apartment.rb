@@ -131,4 +131,15 @@ class Apartment < ActiveRecord::Base
     
     return results
   end
+  
+  def merge(apartment)
+    # gets this apartment reviews, and puts them to apartment
+    reviews = this.reviews
+    reviews.each do |review|
+      review.apartment_id = apartment.id
+      review.save
+    end
+    this.destroy
+  end
+    
 end

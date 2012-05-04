@@ -415,6 +415,9 @@ a:active {
     font-size: 16px;
     color: gray;
     padding-bottom: 5px; }
+  .new_review .category.error {
+    color: red;
+    font-weight: bolder; }
   .new_review .num_box {
     float: left;
     height: 25px;
