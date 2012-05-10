@@ -907,7 +907,9 @@ a:active{
 }
 
 .review{
-	height:50px;
+	min-height:50px;
+	height:auto;
+	overflow:visible;
 	padding:20px;
 	margin-top:5px;
 	background-color:$faintgray;

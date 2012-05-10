@@ -579,7 +579,9 @@ a:active {
   background-color: rgba(245, 140, 0, 0.4); }
 
 .review {
-  height: 50px;
+  min-height: 50px;
+  height: auto;
+  overflow: visible;
   padding: 20px;
   margin-top: 5px;
   background-color: #e8e8e8; }
