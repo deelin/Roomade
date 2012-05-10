@@ -9,13 +9,8 @@ class Feedback < ActiveRecord::Base
     if feedback.present?
       feedback.update_attributes({:recommendation => recommendation, :comment => comment})
     else
-      feedback = Feedback.new(:recommendation => recommendation, :comment => comment)
+      feedback = Feedback.create(:user_id => user.id, :recommendation => recommendation, :comment => comment)
     end
-    
-    if feedback.save
-      return feedback
-    end
-    
-    return nil
+    return feedback
   end
 end
