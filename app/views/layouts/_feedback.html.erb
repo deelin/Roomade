@@ -1,0 +1,59 @@
+<%= link_to "Feedback", "#feedback_modal", :id => "feedback-btn", :"data-toggle" => "modal" %>
+
+<% if current_user.present? %>
+<div class="modal hide fade" id="feedback_modal">
+	<div class="modal-header">
+		<button class="close" data-dismiss="modal">×</button>
+		<h3>Not juicy enough? Help us improve!</h3>
+	</div>
+	<div class="modal-body">
+		<%= form_tag(submit_feedback_path(), :method => "POST") do %>
+		<div class="form_row">
+			<div class="question">Would you recommend Roomade to your friends?</div>
+			<ul class="option_selectors">
+				<li data-select="yes" <%= "class='selected'" if current_user.feedback.present? && current_user.feedback.recommendation == true %>>yes</li>
+				<li data-select="no" <%= "class='selected'" if current_user.feedback.present? && current_user.feedback.recommendation == false %>>no</li>
+			</ul>
+			<% if current_user.feedback.present? %>
+				<%= hidden_field_tag :recommendation, (current_user.feedback.recommendation == true ? "yes" : "no"), :id => "feedback-recommendation-input" %>
+			<% else %>
+				<%= hidden_field_tag :recommendation, "", :id => "feedback-recommendation-input" %>
+			<% end %>
+		</div>
+		<div class="form_row">
+			<div>
+				<% if current_user.feedback.present? %>
+				<%= text_area_tag :comment, current_user.feedback.comment, :id => "comment-input", :placeholder => "How can we improve? Give us your 2 cents", :rows => "5" %>
+				<% else %>
+				<%= text_area_tag :comment, "", :id => "comment-input", :placeholder => "How can we improve? Give us your 2 cents", :rows => "5" %>
+				<% end %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal">cancel</a>
+		<a href="#" class="btn btn-primary">submit</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$().ready(function(){
+		$('.modal-body .option_selectors li').live("click", function(e){
+			$('#feedback-recommendation-input').val($(this).attr("data-select"));
+			$(this).closest("ul").find("li").removeClass("selected");
+			$(this).addClass("selected");
+		});
+		$('.modal-footer .btn-primary').live("click", function(e){
+			var recommendation = $('#feedback-recommendation-input').val();
+			var comment = $('#comment-input').val();
+			$.ajax({
+				url: "<%= submit_feedback_path() %>.js",
+				data: {recommendation: recommendation, comment: comment}
+			});
+			e.preventDefault();
+		});
+	});
+</script>
+
+<% end %>

@@ -1,0 +1,7 @@
+<% if @success %>
+	show_flash_notice("<%= escape_javascript(@message) %>");
+	$('.form_row .question').removeClass("error");
+	$('.modal-header .close').click();
+<% else %>
+	$('.form_row .question').addClass("error");
+<% end %>

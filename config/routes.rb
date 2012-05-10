@@ -91,5 +91,9 @@ Roomade::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
   
+  # Feedback
+  match '/submit_feedback' => 'feedback#create', :as => :submit_feedback
+  
   # match ':shortname' => 'user#show', :as => :users_show
+  
 end
