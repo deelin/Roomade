@@ -24,6 +24,7 @@ class AdminController < ApplicationController
       @apartments = Apartment.find(:all, :include => [:apartment_photos, :reviews], :order => "id asc")
       @users = User.find(:all, :include => [:authentications, :reviews], :order => "id asc")
       @reviews = Review.find(:all, :include => [:user, :apartment], :order => "id asc")
+      @feedbacks = Feedback.find(:all, :order => "id asc")
     end
     
       

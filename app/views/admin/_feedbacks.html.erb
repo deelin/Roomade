@@ -1,0 +1,8 @@
+<% @feedbacks.each do |feedback| %>
+	<tr id="feedback-<%= feedback.id %>-record">
+		<td><%= feedback.id %></td>
+		<td><%= feedback.user_id %></td>
+		<td><%= feedback.recommendation %></td>
+		<td><%= feedback.comment %></td>
+	</tr>
+<% end %>
