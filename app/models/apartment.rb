@@ -115,15 +115,7 @@ class Apartment < ActiveRecord::Base
     elsif Rails.env.development?
       join_cond = "inner join reviews on reviews.apartment_id = apartments.id, apartment_amenities on apartment_amenities.apartment_id = apartments.id"
     end
-    results = Apartment.paginate(:select => "apartments.*, 
-    (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) as avg_roommates, 
-    (select avg(rating) from reviews where reviews.apartment_id = apartments.id) as avg_rating, 
-    (select avg(noise) from reviews where reviews.apartment_id = apartments.id) as avg_noise, 
-    (select avg(condition) from reviews where reviews.apartment_id = apartments.id) as avg_condition, 
-    (select avg(security_level) from reviews where reviews.apartment_id = apartments.id) as avg_security_level, 
-    (select avg(management) from reviews where reviews.apartment_id = apartments.id) as avg_management, 
-    sum(case when apartment_amenities.amenity_id in (#{joined_amenities}) then 1 else 0 end) as matched_amenities_count", 
-    :conditions => ["#{query_cond} 
+    results = Apartment.paginate(:conditions => ["#{query_cond} 
       (select avg(rent) from reviews where reviews.apartment_id = apartments.id) > ? and (select avg(rent) from reviews where reviews.apartment_id = apartments.id) <= ? and (select avg(bedrooms) from reviews where reviews.apartment_id = apartments.id) >= ? and (select avg(bedrooms) from reviews where reviews.apartment_id = apartments.id) <= ? and (select avg(bathrooms) from reviews where reviews.apartment_id = apartments.id) >= ? and (select avg(bathrooms) from reviews where reviews.apartment_id = apartments.id) <= ? and (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) >= ? and (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) <= ?", min_price, max_price, min_bedrooms, max_bedrooms, min_bathrooms, max_bathrooms, min_roommates, max_roommates], :joins => join_cond, :include => [:reviews, :apartment_amenities, :apartment_photos], :order => "#{sort_type} #{sort_order}", :group => "apartments.id, apartments.address, apartments.name, apartments.created_at, apartments.updated_at, apartments.phone_number, apartments.dist_to_campus, apartment_amenities.apartment_id", :having => "sum(case when apartment_amenities.amenity_id in (#{joined_amenities}) then 1 else 0 end) = #{amenity_ids.length}", :page => page).group_by { |apartment| apartment.id }
     logger.debug(page)
     logger.debug(results)
