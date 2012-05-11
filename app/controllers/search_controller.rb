@@ -13,8 +13,9 @@ class SearchController < ApplicationController
     }
     @amenities = params[:amenities]
     @sort = params[:sort]
+    @page = params[:page]
   
-    @apartment_results_hash = Apartment.search(@query, @filter_hash, @sort, @amenities)
+    @apartment_results_hash = Apartment.search(@query, @filter_hash, @sort, @amenities, @page)
   
     if @apartment_results_hash.present?
       
@@ -23,10 +24,8 @@ class SearchController < ApplicationController
     end
     
     if request.xhr?
-      logger.debug(@apartment_results_hash)
       render "search_apartments.js" and return
     else
-      logger.debug("fail")
       render "search_apartments.html" and return
     end
     

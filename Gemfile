@@ -36,6 +36,8 @@ gem 'aws-sdk'
 # devise, for easy user authentication (https://github.com/plataformatec/devise)
 gem 'devise'
 
+# paginate for lazy loading
+gem 'will_paginate', '~> 3.0'
 
 group :test, :development do
   gem 'cucumber-rails'

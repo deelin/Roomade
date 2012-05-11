@@ -192,6 +192,9 @@
 		
 		<div id="search_button" class="grid_4 push_4">start juicin'</div>
 
+		<div id="show_more">
+			<%= link_to "Show more", "#", :id => "show_more_link" %>
+		</div>
 		<!--hide options><div class="grid_12">
 			<ul id="sort"> 
 				<li style="font-size:10px">Sort by:</li>
@@ -268,6 +271,7 @@
 	var min_price = 0;
 	var max_price = 9999;
 	var amenities = "";
+	var page = 1;
 	var markersArray = [];
 	
 	function clearOverlays() {
@@ -323,13 +327,14 @@
 					min_bathrooms: min_bathrooms, max_bathrooms: max_bathrooms,
 					min_roommates: min_roommates, max_roommates: max_roommates,
 					min_price: min_price, max_price: max_price, 
-					sort: sort, amenities: amenities},
+					sort: sort, amenities: amenities, page: page},
 				headers: {
 					'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
 				}
 			});
 			$('#search_button').hide();
 			$('#slogan').closest('.container_12').find(".grid_12.placeholder:first-child").slideUp();
+			page++;
 		}
 		
 		$('#sort ul li').live("click", function(e) {
@@ -343,6 +348,7 @@
 			max_price = data_price_range[1];
 			$('#price_ranges li').removeClass("selected");
 			$(this).addClass("selected");
+			page = 1;
 			search();
 		});
 		
@@ -391,6 +397,7 @@
 			var subcolumn_type = $(this).closest(".subcolumn").attr('data-type');
 			window["min_"+subcolumn_type] = parseInt($(this).closest(".subcolumn").find(".options.from").attr("data-num-selected"));
 			window["max_"+subcolumn_type] = parseInt($(this).closest(".subcolumn").find(".options.to").attr("data-num-selected"));
+			page = 1;
 			search();
 		});
 		
@@ -402,6 +409,7 @@
 				amenity_ids.push($(amenity).attr('data-id'));
 			});
 			amenities = amenity_ids.join(",");
+			page = 1;
 			search();
 		});
 		
@@ -414,11 +422,10 @@
 		
 		$('#search .button.locate, #search_button').live("click", function(e) {
 			query = $('#search_query_input').val().trim();
-			// if (query != "") {
-				$('#filter_container').slideUp();
-				$('#toggle_filter').slideDown();
-				search();
-			// }
+			$('#filter_container').slideUp();
+			$('#toggle_filter').slideDown();
+			page = 1;
+			search();
 		});
 		
 		$('#toggle_filter').live("click", function(e) {
@@ -451,6 +458,11 @@
 		$('.button.see_more').live("click", function(e) {
 			var apartment_id = $(this).attr("data-apartment-id");
 			location.href = '/apartment/'+apartment_id;
+		});
+		
+		$('#show_more_link').live("click", function(e) {
+			search();
+			e.preventDefault();
 		});
 	});
 </script>

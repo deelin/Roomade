@@ -1,2 +1,6 @@
-$('#results').empty();
-$('#results').html("<%= escape_javascript(render :partial => 'results') %>");
+<% if @page == 1 %>
+	$('#results').empty();
+	$('#results').html("<%= escape_javascript(render :partial => 'results') %>");
+<% else %>
+	$('#results').append("<%= escape_javascript(render :partial => 'results') %>");
+<% end %>
