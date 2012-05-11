@@ -116,9 +116,6 @@ class Apartment < ActiveRecord::Base
       join_cond = "inner join reviews on reviews.apartment_id = apartments.id, apartment_amenities on apartment_amenities.apartment_id = apartments.id"
     end
     results = Apartment.paginate(:select => "apartments.*, 
-    (select avg(rent) from reviews where reviews.apartment_id = apartments.id) as avg_rent, 
-    (select avg(bedrooms) from reviews where reviews.apartment_id = apartments.id) as avg_bedrooms, 
-    (select avg(bathrooms) from reviews where reviews.apartment_id = apartments.id) as avg_bathrooms, 
     (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) as avg_roommates, 
     (select avg(rating) from reviews where reviews.apartment_id = apartments.id) as avg_rating, 
     (select avg(noise) from reviews where reviews.apartment_id = apartments.id) as avg_noise, 
