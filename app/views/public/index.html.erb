@@ -324,7 +324,10 @@
 		
 		function search() {
 			search_count++;
-			if (page == 1 || more_results) {
+			if (page == 1) {
+				more_results = true;
+			}
+			if (more_results) {
 				$.ajax({
 					type: "GET",
 					url: "<%= search_apartments_path() %>.js",
@@ -476,6 +479,10 @@
 		}, {
 			offset: '120%'
 		});
+		
+		setInterval(function(){
+			$.waypoints("refresh");
+		}, 1000);
 	
 	});
 </script>
