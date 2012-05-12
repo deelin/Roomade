@@ -94,7 +94,7 @@ class Apartment < ActiveRecord::Base
         
     # determine sort
     if sort.present?    
-      sort_hash = {"rent" => "avg_rent", 
+      sort_hash = {"rent" => "(select avg(rent) from reviews where reviews.apartment_id = apartments.id)", 
         "distance" => "apartments.dist_to_campus",
         "rating" => "avg_rating",
         "noise" => "avg_noise",
@@ -103,7 +103,7 @@ class Apartment < ActiveRecord::Base
         "management" => "avg_management"}
       parsed_sort = sort.split("_")
       sort_key = parsed_sort[0]      
-      sort_type = (sort_hash.has_key?(sort_key) ? sort_hash[sort_key] : "reviews.rent")
+      sort_type = (sort_hash.has_key?(sort_key) ? sort_hash[sort_key] : "(select avg(rent) from reviews where reviews.apartment_id = apartments.id)")
       sort_order = (["asc", "desc"].include?(parsed_sort[1]) ? parsed_sort[1] : "desc") # default to desc
     end
     
@@ -115,11 +115,10 @@ class Apartment < ActiveRecord::Base
     elsif Rails.env.development?
       join_cond = "inner join reviews on reviews.apartment_id = apartments.id, apartment_amenities on apartment_amenities.apartment_id = apartments.id"
     end
-    results = Apartment.paginate(:conditions => ["#{query_cond}"], :joins => join_cond, :include => [:reviews, :apartment_amenities, :apartment_photos], :order => "#{sort_type} #{sort_order}", :group => "apartments.id, apartments.address, apartments.name, apartments.created_at, apartments.updated_at, apartments.phone_number, apartments.dist_to_campus, apartment_amenities.apartment_id", :having => "sum(case when apartment_amenities.amenity_id in (#{joined_amenities}) then 1 else 0 end) = #{amenity_ids.length} and (select avg(bedrooms) from reviews where reviews.apartment_id = apartments.id) >= #{min_bedrooms} and (select avg(bedrooms) from reviews where reviews.apartment_id = apartments.id) <= #{max_bedrooms} and (select avg(bathrooms) from reviews where reviews.apartment_id = apartments.id) >= #{min_bathrooms} and (select avg(bathrooms) from reviews where reviews.apartment_id = apartments.id) <= #{max_bathrooms} and (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) >= #{min_roommates} and (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) <= #{max_roommates}", :page => page).group_by { |apartment| apartment.id }
+    results = Apartment.paginate(:conditions => ["#{query_cond}"], :joins => join_cond, :include => [:reviews, :apartment_amenities, :apartment_photos], :order => "#{sort_type} #{sort_order}", :group => "apartments.id, apartments.address, apartments.name, apartments.created_at, apartments.updated_at, apartments.phone_number, apartments.dist_to_campus, apartment_amenities.apartment_id", :having => "sum(case when apartment_amenities.amenity_id in (#{joined_amenities}) then 1 else 0 end) = #{amenity_ids.length} and (select avg(rent) from reviews where reviews.apartment_id = apartments.id) > #{min_price} and (select avg(rent) from reviews where reviews.apartment_id = apartments.id) <= #{max_price} and (select avg(bedrooms) from reviews where reviews.apartment_id = apartments.id) >= #{min_bedrooms} and (select avg(bedrooms) from reviews where reviews.apartment_id = apartments.id) <= #{max_bedrooms} and (select avg(bathrooms) from reviews where reviews.apartment_id = apartments.id) >= #{min_bathrooms} and (select avg(bathrooms) from reviews where reviews.apartment_id = apartments.id) <= #{max_bathrooms} and (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) >= #{min_roommates} and (select avg(roommates) from reviews where reviews.apartment_id = apartments.id) <= #{max_roommates}", :page => page).group_by { |apartment| apartment.id }
     logger.debug(page)
     logger.debug(results)
     return results
-    # and (select avg(rent) from reviews where reviews.apartment_id = apartments.id) > #{min_price} and (select avg(rent) from reviews where reviews.apartment_id = apartments.id) <= #{max_price}
   end
   
   def merge(apartment)
