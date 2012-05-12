@@ -18,12 +18,8 @@ class SearchController < ApplicationController
     @apartment_results = Apartment.search(@query, @filter_hash, @sort, @amenities, @page)
     @total_pages = @apartment_results.total_pages
     @apartment_results_hash = @apartment_results.group_by { |apartment| apartment.id }
-    logger.debug(@apartment_results_hash)
-    logger.debug("#{@total_pages} pages total")
-    if @apartment_results_hash.present?
-      
-    else
-      # no results
+    
+    if @total_pages == 0
       render "no_results.js" and return
     end
     

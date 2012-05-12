@@ -326,6 +326,7 @@
 		}
 		
 		function search() {
+			console.log('searching page '+page);
 			search_count++;
 			$.ajax({
 				type: "GET",
@@ -478,7 +479,7 @@
 		
 		var initWaypoint = function(){
 			$('#show_more').waypoint(function(event, direction){
-				
+				console.log(search_count);
 				if (direction === 'down' && $(this).attr('data-loading') == "false" && search_count > 0) {
 					// $(this).find('.load-activity').animate({"height": "show", "opacity": "show"}, 400);
 					$('#show_more_link').click();
