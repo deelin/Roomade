@@ -13,10 +13,13 @@ class SearchController < ApplicationController
     }
     @amenities = params[:amenities]
     @sort = params[:sort]
-    @page = params[:page]
+    @page = params[:page].to_i
   
-    @apartment_results_hash = Apartment.search(@query, @filter_hash, @sort, @amenities, @page)
-  
+    @apartment_results = Apartment.search(@query, @filter_hash, @sort, @amenities, @page)
+    @total_pages = @apartment_results.total_pages
+    @apartment_results_hash = @apartment_results.group_by { |apartment| apartment.id }
+    logger.debug(@apartment_results_hash)
+    logger.debug("#{@total_pages} pages total")
     if @apartment_results_hash.present?
       
     else

@@ -192,9 +192,6 @@
 		
 		<div id="search_button" class="grid_4 push_4">start juicin'</div>
 
-		<div id="show_more">
-			<%= link_to "Show more", "#", :id => "show_more_link" %>
-		</div>
 		<!--hide options><div class="grid_12">
 			<ul id="sort"> 
 				<li style="font-size:10px">Sort by:</li>
@@ -254,6 +251,11 @@
 			
 		</div> <!--results-->
 
+		<div id="show_more" data-loading="false">
+			<%= link_to "Show more", "#", :id => "show_more_link" %>
+		</div>
+		
+<%= javascript_include_tag "waypoints.min" %>
 
 <script type="text/javascript">
 	var geocoder = new google.maps.Geocoder();
@@ -334,6 +336,7 @@
 			});
 			$('#search_button').hide();
 			$('#slogan').closest('.container_12').find(".grid_12.placeholder:first-child").slideUp();
+			console.log(page);
 			page++;
 		}
 		
@@ -464,6 +467,21 @@
 			search();
 			e.preventDefault();
 		});
+		
+		var initWaypoint = function(){
+			$('#show_more').waypoint(function(event, direction){
+				
+				if (direction === 'down' && $(this).attr('data-loading') == "false" && search_count > 0) {
+					// $(this).find('.load-activity').animate({"height": "show", "opacity": "show"}, 400);
+					$('#show_more_link').click();
+					$(this).attr("data-loading", "true");
+				}
+			}, {
+				offset: 'bottom-in-view'
+			});
+		}
+		
+		initWaypoint();
 	});
 </script>
 

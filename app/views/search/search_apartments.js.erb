@@ -1,6 +1,7 @@
 <% if @page == 1 %>
 	$('#results').empty();
 	$('#results').html("<%= escape_javascript(render :partial => 'results') %>");
-<% else %>
+<% elsif @page <= @total_pages %>
 	$('#results').append("<%= escape_javascript(render :partial => 'results') %>");
 <% end %>
+$('#show_more').attr("data-loading", "false");
