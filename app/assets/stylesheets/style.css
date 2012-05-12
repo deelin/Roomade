@@ -252,6 +252,11 @@ a:active {
 .results {
   padding: 0px; }
 
+.apt_blank {
+  margin: 20px auto;
+  color: #666666;
+  text-align: center; }
+
 .apt_detail {
   margin-left: 0px;
   border: solid 1px #cccccc;

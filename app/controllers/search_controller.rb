@@ -24,6 +24,7 @@ class SearchController < ApplicationController
       
     else
       # no results
+      render "no_results.js" and return
     end
     
     if request.xhr?

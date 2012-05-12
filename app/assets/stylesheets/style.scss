@@ -393,6 +393,12 @@ a:active{
 	padding:0px;
 }
  
+.apt_blank {
+	margin: 20px auto;
+	color: $gray;
+	text-align: center;
+}
+
 .apt_detail{
 	margin-left:0px;
 	border:solid 1px $lightestgray;
@@ -1287,3 +1293,4 @@ button.close {
 		}
 	}
 }
+
