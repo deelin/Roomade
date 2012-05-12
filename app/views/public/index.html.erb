@@ -324,7 +324,7 @@
 		
 		function search() {
 			search_count++;
-			if (more_results) {
+			if (page == 1 || more_results) {
 				$.ajax({
 					type: "GET",
 					url: "<%= search_apartments_path() %>.js",
