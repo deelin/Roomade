@@ -325,20 +325,21 @@
 		function search() {
 			console.log('searching page '+page);
 			search_count++;
-			$.ajax({
-				type: "GET",
-				url: "<%= search_apartments_path() %>.js",
-				data: { query: query,
-					min_bedrooms: min_bedrooms, max_bedrooms: max_bedrooms,
-					min_bathrooms: min_bathrooms, max_bathrooms: max_bathrooms,
-					min_roommates: min_roommates, max_roommates: max_roommates,
-					min_price: min_price, max_price: max_price, 
-					sort: sort, amenities: amenities, page: page},
-				headers: {
-					'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
-				}
-			});
 			if (more_results) {
+				$.ajax({
+					type: "GET",
+					url: "<%= search_apartments_path() %>.js",
+					data: { query: query,
+						min_bedrooms: min_bedrooms, max_bedrooms: max_bedrooms,
+						min_bathrooms: min_bathrooms, max_bathrooms: max_bathrooms,
+						min_roommates: min_roommates, max_roommates: max_roommates,
+						min_price: min_price, max_price: max_price, 
+						sort: sort, amenities: amenities, page: page},
+					headers: {
+						'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+					}
+				});
+				$("#show_more").attr("data-loading", "true");
 				$('#show_more .activity').animate({"height": "show", "opacity": 1.0});	
 			}
 			$('#search_button').hide();
@@ -472,13 +473,12 @@
 		var initWaypoint = function(){
 			$('#show_more').waypoint(function(event, direction){
 				console.log(search_count);
-				if (direction === 'down' && $(this).attr('data-loading') == "false" && search_count > 0) {
-					// $(this).find('.load-activity').animate({"height": "show", "opacity": "show"}, 400);
+				console.log($(this).attr("data-loading") == "false");
+				if (direction === 'down' && $("#show_more").attr('data-loading') == "false" && search_count > 0) {
 					search();
-					$(this).attr("data-loading", "true");
 				}
 			}, {
-				offset: 'bottom-in-view'
+				offset: '200%'
 			});
 		}
 		

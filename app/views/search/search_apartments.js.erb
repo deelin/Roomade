@@ -4,10 +4,9 @@
 <% elsif @page <= @total_pages %>
 	$('#results').append("<%= escape_javascript(render :partial => 'results') %>");
 	<% if @page == @total_pages %>
-		console.log("true <%= @page %> <%= @total_pages %>");
 		more_results = false;
 	<% end %>
 <% end %>
 $('#show_more').attr("data-loading", "false");
 $('#show_more .activity').animate({"height": "hide", "opacity": 0});	
-$.waypoints('refresh')
+$.waypoints('refresh');

@@ -5,7 +5,7 @@ class Apartment < ActiveRecord::Base
   has_many :apartment_photos, :order => "created_at desc"
   has_many :user_apartment_queues
   
-  self.per_page = 6
+  self.per_page = 1
   accepts_nested_attributes_for :apartment_photos, :allow_destroy => true
   
   def get_ratings_hash
