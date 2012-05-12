@@ -1285,8 +1285,9 @@ button.close {
 }
 
 #show_more {
-	display: none;
-	.activity {
+/*	border: 1px solid black;*/
+ 	#activity_indicator {
+		display: none;
 		img {
 			display: block;
 			margin: 10px auto;

@@ -252,7 +252,7 @@
 		</div> <!--results-->
 
 		<div id="show_more" class="grid_12" data-loading="false">
-			<div class="activity">
+			<div class="activity" id="activity_indicator">
 				<%= image_tag "indicator.gif" %>
 			</div>
 		</div>
@@ -323,7 +323,6 @@
 		}
 		
 		function search() {
-			console.log('searching page '+page);
 			search_count++;
 			if (more_results) {
 				$.ajax({
@@ -340,7 +339,7 @@
 					}
 				});
 				$("#show_more").attr("data-loading", "true");
-				$('#show_more .activity').animate({"height": "show", "opacity": 1.0});	
+				$('#activity_indicator').animate({"height": "show", "opacity": 1.0}, 400);	
 			}
 			$('#search_button').hide();
 			$('#slogan').closest('.container_12').find(".grid_12.placeholder:first-child").slideUp();
@@ -470,19 +469,14 @@
 			location.href = '/apartment/'+apartment_id;
 		});
 		
-		var initWaypoint = function(){
-			$('#show_more').waypoint(function(event, direction){
-				console.log(search_count);
-				console.log($(this).attr("data-loading") == "false");
-				if (direction === 'down' && $("#show_more").attr('data-loading') == "false" && search_count > 0) {
-					search();
-				}
-			}, {
-				offset: '200%'
-			});
-		}
-		
-		initWaypoint();
+		$('#show_more').waypoint(function(event, direction){
+			if (direction === 'down' && $("#show_more").attr('data-loading') == "false" && search_count > 0) {
+				search();
+			}
+		}, {
+			offset: '120%'
+		});
+	
 	});
 </script>
 

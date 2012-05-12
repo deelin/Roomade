@@ -890,7 +890,9 @@ button.close {
   clear: both; }
 
 #show_more {
-  display: none; }
-  #show_more .activity img {
-    display: block;
-    margin: 10px auto; }
+  /*	border: 1px solid black;*/ }
+  #show_more #activity_indicator {
+    display: none; }
+    #show_more #activity_indicator img {
+      display: block;
+      margin: 10px auto; }
