@@ -1277,3 +1277,13 @@ button.close {
 .modal-footer:after {
 	clear: both;
 }
+
+#show_more {
+	display: none;
+	.activity {
+		img {
+			display: block;
+			margin: 10px auto;
+		}
+	}
+}

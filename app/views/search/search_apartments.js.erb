@@ -3,5 +3,9 @@
 	$('#results').html("<%= escape_javascript(render :partial => 'results') %>");
 <% elsif @page <= @total_pages %>
 	$('#results').append("<%= escape_javascript(render :partial => 'results') %>");
+	<% if @page == @total_pages %>
+		more_results = false;
+	<% end %>
 <% end %>
 $('#show_more').attr("data-loading", "false");
+$('#show_more').animate({"height": "hide", "opacity": 0});	

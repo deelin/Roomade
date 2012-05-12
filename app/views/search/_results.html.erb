@@ -8,14 +8,10 @@
 	$().ready(function(){
 		var joined_apartment_ids = "<%= @apartment_results.map(&:id).join(",") %>";
 		var apartment_ids = joined_apartment_ids.split(",");
-		console.log(apartment_ids);
-		
 		
 		apartment_ids.forEach(function(apartment_id){
 			var apartment_id = apartment_id;
 			var address = $('div[data-apartment-id="'+apartment_id+'"]').attr("data-address");
-			console.log(apartment_id);
-			console.log(address);
 			geocoder.geocode( { 'address': address}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					var lat = results[0].geometry.location.lat();
@@ -32,7 +28,6 @@
 						draggableCursor: "pointer"
 				    };
 				    var map = new google.maps.Map(document.getElementById("apt_"+apartment_id+"_map"), myOptions);
-					console.log(document.getElementById("apt_"+apartment_id+"_map"));
 					var marker = new google.maps.Marker({
 					    position: latlng
 					});
