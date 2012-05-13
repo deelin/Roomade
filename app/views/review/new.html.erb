@@ -14,7 +14,17 @@ the following script includes the required mod
 	var geocoder = new google.maps.Geocoder();
 	var location1, location2;
 	var markersArray = [];
-	
+	var ratings_hash = {
+		"bedrooms": [1,2,3,4,5], 
+		"bathrooms": [1,2,3,4,5], 
+		"roommates": [1,2,3,4,5,6,7], 
+		"space": ["super cramped", "somewhat tight", "just right", "i'm freee", "dance party in my room"], 
+		"noise": ["like a library", "quiet most of the time", "just right", "weekend parties", "ragers every night"], 
+		"security": ["hide yo kids, hide yo wife", "some break-ins", "just right", "no worries", "living in a bubble"], 
+		"management": ["never responds", "don't see them much", "reasonable", "pretty helpful", "always picks up and responds"], 
+		"condition": ["walls peeling, moldy, leaking", "janky but liveable", "could use some work", "old but well maintained", "brand new/remodeled"], 
+		"rating": ["never live here!", "should be a last resort", "worth it", "make it high on your list", "come come come!"]
+	}
 	function validate_review_form() {
 		var error_count = 0;
 		var error_div;
@@ -169,8 +179,11 @@ error_divs.push(error_div);
 		});
 		
 		$('.selectors, .options').live("mouseover", function(e) {
+			var category = $(this).closest(".question").attr("id");
 			var children = $(this).children();
 			var finalIndex = children.index(e.target);
+			var text = ratings_hash[category][finalIndex] || "";
+			$(this).find(".rating_message").text(text);
 			$(children).slice(0, finalIndex+1).addClass("selected");
 			$(children).slice(finalIndex+1).removeClass("selected");
 		});
@@ -181,14 +194,20 @@ error_divs.push(error_div);
 				var finalIndex = parseInt($(this).attr("data-num"));
 				$(children).slice(0, finalIndex+1).addClass("selected");
 				$(children).slice(finalIndex+1).removeClass("selected");
+				
+				var category = $(this).closest(".question").attr("id");
+				var text = ratings_hash[category][finalIndex] || "";
+				$(this).find(".rating_message").text(text);
 			}
 			else {
 				var children = $(this).children();
+				$(this).find(".rating_message").empty();
 				$(children).slice(0).removeClass("selected");
 			}
 		});
 		
 		$('.selectors, .options').live("click", function(e) {
+			console.log($(e.target));
 			var children = $(this).children();
 			var finalIndex = parseInt(children.index(e.target));
 			if (finalIndex == -1) {
@@ -301,7 +320,7 @@ error_divs.push(error_div);
 		<div class="category">
 		Your Review
 		</div>
-		<%= f.text_area :description, :id => "review_input", :rows => "4", :cols => "70" %>
+		<%= f.text_area :description, :id => "review_input", :rows => "4", :cols => "70", :placeholder => "Tell us a bit about the apartment" %>
 
 	</div>
 	
@@ -342,7 +361,9 @@ error_divs.push(error_div);
 
 			<div class="num_box"> 
 			</div>
-
+			
+			<div class="rating_message">
+			</div>
 		</div>
 		<%= f.hidden_field :bedrooms, :id => "bedrooms_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
@@ -369,6 +390,9 @@ error_divs.push(error_div);
 			</div>
 
 			<div class="num_box non-selected"> 
+			</div>
+			
+			<div class="rating_message">
 			</div>
 
 		</div>
@@ -403,6 +427,9 @@ error_divs.push(error_div);
 
 				<div class="num_box non-selected"> 
 				</div>
+				
+				<div class="rating_message">
+				</div>
 
 		</div>
 		<%= f.hidden_field :roommates, :id => "roommates_input", :class => "required_input" %>
@@ -432,6 +459,9 @@ error_divs.push(error_div);
 				</div>
 
 				<div class="option_box non-selected"> 
+				</div>
+				
+				<div class="rating_message">
 				</div>
 
 		</div>
@@ -466,7 +496,10 @@ error_divs.push(error_div);
 
 				<div class="option_box non-selected"> 
 				</div>
-
+				
+				<div class="rating_message">
+				</div>
+				
 		</div>
 		<%= f.hidden_field :noise, :id => "noise_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
@@ -507,6 +540,9 @@ error_divs.push(error_div);
 
 			<div class="option_box non-selected"> 
 			</div>
+			
+			<div class="rating_message">
+			</div>
 		</div>
 		<%= f.hidden_field :security_level, :id => "security_level_input", :class => "required_input" %>
 		<div class="clearfloat"></div>
@@ -536,6 +572,9 @@ error_divs.push(error_div);
 				</div>
 
 				<div class="option_box non-selected"> 
+				</div>
+				
+				<div class="rating_message">
 				</div>
 
 		</div>
@@ -567,6 +606,9 @@ error_divs.push(error_div);
 
 				<div class="option_box non-selected"> 
 				</div>
+				
+				<div class="rating_message">
+				</div>
 
 		</div>
 		<%= f.hidden_field :condition, :id => "condition_input", :class => "required_input" %>
@@ -596,6 +638,9 @@ error_divs.push(error_div);
 				</div>
 
 				<div class="option_box non-selected"> 
+				</div>
+				
+				<div class="rating_message">
 				</div>
 
 		</div>

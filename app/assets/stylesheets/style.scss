@@ -678,6 +678,16 @@ a:active{
 			margin-left:2px;
 	}
 	
+	.rating_message {
+		height: 25px;
+		float: left;
+		line-height: 25px;
+		margin-left: 10px;
+		color: $darkblue;
+		font-weight: bold;
+		padding: 0 10px;
+	}
+	
 	.num_box:hover{
 		background-color:$medorange;
 	}

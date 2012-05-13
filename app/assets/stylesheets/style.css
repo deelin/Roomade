@@ -429,6 +429,14 @@ a:active {
     width: 15px;
     background-color: rgba(245, 140, 0, 0.4);
     margin-left: 2px; }
+  .new_review .rating_message {
+    height: 25px;
+    float: left;
+    line-height: 25px;
+    margin-left: 10px;
+    color: rgba(30, 144, 255, 0.7);
+    font-weight: bold;
+    padding: 0 10px; }
   .new_review .num_box:hover {
     background-color: rgba(245, 140, 0, 0.8); }
   .new_review .options {
