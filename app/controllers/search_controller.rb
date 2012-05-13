@@ -19,7 +19,8 @@ class SearchController < ApplicationController
     @total_pages = @apartment_results.total_pages
     @apartment_results_hash = @apartment_results.group_by { |apartment| apartment.id }
     
-    if @total_pages == 0
+    logger.debug(@total_pages)
+    if @total_pages == 1 && @apartment_results.blank?
       render "no_results.js" and return
     end
     
