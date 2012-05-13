@@ -361,7 +361,9 @@
 			$('#price_ranges li').removeClass("selected");
 			$(this).addClass("selected");
 			page = 1;
-			search();
+			if (search_count > 0) {
+				search();	
+			}
 		});
 		
 		$('#filter .options').live("mouseover", function(e) {
@@ -410,7 +412,9 @@
 			window["min_"+subcolumn_type] = parseInt($(this).closest(".subcolumn").find(".options.from").attr("data-num-selected"));
 			window["max_"+subcolumn_type] = parseInt($(this).closest(".subcolumn").find(".options.to").attr("data-num-selected"));
 			page = 1;
-			search();
+			if (search_count > 0) {
+				search();	
+			}
 		});
 		
 		$('#amenities_list').live("click", function(e) {
@@ -422,7 +426,9 @@
 			});
 			amenities = amenity_ids.join(",");
 			page = 1;
-			search();
+			if (search_count > 0) {
+				search();	
+			}
 		});
 		
 		$('#search_query_input').live("keyup", function(e){

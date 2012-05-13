@@ -599,16 +599,13 @@ a:active {
   margin-top: 5px;
   background-color: #e8e8e8; }
   .review .subcolumn {
-    margin-right: 20px;
-    float: left; }
+    margin-right: 20px; }
     .review .subcolumn .review_text {
       font-size: 14px;
       padding-bottom: 10px;
       width: 300px; }
     .review .subcolumn .date {
       color: gray; }
-  .review .apt_setup {
-    float: right; }
 
 .new_review {
   padding-left: 0px; }
