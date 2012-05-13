@@ -103,7 +103,7 @@ module ApartmentHelper
   				</a>
 
   				<div class="column">
-  					<div class="map" id="apt_#{apartment.id}_map"></div>
+  					<div class="map" id="apt_#{apartment.id}_map" data-latitude="#{apartment.latitude}" data-longitude="#{apartment.longitude}"></div>
 
   					<div class="distance" data-address="#{address}" data-apartment-id="#{apartment.id}">
   						<div>#{apartment.dist_to_campus * WALKING_MIN_PER_MILE} min walk to campus</div>

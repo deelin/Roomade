@@ -240,65 +240,34 @@
 
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCXm7UmHDyuyBm9-ySvmAEZHmkxuXvBB8Y&sensor=false"></script>
 <script type="text/javascript">
-	var geocoder, location1, location2;
 	
 	function initialize() {
-		geocoder = new google.maps.Geocoder();
-		geocoder.geocode( { 'address': "<%= @apartment.address %>" }, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				var latlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-				var myOptions = {
-					zoom: 14,
-					center: latlng,
-					mapTypeId: google.maps.MapTypeId.ROADMAP,
-					mapTypeControl: false,
-					draggable: false,
-					streetViewControl: false,
-					zoomControl: false,
-					draggableCursor: "pointer"
-				};
-				var map = new google.maps.Map(document.getElementById("google-map-small"), myOptions);
-				
-				// create marker
-				var marker = new google.maps.Marker({
-		   			position: latlng
-				});
-				// add to map
-				marker.setMap(map);
-			}
+		var latlng = new google.maps.LatLng(<%= @apartment.latitude %>, <%= @apartment.longitude %>);
+		var myOptions = {
+			zoom: 14,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			mapTypeControl: false,
+			draggable: false,
+			streetViewControl: false,
+			zoomControl: false,
+			draggableCursor: "pointer"
+		};
+		var map = new google.maps.Map(document.getElementById("google-map-small"), myOptions);
+		
+		// create marker
+		var marker = new google.maps.Marker({
+   			position: latlng
 		});
+		// add to map
+		marker.setMap(map);
 	}
 
 	$().ready(function() {	
 		$('.new_review').live("click", function(e) {
 			location.href = '<%= new_review_path() %>';
 		});
-		
 		initialize();
-
-		function showLocation() {
-			
-			geocoder.geocode( { 'address': "UC Berkeley" }, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					location1 = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
-					geocoder.geocode( { 'address': '<%= @apartment.address %>' }, function(results, status) {
-						if (status == google.maps.GeocoderStatus.OK) {
-							location2 = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
-							// calculateDistance();
-							// var time_to_campus = (15*<%= @apartment.dist_to_campus %>).toFixed();
-							// $('.distance').text(time_to_campus + " min walk to campus").hide().fadeIn(); 
-						}
-						else {
-						}
-					})
-				}
-				else {
-				}
-			});
-		}
-
-		showLocation();
-		
 		<% @amenities.each do |amenity_id| %>
 			$('#amenities_list li:nth-child(<%= amenity_id %>)').addClass("selected");
 		<% end %>

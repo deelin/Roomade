@@ -29,7 +29,7 @@ the following script includes the required mod
 		var error_count = 0;
 		var error_div;
 		var error_divs = [];
-		if ($('#address_input').val().trim() == "" || $('#formatted_address').val().trim() == "" || $('#dist_to_campus').val().trim() == "") {
+		if ($('#address_input').val().trim() == "" || $('#formatted_address').val().trim() == "" || $('#dist_to_campus').val().trim() == "" || $('#latitude').val().trim() == "" || $('#longitude').val().trim() == "") {
 			$('#address_input').val('');
 			console.log("something wrong with map getting address and distance");
 			error_div = $('#formatted_address');
@@ -163,6 +163,8 @@ error_divs.push(error_div);
  					latLngArr.push(location_hash[key]);
 				}
 				var myLatlng = new google.maps.LatLng(latLngArr[0], latLngArr[1]);
+				$('#latitude').val(latLngArr[0]);
+				$('#longitude').val(latLngArr[1]);
 				// clear previous markers
 				clearOverlays();
 				// create new marker
@@ -313,6 +315,8 @@ error_divs.push(error_div);
 		<%= text_field_tag :address, nil, :id => "address_input", :class => "required_input" %>
 		<%= hidden_field_tag :formatted_address, "", :id => "formatted_address", :class => "required_input" %>
 		<%= hidden_field_tag :dist_to_campus, "", :id => "dist_to_campus", :class => "required_input" %>
+		<%= hidden_field_tag :latitude, "", :id => "latitude", :class => "required_input" %>
+		<%= hidden_field_tag :longitude, "", :id => "longitude", :class => "required_input" %>
 		<div id="map_canvas" style="width:310px;height:150px;"></div>
 	</div>
 

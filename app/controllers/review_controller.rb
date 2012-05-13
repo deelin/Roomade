@@ -8,11 +8,13 @@ class ReviewController < ApplicationController
   def create
     apartment = Apartment.find_or_create_by_address(params[:formatted_address].gsub("Street", "St"))
     if apartment.dist_to_campus.nil?
-      if params[:dist_to_campus].to_f.to_s != params[:dist_to_campus]
+      if params[:dist_to_campus].to_f.to_s != params[:dist_to_campus] || params[:latitude].to_f.to_s != params[:latitude] || params[:longitude].to_f.to_s != params[:longitude]
         flash[:error] = "Failed to create review."
         redirect_to new_review_path and return
       else
         apartment.dist_to_campus = params[:dist_to_campus].to_f.round(1)
+        apartment.latitude = params[:latitude].to_f
+        apartment.longitude = params[:longitude].to_f
         apartment.save
       end
     end
