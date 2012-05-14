@@ -925,29 +925,25 @@ a:active{
 .review{
 	min-height:50px;
 	height:auto;
+	overflow:visible;
 	padding:20px;
 	margin-top:5px;
 	background-color:$faintgray;
 	.subcolumn{
 		margin-right:20px;
-		display: inline-block;
-		vertical-align: text-top;
+		
 		.review_text{
 			font-size:14px;
 			padding-bottom:10px;
 			width:300px;
-			a {
-				color: $medorange;
-			}
-			a:hover {
-				color: $orange;
-			}
 		}
 		
 		.date{
 			color:gray;
 		}
 		
+	}
+	.apt_setup{
 	}
 }
 
