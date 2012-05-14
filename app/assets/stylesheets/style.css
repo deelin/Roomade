@@ -594,21 +594,16 @@ a:active {
 .review {
   min-height: 50px;
   height: auto;
+  overflow: visible;
   padding: 20px;
   margin-top: 5px;
   background-color: #e8e8e8; }
   .review .subcolumn {
-    margin-right: 20px;
-    display: inline-block;
-    vertical-align: text-top; }
+    margin-right: 20px; }
     .review .subcolumn .review_text {
       font-size: 14px;
       padding-bottom: 10px;
       width: 300px; }
-      .review .subcolumn .review_text a {
-        color: rgba(245, 140, 0, 0.8); }
-      .review .subcolumn .review_text a:hover {
-        color: #f58c00; }
     .review .subcolumn .date {
       color: gray; }
 

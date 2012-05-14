@@ -87,25 +87,14 @@
 			</div>
 		
 			<% @reviews.each do |review| %>
-			<div class="review" id="review_<%= review.id %>">
+			<div class="review">
 				<div class="subcolumn response <%= review.recommendation == true ? "yes" : "no" %>">
 				<%= review.recommendation == true ? "yes" : "no" %>
 				</div>
 				
 				<div class="subcolumn">
 					<div class="review_text">
-						<% if review.description.length <= 150 %>
-							<div class="resizable">
-								<%= raw review.description %>
-							</div>
-						<% else %>
-							<div class="resizable">
-								<%= raw truncate(review.description, :length => 150, :omission => "...#{link_to "more", "#", :class => "expand_review_text"}") %>
-							</div>
-							<div class="resizable" style="display:none;">
-								<%= raw review.description %>
-							</div>
-						<% end %>
+						<%= raw review.description %>
 					</div>
 					
 					<div class="date">
@@ -282,10 +271,5 @@
 		<% @amenities.each do |amenity_id| %>
 			$('#amenities_list li:nth-child(<%= amenity_id %>)').addClass("selected");
 		<% end %>
-		
-		$('.expand_review_text').live("click", function(e) {
-			var review_id = $(this).closest('.review_text').find(".resizable").toggle();
-			e.preventDefault();	
-		});
 	});
 </script>
