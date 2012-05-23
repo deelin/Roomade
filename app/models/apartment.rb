@@ -56,8 +56,9 @@ class Apartment < ActiveRecord::Base
     # determine query
     query_cond = ""
     terms = query.gsub(" street", " st").gsub(" california", " ca").gsub(",", " ").split(" ")
-    terms.each do |term|
+    terms.each_with_index do |term, index|
       query_cond += " upper(address) like upper('%#{term}%')"
+      query_cond += " and" unless index == terms.length - 1
     end
     logger.debug(query_cond)
     
